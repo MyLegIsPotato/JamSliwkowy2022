@@ -48,6 +48,7 @@ public class S_WaypointMover : MonoBehaviour
 
             if (!reverseTravel)
             {
+
                 if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold)
                 {
                     if (waypoints.GetNextWaypoint(currentWaypoint) != null)
@@ -62,6 +63,8 @@ public class S_WaypointMover : MonoBehaviour
             }
             else
             {
+                
+                currentWaypoint = waypoints.GetPreviousWaypoint(currentWaypoint);
                 if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold)
                 {
                     if (waypoints.GetPreviousWaypoint(currentWaypoint) != null)
