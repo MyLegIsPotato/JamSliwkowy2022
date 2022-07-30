@@ -4,7 +4,17 @@ using UnityEngine;
 
 public class S_Enemy : MonoBehaviour
 {
-    public int health;
-    public int damage;
+    private int health;
+    public int Health
+    {
+        get { return health; } 
+        set { health = value; }
+    }
 
+    public int damage; 
+
+    private void OnMouseDown()
+    {
+        print("Ouch! It's me, " + this.name);
+    }
 }
