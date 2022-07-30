@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 50ac88e6f37b06e4e9ef9ca39671f20c
+guid: c284c632dcf56ec4ba700f5ad7f2a213
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
@@ -8,12 +8,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: deskspace
-    second: {instanceID: 0}
+    second: {fileID: 2100000, guid: f6ef2c481c492394aa0a2ab0797b2fba, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
     materialSearch: 1
-    materialLocation: 0
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
