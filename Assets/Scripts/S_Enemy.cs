@@ -12,7 +12,22 @@ public class S_Enemy : MonoBehaviour
         set { health = value; }
     }
 
-    public int damage; 
+    public int damage;
+
+    public AudioClip moveSFX;
+    public AudioClip attackSFX;
+
+    public void Start()
+    {
+        AudioSource source = gameObject.AddComponent<AudioSource>();
+        if (source != null)
+        {
+            source.clip = moveSFX;
+            source.loop = true;
+            source.spatialBlend = 1f;
+            source.Play();
+        }
+    }
 
     private void OnMouseDown()
     {

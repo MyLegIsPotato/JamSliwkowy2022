@@ -1,31 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class S_WaypointMover : MonoBehaviour
 {
     [SerializeField]
     public S_Waypoints waypoints;
-  
 
     [SerializeField]
     private float moveSpeed = 5f;
 
-    private Transform currentWaypoint;
-    private Transform prevWaypoint;
     [SerializeField]
     private float distanceThreshold = 0.1f;
 
-    bool arrived = false;
+    [SerializeField]
+    public bool useRotation = true;
+    [SerializeField]
+    public bool autoProceed = true;
+
+    private Transform currentWaypoint;
+    private Transform prevWaypoint;
+
+    private Transform destination;
+
+
+    bool arrivedToTheEnd = false;
     private bool reverseTravel = false;
+
+    public delegate void ArriveHandler();
+    public ArriveHandler onArrive;
+    public ArriveHandler onFinish;
 
     // Start is called before the first frame update
     void Start()
     {
-        currentWaypoint = waypoints.GetNextWaypoint(currentWaypoint);
+        //Initialize handlers
+        onArrive += () => { };
+        onFinish += () => { };
+
+        currentWaypoint = waypoints.GetFirstWaypoint();
         transform.position = currentWaypoint.position;
 
-        currentWaypoint = waypoints.GetNextWaypoint(currentWaypoint);
+
+        destination = waypoints.GetNextWaypoint(currentWaypoint);
+        StartCoroutine(Move());
     }
 
 
@@ -38,48 +57,72 @@ public class S_WaypointMover : MonoBehaviour
 
     public void TurnBack()
     {
-        reverseTravel = true;
-        if(prevWaypoint != null)
-            currentWaypoint = prevWaypoint;
+        if (!reverseTravel)
+        {
+            reverseTravel = true;
+            ProceedToPrevious();
+        }
+        //StopAllCoroutines();
+        //StartCoroutine(Move());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator Move()
     {
-        if(currentWaypoint != null)
+        if(destination != null) //If there is destination (there is none if at the end).
         {
-            if (!arrived)
+            while (Vector3.Distance(transform.position, destination.position) > distanceThreshold) //not arrived then move towards
             {
-
-                transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.position, moveSpeed * Time.deltaTime);
-
-                direction = (currentWaypoint.position - transform.position).normalized;
-                rotGoal = Quaternion.LookRotation(direction);
-                transform.rotation = Quaternion.Slerp(transform.rotation, rotGoal, turnSpeed);
-
-                if (!reverseTravel)
+                print("Moving! aaa");
+                if (useRotation) //should also rotate?
                 {
-                    if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold)
-                    {
-                        prevWaypoint = currentWaypoint;
-                        currentWaypoint = waypoints.GetNextWaypoint(currentWaypoint);
-                    }
+                    direction = (destination.position - transform.position).normalized;
+                    rotGoal = Quaternion.LookRotation(direction);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, rotGoal, turnSpeed);
+                }
+                transform.position = Vector3.MoveTowards(transform.position, destination.position, moveSpeed * Time.deltaTime);
+                yield return new WaitForEndOfFrame();
+            }
+
+            //Arrived to the waypoint:
+            onArrive();
+
+
+            //What to do next?
+            if (autoProceed)
+            {
+                if (reverseTravel)
+                {
+                    print("Proceeding to the prev one!");
+                    ProceedToPrevious();
                 }
                 else
                 {
-                    if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold)
-                    {
-                         currentWaypoint = waypoints.GetPreviousWaypoint(currentWaypoint);
-                    }
+                    print("Proceeding to the next one!");
+                    ProceedToNext();
+
                 }
+                StartCoroutine(Move());
             }
+
+            yield return null;
         }
         else
         {
-            //print("Arrived!");
-            arrived = true;
+            //Arrived to the end. Finish moving.
+            print("Arrived to the end!");
+            onFinish();
+            yield return null;
         }
 
+    }
 
+    public void ProceedToNext()
+    {
+        destination = waypoints.GetNextWaypoint(destination);
+    }
+
+    public void ProceedToPrevious()
+    {
+        destination = waypoints.GetPreviousWaypoint(destination);
     }
 }
