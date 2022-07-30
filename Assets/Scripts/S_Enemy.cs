@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class S_Enemy : MonoBehaviour
 {
+
     private int health;
     public int Health
     {
@@ -15,9 +16,16 @@ public class S_Enemy : MonoBehaviour
 
     private void OnMouseDown()
     {
-        print("Ouch! It's me, " + this.name);
+        this.GetComponent<S_WaypointMover>().TurnBack();
 
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if(Physics.Raycast(ray, out hit, 1000))
+        {
+            print("Ouch! That Ray hit me, " + this.name);
+        }
 
-        this.GetComponent<S_WaypointMover>().reverseTravel = true;
+        //Call a static event that "SOME" enemy was hit.
+        S_EnemyManager.OnEnemyHit(hit.point);
     }
 }

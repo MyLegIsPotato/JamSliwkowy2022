@@ -6,16 +6,18 @@ public class S_WaypointMover : MonoBehaviour
 {
     [SerializeField]
     public S_Waypoints waypoints;
+  
 
     [SerializeField]
     private float moveSpeed = 5f;
 
     private Transform currentWaypoint;
+    private Transform prevWaypoint;
     [SerializeField]
     private float distanceThreshold = 0.1f;
 
     bool arrived = false;
-    public bool reverseTravel = false;
+    private bool reverseTravel = false;
 
     // Start is called before the first frame update
     void Start()
@@ -34,49 +36,50 @@ public class S_WaypointMover : MonoBehaviour
     [Range(0.01f, 0.1f)]
     public float turnSpeed = .1f;
 
+    public void TurnBack()
+    {
+        reverseTravel = true;
+        if(prevWaypoint != null)
+            currentWaypoint = prevWaypoint;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (!arrived)
+        if(currentWaypoint != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.position, moveSpeed * Time.deltaTime);
-            
-            direction = (currentWaypoint.position - transform.position).normalized;
-            rotGoal = Quaternion.LookRotation(direction);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotGoal, turnSpeed);
-
-            if (!reverseTravel)
+            if (!arrived)
             {
 
-                if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold)
+                transform.position = Vector3.MoveTowards(transform.position, currentWaypoint.position, moveSpeed * Time.deltaTime);
+
+                direction = (currentWaypoint.position - transform.position).normalized;
+                rotGoal = Quaternion.LookRotation(direction);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotGoal, turnSpeed);
+
+                if (!reverseTravel)
                 {
-                    if (waypoints.GetNextWaypoint(currentWaypoint) != null)
+                    if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold)
+                    {
+                        prevWaypoint = currentWaypoint;
                         currentWaypoint = waypoints.GetNextWaypoint(currentWaypoint);
-                    else
-                    {
-                        print("Arrived!");
-                        arrived = true;
                     }
-
                 }
-            }
-            else
-            {
-                
-                currentWaypoint = waypoints.GetPreviousWaypoint(currentWaypoint);
-                if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold)
+                else
                 {
-                    if (waypoints.GetPreviousWaypoint(currentWaypoint) != null)
-                        currentWaypoint = waypoints.GetPreviousWaypoint(currentWaypoint);
-                    else
+                    if (Vector3.Distance(transform.position, currentWaypoint.position) < distanceThreshold)
                     {
-                        print("Arrived!");
-                        arrived = true;
+                         currentWaypoint = waypoints.GetPreviousWaypoint(currentWaypoint);
                     }
-
                 }
             }
         }
+        else
+        {
+            //print("Arrived!");
+            arrived = true;
+        }
+
+
     }
 }

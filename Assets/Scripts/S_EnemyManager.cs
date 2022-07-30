@@ -13,6 +13,9 @@ public class S_EnemyManager : MonoBehaviour
     [SerializeField]
     public List<GameObject> enemyPrefabs;
 
+    public delegate void EnemyHitHandler(Vector3 hitPosition);
+
+    public static EnemyHitHandler OnEnemyHit;
 
     public void Start()
     {

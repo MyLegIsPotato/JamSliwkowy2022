@@ -15,4 +15,5 @@ public class S_Weapon : MonoBehaviour
 
     public Sprite weaponGraphic;
     public AudioClip weaponSound;
+    public GameObject hitFX_Prefab;
 }

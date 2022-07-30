@@ -10,6 +10,11 @@ public class S_PlayerManager : MonoBehaviour
 
     [SerializeField]
     List<S_Weapon> weapons;
+    
+    public S_Weapon currentWeapon
+    {
+        get { return weapons[selectedWeaponIndex]; }
+    }
 
     public delegate void WeaponAddedHandler();
     public WeaponAddedHandler OnWeaponAdded;
