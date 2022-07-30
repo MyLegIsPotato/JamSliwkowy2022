@@ -42,4 +42,21 @@ public class S_Waypoints : MonoBehaviour
             return null;
         }
     }
+
+    public Transform GetPreviousWaypoint(Transform currentWaypoint)
+    {
+        if (currentWaypoint == null)
+        {
+            return transform.GetChild(0);
+        }
+
+        if (currentWaypoint.GetSiblingIndex() > 0)
+        {
+            return transform.GetChild(currentWaypoint.GetSiblingIndex() - 1);
+        }
+        else
+        {
+            return null;
+        }
+    }
 }

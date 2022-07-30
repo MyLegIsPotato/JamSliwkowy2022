@@ -127,6 +127,7 @@ MonoBehaviour:
   waypoints: {fileID: 0}
   moveSpeed: 3
   distanceThreshold: 0.1
+  turnSpeed: 0.0524
 --- !u!1001 &6227480048138768448
 PrefabInstance:
   m_ObjectHideFlags: 0

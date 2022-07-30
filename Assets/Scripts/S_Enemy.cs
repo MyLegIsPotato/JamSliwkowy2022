@@ -16,5 +16,8 @@ public class S_Enemy : MonoBehaviour
     private void OnMouseDown()
     {
         print("Ouch! It's me, " + this.name);
+
+
+        this.GetComponent<S_WaypointMover>().reverseTravel = true;
     }
 }
