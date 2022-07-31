@@ -48,6 +48,12 @@ MonoBehaviour:
   weaponRateOfFire: 1
   weaponReloadTime: 1
   weaponPOINTS: 2
-  weaponGraphic: {fileID: 21300000, guid: 0c9f877775720d54189778c5a92fdfaa, type: 3}
-  weaponSound: {fileID: 0}
+  weaponBarGraphic: {fileID: 0}
+  weaponShootSound: {fileID: 0}
+  weaponReloadSound: {fileID: 0}
+  weaponHitSounds:
+  - {fileID: 8300000, guid: 58727a208fcea4a4aa73e7cb70e54f09, type: 3}
+  - {fileID: 8300000, guid: 9ab84114bdae85243bbffa7b9b542b42, type: 3}
+  - {fileID: 8300000, guid: 0a38bc594321ea5409ac6b9742cf5324, type: 3}
   hitFX_Prefab: {fileID: 780825668438896203, guid: 5cbceec3e51208d439ba6a01a77c20e1, type: 3}
+  missFX_Prefab: {fileID: 0}

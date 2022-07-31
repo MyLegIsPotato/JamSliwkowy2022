@@ -25,7 +25,7 @@ public class S_WaypointMover : MonoBehaviour
     private Transform destination;
 
 
-    bool arrivedToTheEnd = false;
+    //bool arrivedToTheEnd = false;
     private bool reverseTravel = false;
 
     public delegate void ArriveHandler();
@@ -72,7 +72,7 @@ public class S_WaypointMover : MonoBehaviour
         {
             while (Vector3.Distance(transform.position, destination.position) > distanceThreshold) //not arrived then move towards
             {
-                print("Moving! aaa");
+                //print("Moving! aaa");
                 if (useRotation) //should also rotate?
                 {
                     direction = (destination.position - transform.position).normalized;
@@ -92,12 +92,12 @@ public class S_WaypointMover : MonoBehaviour
             {
                 if (reverseTravel)
                 {
-                    print("Proceeding to the prev one!");
+                    //print("Proceeding to the prev one!");
                     ProceedToPrevious();
                 }
                 else
                 {
-                    print("Proceeding to the next one!");
+                    //sprint("Proceeding to the next one!");
                     ProceedToNext();
 
                 }
@@ -109,7 +109,7 @@ public class S_WaypointMover : MonoBehaviour
         else
         {
             //Arrived to the end. Finish moving.
-            print("Arrived to the end!");
+            //print("Arrived to the end!");
             onFinish();
             yield return null;
         }

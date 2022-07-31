@@ -13,7 +13,10 @@ public class S_Weapon : MonoBehaviour
     public float weaponPOINTS = 1;
 
 
-    public Sprite weaponGraphic;
-    public AudioClip weaponSound;
+    public Sprite weaponBarGraphic;
+    public AudioClip weaponShootSound;
+    public AudioClip weaponReloadSound;
+    public List<AudioClip> weaponHitSounds;
     public GameObject hitFX_Prefab;
+    public GameObject missFX_Prefab;
 }

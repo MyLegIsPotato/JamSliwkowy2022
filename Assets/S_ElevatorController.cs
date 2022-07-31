@@ -12,7 +12,7 @@ public class S_ElevatorController : MonoBehaviour
 
     public AnimationCurve doorsPosition;
 
-    [Range(0f, 1f)]
+    [Range(0f, 6.16f)]
     public float animationTime;
 
     public int floorNum = 0; //Higher number = higher level = lower floor (we are going down! ;)
@@ -28,7 +28,9 @@ public class S_ElevatorController : MonoBehaviour
     public float timeBetweenDingAndOpeningDoors = 2f;
 
     public AudioClip elevatorDing;
-    public AudioClip elevatorMoving;
+
+    public AudioSource elevatorAmbientEmitter;
+    public AudioSource elevatorDoorEmitter;
 
     public void Start()
     {
@@ -60,7 +62,10 @@ public class S_ElevatorController : MonoBehaviour
 
     IEnumerator OperateDoors(bool closed)
     {
+
         yield return new WaitForSeconds(timeBetweenDingAndOpeningDoors);
+
+        elevatorDoorEmitter.Play();
 
         GetComponent<Animator>().SetBool("Closed", closed);
 
@@ -73,7 +78,7 @@ public class S_ElevatorController : MonoBehaviour
 
             if (closed) //Close the door
             {
-                if (animationTime >= 1)
+                if (animationTime >= doorsPosition.keys[doorsPosition.keys.Length-1].time)
                     yield return null; //end coroutine
 
             }

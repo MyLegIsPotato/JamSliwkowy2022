@@ -9,7 +9,14 @@ public class S_Enemy : MonoBehaviour
     public int Health
     {
         get { return health; } 
-        set { health = value; }
+        set { 
+            health = value; 
+            if(health == 0)
+            {
+                print("I'm " + this.gameObject.name + " dead!");
+                S_EnemyManager.OnEnemyDeath();
+            }
+        }
     }
 
     public int damage;
@@ -19,7 +26,7 @@ public class S_Enemy : MonoBehaviour
 
     public void Start()
     {
-        AudioSource source = gameObject.AddComponent<AudioSource>();
+        AudioSource source = gameObject.GetComponent<AudioSource>();
         if (source != null)
         {
             source.clip = moveSFX;
@@ -41,6 +48,6 @@ public class S_Enemy : MonoBehaviour
         }
 
         //Call a static event that "SOME" enemy was hit.
-        S_EnemyManager.OnEnemyHit(hit.point);
+        S_EnemyManager.OnEnemyHit(hit.point, this);
     }
 }
