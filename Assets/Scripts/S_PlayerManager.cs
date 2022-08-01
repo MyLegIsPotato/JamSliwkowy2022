@@ -6,18 +6,48 @@ using UnityEngine.UI;
 
 public class S_PlayerManager : MonoBehaviour
 {
-    private int playerHealth;
-    public int PlayerHealth
+    //HP:
+    public bool canDie = false;
+
+    [SerializeField]
+    public Image HealthSlider;
+
+    private float playerHealth = 100;
+
+    public float maxHP = 100;
+
+    public float PlayerHealth
     {
         get { return playerHealth; }
-        set { playerHealth = value; }
+        set {
+
+            if (canDie)
+            {
+                playerHealth = value;
+            }
+            else
+            {
+                if(playerHealth < 10)
+                {
+                    playerHealth = 10;
+                }
+                else
+                {
+                    playerHealth = value;
+                }
+            }
+            HealthSlider.fillAmount = Mathf.InverseLerp(0, maxHP, playerHealth);
+        }
     }
+
+    [Range(0,1f)]
+    public float hitAnimationTimer;
 
     //POINTS:
     [SerializeField]
     public Image PointsSlider;
 
-    public float maxLevelPOINTS = 100;
+    public float maxPOINTS = 100;
 
     private float currentPOINTS = 0;
     public float CurrentPOINTS
@@ -26,70 +56,20 @@ public class S_PlayerManager : MonoBehaviour
         set
         {
             currentPOINTS = value;
-            PointsSlider.fillAmount = Mathf.InverseLerp(0, maxLevelPOINTS, currentPOINTS);
+            PointsSlider.fillAmount = Mathf.InverseLerp(0, maxPOINTS, currentPOINTS);
         }
     }
 
     public void AddPOINTS(Vector3 hitLocation, S_Enemy _e)
     {
-       CurrentPOINTS += weapons[selectedWeaponIndex].weaponPOINTS;
+        CurrentPOINTS += GetComponent<S_WeaponSystem>().GetCurrentWeapon.weaponPOINTS;
     }
 
-    //Weapons:
-    public S_UI_Animator UI_Animator;
-    private int selectedWeaponIndex;
-
-    public int SelectedWeaponIndex { 
-        get { return selectedWeaponIndex; } 
-        set {
-           
-
-             selectedWeaponIndex = value;
-            if (selectedWeaponIndex < 0)
-            {
-                //UI_Animator.BounceOnOutOfBounds(selectedWeaponIndex);
-
-                //Fix Out of bounds and play error sound
-                selectedWeaponIndex = 0;
-                if (!GetComponent<AudioSource>().isPlaying)
-                    GetComponent<AudioSource>().PlayOneShot(weaponOutOfBounds);
-            }
-            else if(selectedWeaponIndex > weapons.Count - 1)
-            {
-                //UI_Animator.BounceOnOutOfBounds(selectedWeaponIndex);
-
-                //Fix Out of bounds and play error sound
-                selectedWeaponIndex = weapons.Count - 1;
-                if(!GetComponent<AudioSource>().isPlaying)
-                    GetComponent<AudioSource>().PlayOneShot(weaponOutOfBounds);
-            }
-
-            UI_Animator.SwitchTo(selectedWeaponIndex);
-
-            print(selectedWeaponIndex);
-        } 
-    } 
-
-    [SerializeField]
-    List<S_Weapon> weapons;
-
-    [SerializeField]
-    AudioClip weaponOutOfBounds;
-
-
-    public S_Weapon GetCurrentWeapon
+    public void GetHit()
     {
-        get { return weapons[selectedWeaponIndex]; }
+        PlayerHealth -= 1;
     }
 
-    public delegate void WeaponAddedHandler();
-    public WeaponAddedHandler OnWeaponAdded;
-
-    private void AddWeapon(S_Weapon newWeapon)
-    {
-        weapons.Add(newWeapon);
-        OnWeaponAdded();
-    }
 
     private void Start()
     {
@@ -100,10 +80,10 @@ public class S_PlayerManager : MonoBehaviour
     {
         if (Input.mouseScrollDelta == new Vector2(0, 1))
         {
-            SelectedWeaponIndex++;
+            GetComponent<S_WeaponSystem>().SelectedWeaponIndex++;
         } else if (Input.mouseScrollDelta == new Vector2(0, -1))
         {
-            SelectedWeaponIndex--;
+            GetComponent<S_WeaponSystem>().SelectedWeaponIndex--;
         }
     }
 }

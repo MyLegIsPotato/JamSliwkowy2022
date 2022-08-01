@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class S_UI_Animator : MonoBehaviour
 {
@@ -11,11 +13,21 @@ public class S_UI_Animator : MonoBehaviour
     public float weaponWidth;
 
     public GameObject weaponBar;
+    public GameObject weaponBarChild;
+    public GameObject weaponBarIconPlaceholder;
     public GameObject ammoIcon;
 
     public void Start()
     {
-        S_CursorManager.OnLMBDown += onPlayerShoot;
+        S_CursorManager.OnLMBDown += ShootAmmoAnim;
+    }
+
+    public void AddIcon(S_Weapon _w, int barIndex)
+    {
+        GameObject go = Instantiate(weaponBarIconPlaceholder, weaponBarChild.transform);
+        go.GetComponent<Image>().sprite = _w.weaponBarGraphic;
+        go.name = _w.name;
+        go.transform.localPosition = new Vector2(barIndex * 135, 0);
     }
 
     public void WeaponUp()
@@ -35,7 +47,7 @@ public class S_UI_Animator : MonoBehaviour
         currentlyPlaying = LeanTween.moveLocalX(weaponBar, weaponIndex * -135, weaponChangeTime).setOnComplete(() => isPlaying = false); ;
     }
 
-    public void onPlayerShoot()
+    public void ShootAmmoAnim()
     {
         //print("kupsko");
         LTSeq seq = LeanTween.sequence();

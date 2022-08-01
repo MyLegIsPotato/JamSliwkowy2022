@@ -4,5 +4,17 @@ using UnityEngine;
 
 public class S_Weapon_Fuck : S_Weapon
 {
-    
+    public override void WeaponShoot()
+    {
+        //nadpisuje cos z S_Weapon
+        base.WeaponShoot();
+        
+    }
+
+    public override void EnemyReaction(Vector3 hitLocation, S_Enemy _e)
+    {
+        base.EnemyReaction(hitLocation, _e);
+        _e.GetComponent<S_WaypointMover>().altOnJunction = true;
+        //print("... I'm going to the boss.");
+    }
 }

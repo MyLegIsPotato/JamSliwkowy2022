@@ -32,6 +32,7 @@ public class S_ElevatorController : MonoBehaviour
     public AudioSource elevatorAmbientEmitter;
     public AudioSource elevatorDoorEmitter;
 
+
     public void Start()
     {
         //Start gameplay!
@@ -42,9 +43,10 @@ public class S_ElevatorController : MonoBehaviour
     {
         if (floorNum == 0)
         {
+
+
             floorNum++;
-            destinationHeight = 0f;
-            //tweenAnim = LeanTween.moveY(gameObject, destinationHeight, 5f).setLoopOnce().id; //move to y = 0
+
             print("Going down to floorNum: " + floorNum);
             GetComponent<S_WaypointMover>().onArrive += () => { StartCoroutine(OperateDoors(false)); };
             GetComponent<S_WaypointMover>().onArrive += PlayDing;

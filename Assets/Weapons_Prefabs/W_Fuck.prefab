@@ -45,10 +45,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: FuckOff
   weaponDamage: 5
-  weaponRateOfFire: 1
+  weaponShootInterval: 2
   weaponReloadTime: 1
   weaponPOINTS: 2
-  weaponBarGraphic: {fileID: 0}
+  weaponBarGraphic: {fileID: 21300000, guid: 0c9f877775720d54189778c5a92fdfaa, type: 3}
   weaponShootSound: {fileID: 0}
   weaponReloadSound: {fileID: 0}
   weaponHitSounds:

@@ -43,10 +43,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c65c555872a7e45aea8fe03e69741e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Default
+  weaponName: Paper
   weaponDamage: 2
   weaponRateOfFire: 1
   weaponReloadTime: 2
   weaponPOINTS: 5
-  weaponGraphic: {fileID: 21300000, guid: fc882375532822743a3a24a6a5993f73, type: 3}
-  weaponSound: {fileID: 0}
+  weaponBarGraphic: {fileID: 21300000, guid: fc882375532822743a3a24a6a5993f73, type: 3}
+  weaponShootSound: {fileID: 0}
+  weaponReloadSound: {fileID: 0}
+  weaponHitSounds: []
+  hitFX_Prefab: {fileID: 0}
+  missFX_Prefab: {fileID: 0}

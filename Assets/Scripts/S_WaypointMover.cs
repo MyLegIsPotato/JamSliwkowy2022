@@ -32,6 +32,8 @@ public class S_WaypointMover : MonoBehaviour
     public ArriveHandler onArrive;
     public ArriveHandler onFinish;
 
+    public bool altOnJunction = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -118,11 +120,11 @@ public class S_WaypointMover : MonoBehaviour
 
     public void ProceedToNext()
     {
-        destination = waypoints.GetNextWaypoint(destination);
+        destination = waypoints.GetNextWaypoint(destination, altOnJunction);
     }
 
     public void ProceedToPrevious()
     {
-        destination = waypoints.GetPreviousWaypoint(destination);
+        destination = waypoints.GetPreviousWaypoint(destination, altOnJunction);
     }
 }
