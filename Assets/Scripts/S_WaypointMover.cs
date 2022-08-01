@@ -73,6 +73,11 @@ public class S_WaypointMover : MonoBehaviour
         //StartCoroutine(Move());
     }
 
+    public void Depart()
+    {
+        StartCoroutine(Move());
+    }
+
     IEnumerator Move()
     {
         if(destination != null) //If there is destination (there is none if at the end).

@@ -15,6 +15,9 @@ public class S_ElevatorController : MonoBehaviour
     [Range(0f, 1f)]
     public float doorOpenessFactor;
 
+    [SerializeField]
+    public float travelTime = 10;
+
     public int floorNum = 7; //Start from 7 going down
     public float destinationHeight;
 
@@ -57,7 +60,13 @@ public class S_ElevatorController : MonoBehaviour
         floorNum--;
         yield return StartCoroutine(OperateDoors(true));
 
-        print("door closed");
+        GetComponent<S_WaypointMover>().Depart();
+
+        print("Waiting...");
+        yield return new WaitForSeconds(travelTime);
+        print("Wait Complete.");
+        OnElevatorArrived();
+        StartCoroutine(OperateDoors(false));
 
         yield return null;
     }
@@ -79,28 +88,22 @@ public class S_ElevatorController : MonoBehaviour
 
     IEnumerator OperateDoors(bool close)
     {
+        if (!close)
+            PlayDing(); //play sound before opening the doors
+        yield return new WaitForSeconds(2f);
+
         elevatorDoorSound.Play();
 
+        Animator anim = GetComponent<Animator>();
         if (close)
         {
-            GetComponent<Animator>().SetTrigger("Close");
+            anim.SetTrigger("Close");
         }
         else
         {
-            GetComponent<Animator>().SetTrigger("Open");
+            anim.SetTrigger("Open");
         }
 
-        yield return new WaitForSeconds(1.5f);
-
-        if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("DoNothing"))
-        {
-            print("do nothing");
-            yield return null;
-        }
-        else
-        {
-            print("doing something");
-            yield return new WaitForEndOfFrame();
-        }
+        yield return new WaitForSeconds(6f); //Wait for animation to end.
     }
 }
