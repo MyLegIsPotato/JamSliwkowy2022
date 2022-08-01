@@ -23,7 +23,9 @@ public class S_EnemyManager : MonoBehaviour
     public static int enemiesAlive = 0;
 
     public void Start()
-    { 
+    {
+        OnEnemyDeath += () => { };
+        S_ElevatorController.OnElevatorArrived += (x) => { if (GetComponentInParent<S_FloorNumber>().thisFloorNum == x) SpawnEnemies(); };
         //StartCoroutine(spawnEnemies());
     }
 
@@ -42,7 +44,7 @@ public class S_EnemyManager : MonoBehaviour
         yield return null;
     }
 
-    public void SpawnSomeEnemies(int count)
+    public void SpawnEnemies()
     {
         StartCoroutine(spawnEnemies());
     }

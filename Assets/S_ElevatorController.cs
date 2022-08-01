@@ -23,7 +23,7 @@ public class S_ElevatorController : MonoBehaviour
 
     public bool isMoving = true;
 
-    public delegate void ElevatorMovementHandler();
+    public delegate void ElevatorMovementHandler(int floorNum);
     public static ElevatorMovementHandler OnElevatorArrived;
     public static ElevatorMovementHandler OnElevatorDeparted;
 
@@ -34,20 +34,18 @@ public class S_ElevatorController : MonoBehaviour
     public AudioSource elevatorAmbientEmitter;
     public AudioSource elevatorDoorSound;
 
+    [Header("Floors")]
+    public List<GameObject> floors;
+
+    private GameObject GetFloor(int floorNumber)
+    {
+        return floors[7-floorNumber];
+    }
 
     public void Start()
     {
+        S_EnemyManager.OnEnemyDeath += () => { MoveIfEnemiesDead(); };
         S_GameManager.OnGameStarted += () => { StartCoroutine(MoveToNextFloor()); };
-
-
-        //S_EnemyManager.OnEnemyDeath += MoveIfEnemiesDead;
-        //GetComponent<S_WaypointMover>().onArrive += () => { OnElevatorArrived(); };
-        //GetComponent<S_WaypointMover>().onDepart += () => { OnElevatorDeparted(); };
-
-        //OnElevatorArrived += () => { print("Arriving!"); };
-        //OnElevatorArrived += PlayDing;
-
-        //OnElevatorDeparted += () => { print("Departing!"); };
     }
 
     private void Update()
@@ -60,12 +58,16 @@ public class S_ElevatorController : MonoBehaviour
         floorNum--;
         yield return StartCoroutine(OperateDoors(true));
 
-        GetComponent<S_WaypointMover>().Depart();
+        //if(floorNum == 7)
+        //    GetComponent<S_WaypointMover>().ProceedToNext();
+        //else
+        GetComponent<S_WaypointMover>().ProceedToNext();
 
         print("Waiting...");
         yield return new WaitForSeconds(travelTime);
         print("Wait Complete.");
-        OnElevatorArrived();
+
+        OnElevatorArrived(floorNum);
         StartCoroutine(OperateDoors(false));
 
         yield return null;

@@ -21,8 +21,11 @@ public class S_WaypointMover : MonoBehaviour
     [SerializeField]
     public bool autoProceed = true;
 
-    private Transform currentWaypoint;
     private Transform prevWaypoint;
+
+
+    [SerializeField]
+    private Transform firstWaypoint;
 
     private Transform destination;
 
@@ -45,13 +48,17 @@ public class S_WaypointMover : MonoBehaviour
         onDepart += () => { };
         onFinish += () => { };
 
-        currentWaypoint = waypoints.GetFirstWaypoint();
-        transform.position = currentWaypoint.position;
+        destination = firstWaypoint;
+        if(firstWaypoint == null)
+            firstWaypoint = transform.GetChild(0);
 
-
-        destination = waypoints.GetNextWaypoint(currentWaypoint);
-        if(autoStart)
+        if (autoStart)
+        {
+            destination = waypoints.GetNextWaypoint(firstWaypoint);
+            transform.position = firstWaypoint.position;
             StartCoroutine(Move());
+        }
+          
     }
 
 

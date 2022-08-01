@@ -40,7 +40,7 @@ public class S_Enemy : MonoBehaviour
     private void ArrivedAction() 
     {
         print("Just arrived");
-        GetComponentInParent<S_EnemyManager>().SpawnSomeEnemies(1);
+        //GetComponentInParent<S_EnemyManager>().SpawnEnemies();
         S_EnemyRemover.RemoveEnemy(gameObject);
     }
 }
