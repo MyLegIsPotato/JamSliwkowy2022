@@ -20,6 +20,7 @@ public class S_EnemyManager : MonoBehaviour
     public delegate void EnemyDeathHandler();
     public static EnemyDeathHandler OnEnemyDeath;
 
+    public static int enemiesAlive = 0;
 
     public void Start()
     {
@@ -38,10 +39,14 @@ public class S_EnemyManager : MonoBehaviour
         for (int i = 0; i < enemiesToSpawn; i++)
         {
             spawners[Random.Range(0, spawners.Count-1)].SpawnEnemy(enemyPrefabs[0]);
+            enemiesAlive++;
             yield return new WaitForSeconds(spawnInteval);
         }
-
-
         yield return null;
+    }
+
+    public void SpawnSomeEnemies(int count)
+    {
+        StartCoroutine(spawnEnemies());
     }
 }
