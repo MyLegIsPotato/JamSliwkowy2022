@@ -15,6 +15,8 @@ public class S_WaypointMover : MonoBehaviour
     private float distanceThreshold = 0.1f;
 
     [SerializeField]
+    public bool autoStart = true;
+    [SerializeField]
     public bool useRotation = true;
     [SerializeField]
     public bool autoProceed = true;
@@ -30,6 +32,7 @@ public class S_WaypointMover : MonoBehaviour
 
     public delegate void ArriveHandler();
     public ArriveHandler onArrive;
+    public ArriveHandler onDepart;
     public ArriveHandler onFinish;
 
     public bool altOnJunction = false;
@@ -39,6 +42,7 @@ public class S_WaypointMover : MonoBehaviour
     {
         //Initialize handlers
         onArrive += () => { };
+        onDepart += () => { };
         onFinish += () => { };
 
         currentWaypoint = waypoints.GetFirstWaypoint();
@@ -46,7 +50,8 @@ public class S_WaypointMover : MonoBehaviour
 
 
         destination = waypoints.GetNextWaypoint(currentWaypoint);
-        StartCoroutine(Move());
+        if(autoStart)
+            StartCoroutine(Move());
     }
 
 
@@ -72,6 +77,7 @@ public class S_WaypointMover : MonoBehaviour
     {
         if(destination != null) //If there is destination (there is none if at the end).
         {
+            onDepart();
             while (Vector3.Distance(transform.position, destination.position) > distanceThreshold) //not arrived then move towards
             {
                 //print("Moving! aaa");

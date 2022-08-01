@@ -12,58 +12,61 @@ public class S_ElevatorController : MonoBehaviour
 
     public AnimationCurve doorsPosition;
 
-    [Range(0f, 6.16f)]
-    public float animationTime;
+    [Range(0f, 1f)]
+    public float doorOpenessFactor;
 
-    public int floorNum = 0; //Higher number = higher level = lower floor (we are going down! ;)
+    public int floorNum = 7; //Start from 7 going down
     public float destinationHeight;
 
     public bool isMoving = true;
 
     public delegate void ElevatorMovementHandler();
     public static ElevatorMovementHandler OnElevatorArrived;
+    public static ElevatorMovementHandler OnElevatorDeparted;
 
     public float timeBetweenDingAndOpeningDoors = 2f;
 
     public AudioClip elevatorDing;
 
     public AudioSource elevatorAmbientEmitter;
-    public AudioSource elevatorDoorEmitter;
+    public AudioSource elevatorDoorSound;
 
 
     public void Start()
     {
-        //Start gameplay!
-        MoveToNextFloor();
-        S_EnemyManager.OnEnemyDeath += MoveIfEnemiesDead;
+        S_GameManager.OnGameStarted += () => { StartCoroutine(MoveToNextFloor()); };
+
+
+        //S_EnemyManager.OnEnemyDeath += MoveIfEnemiesDead;
+        //GetComponent<S_WaypointMover>().onArrive += () => { OnElevatorArrived(); };
+        //GetComponent<S_WaypointMover>().onDepart += () => { OnElevatorDeparted(); };
+
+        //OnElevatorArrived += () => { print("Arriving!"); };
+        //OnElevatorArrived += PlayDing;
+
+        //OnElevatorDeparted += () => { print("Departing!"); };
     }
 
-    public void MoveToNextFloor()
+    private void Update()
     {
-        if (floorNum == 0)
-        {
-            floorNum++;
+        LeftDoors.transform.localPosition = new Vector3(-doorsPosition.Evaluate(doorOpenessFactor), 0, 0);
+        RightDoors.transform.localPosition = new Vector3(doorsPosition.Evaluate(doorOpenessFactor), 0, 0);
+    }
+    IEnumerator MoveToNextFloor()
+    {
+        floorNum--;
+        yield return StartCoroutine(OperateDoors(true));
 
-            print("Going down to floorNum: " + floorNum);
-            GetComponent<S_WaypointMover>().onArrive += () => { StartCoroutine(OperateDoors(false)); };
-            GetComponent<S_WaypointMover>().onArrive += PlayDing;
-        }
-        else
-        {
-            floorNum++;
+        print("door closed");
 
-            print("Going down to floorNum: " + floorNum);
-
-            StartCoroutine(OperateDoors(true));
-            GetComponent<S_WaypointMover>().ProceedToNext();
-        }
+        yield return null;
     }
 
     public void MoveIfEnemiesDead()
     {
         print("Enemies alive is still: " + S_EnemyManager.enemiesAlive);
         if (S_EnemyManager.enemiesAlive == 0)
-            MoveToNextFloor();
+            StartCoroutine(MoveToNextFloor());
     }
 
     public void PlayDing()
@@ -74,35 +77,30 @@ public class S_ElevatorController : MonoBehaviour
         source.Play();
     }
 
-    IEnumerator OperateDoors(bool closed)
+    IEnumerator OperateDoors(bool close)
     {
+        elevatorDoorSound.Play();
 
-        yield return new WaitForSeconds(timeBetweenDingAndOpeningDoors);
-
-        elevatorDoorEmitter.Play();
-
-        GetComponent<Animator>().SetBool("Closed", closed);
-
-        while (true)
+        if (close)
         {
-            LeftDoors.transform.localPosition = new Vector3(-doorsPosition.Evaluate(animationTime), 0, 0);
-            RightDoors.transform.localPosition = new Vector3(doorsPosition.Evaluate(animationTime), 0, 0);
+            GetComponent<Animator>().SetTrigger("Close");
+        }
+        else
+        {
+            GetComponent<Animator>().SetTrigger("Open");
+        }
 
+        yield return new WaitForSeconds(1.5f);
+
+        if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("DoNothing"))
+        {
+            print("do nothing");
+            yield return null;
+        }
+        else
+        {
+            print("doing something");
             yield return new WaitForEndOfFrame();
-
-            if (closed) //Close the door
-            {
-                if (animationTime >= doorsPosition.keys[doorsPosition.keys.Length-1].time)
-                    yield return null; //end coroutine
-
-            }
-            else //Open the door
-            {
-                if (animationTime <= 0)
-                    yield return null; //end coroutine
-            }
-
-            //if Animation is playing then repeat loop = keep playing evaluating curves.
         }
     }
 }

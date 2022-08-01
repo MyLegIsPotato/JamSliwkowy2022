@@ -23,11 +23,8 @@ public class S_EnemyManager : MonoBehaviour
     public static int enemiesAlive = 0;
 
     public void Start()
-    {
-        print("Spawning");
-
-       
-        StartCoroutine(spawnEnemies());
+    { 
+        //StartCoroutine(spawnEnemies());
     }
 
     IEnumerator spawnEnemies()

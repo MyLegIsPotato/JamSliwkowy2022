@@ -30,8 +30,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 6
-        value: 6.16
+        time: 6.266667
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -41,7 +41,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: animationTime
+    attribute: doorOpenessFactor
     path: 
     classID: 114
     script: {fileID: 11500000, guid: 374f410bd9b76e64a8bcf933e21c0889, type: 3}
@@ -55,7 +55,7 @@ AnimationClip:
     genericBindings:
     - serializedVersion: 2
       path: 0
-      attribute: 1587298893
+      attribute: 2180612415
       script: {fileID: 11500000, guid: 374f410bd9b76e64a8bcf933e21c0889, type: 3}
       typeID: 114
       customType: 0
@@ -66,7 +66,7 @@ AnimationClip:
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 6
+    m_StopTime: 6.266667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -95,8 +95,8 @@ AnimationClip:
         inWeight: 0.33333334
         outWeight: 0.33333334
       - serializedVersion: 3
-        time: 6
-        value: 6.16
+        time: 6.266667
+        value: 1
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -106,7 +106,7 @@ AnimationClip:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-    attribute: animationTime
+    attribute: doorOpenessFactor
     path: 
     classID: 114
     script: {fileID: 11500000, guid: 374f410bd9b76e64a8bcf933e21c0889, type: 3}
