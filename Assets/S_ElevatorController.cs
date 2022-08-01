@@ -18,8 +18,6 @@ public class S_ElevatorController : MonoBehaviour
     public int floorNum = 0; //Higher number = higher level = lower floor (we are going down! ;)
     public float destinationHeight;
 
-    int tweenAnim;
-
     public bool isMoving = true;
 
     public delegate void ElevatorMovementHandler();
@@ -37,21 +35,35 @@ public class S_ElevatorController : MonoBehaviour
     {
         //Start gameplay!
         MoveToNextFloor();
+        S_EnemyManager.OnEnemyDeath += MoveIfEnemiesDead;
     }
 
     public void MoveToNextFloor()
     {
         if (floorNum == 0)
         {
-
-
             floorNum++;
 
             print("Going down to floorNum: " + floorNum);
             GetComponent<S_WaypointMover>().onArrive += () => { StartCoroutine(OperateDoors(false)); };
             GetComponent<S_WaypointMover>().onArrive += PlayDing;
         }
+        else
+        {
+            floorNum++;
 
+            print("Going down to floorNum: " + floorNum);
+
+            StartCoroutine(OperateDoors(true));
+            GetComponent<S_WaypointMover>().ProceedToNext();
+        }
+    }
+
+    public void MoveIfEnemiesDead()
+    {
+        print("Enemies alive is still: " + S_EnemyManager.enemiesAlive);
+        if (S_EnemyManager.enemiesAlive == 0)
+            MoveToNextFloor();
     }
 
     public void PlayDing()

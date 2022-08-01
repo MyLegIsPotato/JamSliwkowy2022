@@ -34,10 +34,13 @@ public class S_Enemy : MonoBehaviour
             source.spatialBlend = 1f;
             source.Play();
         }
+        GetComponent<S_WaypointMover>().onFinish += ArrivedAction;
     }
 
-    private void OnMouseDown()
+    private void ArrivedAction() 
     {
-       
+        print("Just arrived");
+        GetComponentInParent<S_EnemyManager>().SpawnSomeEnemies(1);
+        S_EnemyRemover.RemoveEnemy(gameObject);
     }
 }

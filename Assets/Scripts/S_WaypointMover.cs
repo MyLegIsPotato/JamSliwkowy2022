@@ -103,7 +103,7 @@ public class S_WaypointMover : MonoBehaviour
                     ProceedToNext();
 
                 }
-                StartCoroutine(Move());
+                
             }
 
             yield return null;
@@ -121,10 +121,12 @@ public class S_WaypointMover : MonoBehaviour
     public void ProceedToNext()
     {
         destination = waypoints.GetNextWaypoint(destination, altOnJunction);
+        StartCoroutine(Move());
     }
 
     public void ProceedToPrevious()
     {
         destination = waypoints.GetPreviousWaypoint(destination, altOnJunction);
+        StartCoroutine(Move());
     }
 }

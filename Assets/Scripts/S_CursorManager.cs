@@ -67,7 +67,7 @@ public class S_CursorManager : MonoBehaviour
             }
             else
             {
-                print("Click. Click.");
+                
             }
 
         }
