@@ -18,7 +18,25 @@ public class S_ElevatorController : MonoBehaviour
     [SerializeField]
     public float travelTime = 10;
 
-    public int floorNum = 7; //Start from 7 going down
+    [Header("Floor Numeration")]
+    [SerializeField]
+    List<Sprite> floorDisplaySprites;
+    [SerializeField]
+    UnityEngine.UI.Image floorDisplayObject;
+
+    private int floorNum = 7;
+    public int FloorNum
+    {
+        get { return floorNum; }
+        set
+        {
+            floorNum = value;
+        }
+    }
+
+    
+    //Start from 7 going down
+
     public float destinationHeight;
 
     public bool isMoving = true;
@@ -35,17 +53,20 @@ public class S_ElevatorController : MonoBehaviour
     public AudioSource elevatorDoorSound;
 
     [Header("Floors")]
-    public List<GameObject> floors;
+    [SerializeField]
+    public S_Waypoints FloorWaypoints;
+    private List<S_FloorNumber> floors;
 
-    private GameObject GetFloor(int floorNumber)
-    {
-        return floors[7-floorNumber];
-    }
 
     public void Start()
     {
         S_EnemyManager.OnEnemyDeath += () => { MoveIfEnemiesDead(); };
         S_GameManager.OnGameStarted += () => { StartCoroutine(MoveToNextFloor()); };
+
+        foreach(Transform t in FloorWaypoints.transform)
+        {
+            t.GetComponentInChildren<S_FloorNumber>().thisFloorNum = 7 - t.GetSiblingIndex();
+        }
     }
 
     private void Update()
@@ -55,23 +76,51 @@ public class S_ElevatorController : MonoBehaviour
     }
     IEnumerator MoveToNextFloor()
     {
-        floorNum--;
-        yield return StartCoroutine(OperateDoors(true));
+        StartCoroutine(MoveToFloor(floorNum - 1));
+        yield return null;
+    }
+    public IEnumerator MoveToFloor(int floorToSkipTo)
+    {
 
-        //if(floorNum == 7)
-        //    GetComponent<S_WaypointMover>().ProceedToNext();
-        //else
-        GetComponent<S_WaypointMover>().ProceedToNext();
+        yield return StartCoroutine(OperateDoors(true)); //Close the doors
+        OnElevatorDeparted(FloorNum);
 
-        print("Waiting...");
-        yield return new WaitForSeconds(travelTime);
+        do
+        {
+            FloorNum--;
+            GetComponent<S_WaypointMover>().ProceedToNext();
+            print("Waiting...");
+            yield return new WaitForSeconds(0.4f);
+            elevatorAmbientEmitter.Play();
+
+            yield return new WaitForSeconds(travelTime);
+            ChangeFloorDisplayNumber();
+        }
+        while (FloorNum > floorToSkipTo);
+
+
         print("Wait Complete.");
+        elevatorAmbientEmitter.Stop();
 
-        OnElevatorArrived(floorNum);
+        OnElevatorArrived(FloorNum);
         StartCoroutine(OperateDoors(false));
 
         yield return null;
     }
+
+    public void ChangeFloorDisplayNumber()
+    {
+        if (floorNum == 7)
+        {
+            floorDisplayObject.sprite = null;
+        }
+        else
+        {
+            if(floorNum >= 0)
+                floorDisplayObject.sprite = floorDisplaySprites[floorNum - 1];
+        }
+    }
+
 
     public void MoveIfEnemiesDead()
     {

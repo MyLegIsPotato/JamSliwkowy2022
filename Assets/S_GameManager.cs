@@ -21,4 +21,13 @@ public class S_GameManager : MonoBehaviour
         Debug.LogWarning("Game Started.");
     }
 
+
+    public void SkipTo(int floor)
+    {
+        Debug.LogWarning("Game Skipped Starting...");
+        GetComponent<S_ElevatorController>().StartCoroutine(
+            GetComponent<S_ElevatorController>().MoveToFloor(floor)
+        );
+        Debug.LogWarning("Game Skipped Started.");
+    }
 }

@@ -9,6 +9,7 @@ public class S_Waypoints : MonoBehaviour
     private float waypointSize = 0.4f;
 
 
+
     private void OnDrawGizmos()
     {
         foreach (Transform t in transform)

@@ -49,8 +49,8 @@ public class S_WaypointMover : MonoBehaviour
         onFinish += () => { };
 
         destination = firstWaypoint;
-        if(firstWaypoint == null)
-            firstWaypoint = transform.GetChild(0);
+        if (firstWaypoint == null)
+            firstWaypoint = waypoints.GetFirstWaypoint();
 
         if (autoStart)
         {

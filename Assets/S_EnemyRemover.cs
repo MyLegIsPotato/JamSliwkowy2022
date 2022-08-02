@@ -15,7 +15,7 @@ public class S_EnemyRemover : MonoBehaviour
     public static void RemoveEnemy(GameObject enemy)
     {
         S_EnemyManager.enemiesAlive--;
-
+        enemy.GetComponent<S_WaypointMover>().StopAllCoroutines();
         S_EnemyManager.OnEnemyDeath();
         Destroy(enemy);
     }
