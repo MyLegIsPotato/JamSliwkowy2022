@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class S_Enemy : MonoBehaviour
 {
+    public float POINTS_Multiplier = 1;
+
 
     private int health;
     public int Health
@@ -19,12 +21,35 @@ public class S_Enemy : MonoBehaviour
         }
     }
 
+    private int happiness;
+    public int Happiness
+    {
+        get { return happiness; }
+        set
+        {
+            happiness = value;
+            if (happiness == 0)
+            {
+                print("I'm " + this.gameObject.name + " depressed!");
+                S_EnemyManager.OnEnemyDeath();
+            }
+        }
+    }
+
     public int damage;
 
     public AudioClip moveSFX;
-    public AudioClip attackSFX;
+    public List<AudioClip> attackSFXs;
 
-    public void Start()
+    //Health Damage
+    public GameObject hitFX_Prefab;
+    public List<AudioClip> hitSFXs;
+
+    //Emotional Damage
+    public GameObject emo_hitFX_Prefab;
+    public List<AudioClip> emo_hitSFXs;
+
+    void Start()
     {
         AudioSource source = gameObject.GetComponent<AudioSource>();
         if (source != null)
@@ -40,7 +65,51 @@ public class S_Enemy : MonoBehaviour
     private void ArrivedAction() 
     {
         print("Just arrived");
-        //GetComponentInParent<S_EnemyManager>().SpawnEnemies();
         S_EnemyRemover.RemoveEnemy(gameObject);
+    }
+
+    public virtual void Attack()
+    {
+        print("Attacking!");
+    }
+
+    public virtual void Evade()
+    {
+        print("Evading cursor!");
+    }
+
+    public virtual void EnemyReaction()
+    {
+        print("I'm hit");
+    }
+
+    public virtual void Hit(Vector3 hitLocation, S_Weapon _wp)
+    {
+        if(_wp.weaponDamage > 0)
+        {
+            //Do health damage
+            Health += _wp.weaponDamage;
+
+            //Spawn sprite FX
+            GameObject go = Instantiate(hitFX_Prefab);
+            go.transform.position = hitLocation;
+
+            //Play sound FX
+            GetComponent<AudioSource>().PlayOneShot(hitSFXs[Random.Range(0, hitSFXs.Count - 1)]);
+        }
+        else if (_wp.emotionalDamage > 0)
+        {
+            Happiness += _wp.emotionalDamage;
+
+            //Spawn sprite FX
+            GameObject go = Instantiate(emo_hitFX_Prefab);
+            go.transform.position = hitLocation;
+
+            //Play sound FX
+            GetComponent<AudioSource>().PlayOneShot(emo_hitSFXs[Random.Range(0, emo_hitSFXs.Count - 1)]);
+        }
+
+        EnemyReaction();
+
     }
 }

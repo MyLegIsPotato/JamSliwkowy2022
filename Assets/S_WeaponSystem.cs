@@ -10,10 +10,10 @@ public class S_WeaponSystem : MonoBehaviour
     [SerializeField]
     public List<S_Weapon> activeWeapons = new List<S_Weapon>();
 
-
     public S_Weapon GetCurrentWeapon
     {
-        get {
+        get
+        {
             if (activeWeapons.Count > 0)
                 return activeWeapons[selectedWeaponIndex];
             else
@@ -47,12 +47,13 @@ public class S_WeaponSystem : MonoBehaviour
             }
             else //in bounds
             {
- 
+
                 GetCurrentWeapon.Deselect();
 
                 selectedWeaponIndex = value;
 
                 GetComponent<S_UI_Animator>().SwitchTo(selectedWeaponIndex);
+
 
                 GetCurrentWeapon.Select();
             }
@@ -63,11 +64,15 @@ public class S_WeaponSystem : MonoBehaviour
     {
         ActivateWeapon(0);
         ActivateWeapon(1);
+        ActivateWeapon(2);
+        ActivateWeapon(3);
+
+
 
     }
 
 
-[SerializeField]
+    [SerializeField]
     AudioClip weaponOutOfBounds;
 
     public delegate void WeaponAddedHandler(S_Weapon _w);
@@ -76,10 +81,32 @@ public class S_WeaponSystem : MonoBehaviour
     public void ActivateWeapon(int index)
     {
         S_Weapon weapon = allWeapons[index];
+        weapon.weaponSystem = this;
         activeWeapons.Add(weapon);
         SelectedWeaponIndex = activeWeapons.IndexOf(weapon);
 
         GetComponent<S_UI_Animator>().AddIcon(weapon, SelectedWeaponIndex);
 
+    }
+
+    private void Update()
+    {
+
+        if (Input.mouseScrollDelta == new Vector2(0, 1))
+        {
+            if (GetComponent<S_CursorManager>().animTimer == 0)
+                SelectedWeaponIndex++;
+            else
+                GetComponent<AudioSource>().PlayOneShot(weaponOutOfBounds);
+
+        }
+        else if (Input.mouseScrollDelta == new Vector2(0, -1))
+        {
+            if (GetComponent<S_CursorManager>().animTimer == 0)
+                SelectedWeaponIndex--;
+            else
+                GetComponent<AudioSource>().PlayOneShot(weaponOutOfBounds);
+
+        }
     }
 }

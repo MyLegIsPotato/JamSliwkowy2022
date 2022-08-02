@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4219135726312722041
+--- !u!1 &4826170420426806606
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1029433989629497299}
-  - component: {fileID: 3946300503773558657}
+  - component: {fileID: 8833146841018546527}
+  - component: {fileID: 7614926313620372668}
   m_Layer: 0
-  m_Name: W_Paper
+  m_Name: W_Welcome
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1029433989629497299
+--- !u!4 &8833146841018546527
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4219135726312722041}
+  m_GameObject: {fileID: 4826170420426806606}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,26 +31,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3946300503773558657
+--- !u!114 &7614926313620372668
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4219135726312722041}
+  m_GameObject: {fileID: 4826170420426806606}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 40c65c555872a7e45aea8fe03e69741e, type: 3}
+  m_Script: {fileID: 11500000, guid: 666fb5dbe10c0114facbc35b8cc1c88b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: Paper
-  weaponDamage: 2
-  weaponRateOfFire: 1
-  weaponReloadTime: 2
-  weaponPOINTS: 5
-  weaponBarGraphic: {fileID: 21300000, guid: fc882375532822743a3a24a6a5993f73, type: 3}
+  weaponName: Welcome
+  weaponDamage: 0
+  emotionalDamage: -5
+  weaponShootInterval: 0
+  weaponReloadTime: 0
+  weaponPOINTS: 0
+  weaponBarGraphic: {fileID: 21300000, guid: 3b68207301563df439d8ebf4f905cd01, type: 3}
   weaponShootSound: {fileID: 0}
   weaponReloadSound: {fileID: 0}
-  weaponHitSounds: []
-  hitFX_Prefab: {fileID: 0}
   missFX_Prefab: {fileID: 0}
+  bulletSprite: {fileID: 21300000, guid: 36e5b14dfe1a47e42b12c4a5156b3ed1, type: 3}

@@ -4,23 +4,23 @@ using UnityEngine;
 
 public class S_Weapon : MonoBehaviour
 {
+    public S_WeaponSystem weaponSystem;
+
     [SerializeField]
     public string weaponName = "Default";
     [SerializeField]
-    public float weaponDamage = 0;
+    public int weaponDamage = 0;
+    public int emotionalDamage = 0;
     public float weaponShootInterval = 1;
-    public float weaponReloadTime = 3;
-    public float weaponPOINTS = 1;
-
+    public int weaponReloadTime = 3;
+    public int weaponPOINTS = 1;
 
     public Sprite weaponBarGraphic;
     public AudioClip weaponShootSound;
     public AudioClip weaponReloadSound;
-    public List<AudioClip> weaponHitSounds;
-    public GameObject hitFX_Prefab;
     public GameObject missFX_Prefab;
 
-
+    public Sprite bulletSprite;
 
     public S_Weapon()
     {
@@ -29,37 +29,33 @@ public class S_Weapon : MonoBehaviour
 
     public virtual void WeaponShoot()
     {
+        if(weaponShootSound != null)
+            GetComponent<AudioSource>().PlayOneShot(weaponShootSound);
+    }
 
+    public virtual void WeaponReload()
+    {
+        if(weaponReloadSound != null)
+            GetComponent<AudioSource>().PlayOneShot(weaponReloadSound);
     }
     
-    public void Select()
+    public virtual void Select()
     {
-        //Debug.LogError("Adding events!");
-        S_EnemyManager.OnEnemyHit += EnemyReaction;
-        S_EnemyManager.OnEnemyHit += EnemyHitFX;
-        S_EnemyManager.OnEnemyHit += EnemyHitSFX;
+        weaponSystem.GetComponent<S_UI_Animator>().ammoIcon.GetComponent<UnityEngine.UI.Image>().sprite = bulletSprite; 
+
     }
 
     public void Deselect()
     {
-        S_EnemyManager.OnEnemyHit -= EnemyReaction;
-        S_EnemyManager.OnEnemyHit -= EnemyHitFX;
-        S_EnemyManager.OnEnemyHit -= EnemyHitSFX;
+        //S_EnemyManager.OnEnemyHit -= EnemyReaction;
     }
 
     public virtual void EnemyReaction(Vector3 hitLocation, S_Enemy _e)
     {
-        print("I'm hit...");
-        //Do something else...
+        print("I'm hit..."); //TO DO move 
+
+        //_e.EnemyHitFX(hitLocation, _e);
+        //_e.EnemyHitSFX(hitLocation, _e);
     }
 
-    public void EnemyHitFX(Vector3 hitLocation, S_Enemy _e)
-    {
-        GameObject go = Instantiate(hitFX_Prefab);
-        go.transform.position = hitLocation;
-    }
-    public void EnemyHitSFX(Vector3 hitLocation, S_Enemy _e)
-    {
-        _e.GetComponent<AudioSource>().PlayOneShot(weaponHitSounds[Random.Range(0, weaponHitSounds.Count - 1)]);
-    }
 }

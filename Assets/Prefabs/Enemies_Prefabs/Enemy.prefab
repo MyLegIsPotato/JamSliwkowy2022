@@ -129,9 +129,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8c25ab556449b4ea7b5b5010574d63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  POINTS_Multiplier: 1
   damage: 10
   moveSFX: {fileID: 8300000, guid: 76848c73df3ab404bb552e88b6219a0d, type: 3}
   attackSFX: {fileID: 0}
+  hitFX_Prefab: {fileID: 1099297271999463074, guid: 341df58f96021a34189b9c004d4494a2, type: 3}
+  hitSFXs:
+  - {fileID: 8300000, guid: 02ca23ceb84c7714d9df7e01658d70ef, type: 3}
+  - {fileID: 8300000, guid: 17b92268cc6ff3041953b3613cf175ab, type: 3}
+  - {fileID: 8300000, guid: 9e90fd2e3a9c4bc45ab2905650ca19f7, type: 3}
+  - {fileID: 8300000, guid: 8d1fb6b76953b9f48b5384aae7724e1c, type: 3}
+  emo_hitFX_Prefab: {fileID: 780825668438896203, guid: 5cbceec3e51208d439ba6a01a77c20e1, type: 3}
+  emo_hitSFXs:
+  - {fileID: 8300000, guid: 58727a208fcea4a4aa73e7cb70e54f09, type: 3}
+  - {fileID: 8300000, guid: 9ab84114bdae85243bbffa7b9b542b42, type: 3}
+  - {fileID: 8300000, guid: 0a38bc594321ea5409ac6b9742cf5324, type: 3}
 --- !u!114 &-5012224294773749940
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -147,8 +159,10 @@ MonoBehaviour:
   waypoints: {fileID: 0}
   moveSpeed: 1.5
   distanceThreshold: 0.1
+  autoStart: 1
   useRotation: 1
   autoProceed: 1
+  firstWaypoint: {fileID: 0}
   altOnJunction: 0
   turnSpeed: 0.0524
 --- !u!82 &-6623857334738967195
@@ -301,6 +315,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 52de81052dc79294fa7e2c328bc2b0bb, type: 3}
       propertyPath: m_Name
       value: ybot
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 52de81052dc79294fa7e2c328bc2b0bb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 52de81052dc79294fa7e2c328bc2b0bb, type: 3}
       propertyPath: m_Controller

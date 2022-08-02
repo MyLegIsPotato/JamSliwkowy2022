@@ -60,9 +60,9 @@ public class S_PlayerManager : MonoBehaviour
         }
     }
 
-    public void AddPOINTS(Vector3 hitLocation, S_Enemy _e)
+    public void AddPOINTS(Vector3 hitLocation, S_Enemy _e, S_Weapon _wp)
     {
-        CurrentPOINTS += GetComponent<S_WeaponSystem>().GetCurrentWeapon.weaponPOINTS;
+        CurrentPOINTS += _wp.weaponPOINTS * _e.POINTS_Multiplier;
     }
 
     public void GetHit()
@@ -78,12 +78,6 @@ public class S_PlayerManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.mouseScrollDelta == new Vector2(0, 1))
-        {
-            GetComponent<S_WeaponSystem>().SelectedWeaponIndex++;
-        } else if (Input.mouseScrollDelta == new Vector2(0, -1))
-        {
-            GetComponent<S_WeaponSystem>().SelectedWeaponIndex--;
-        }
+
     }
 }

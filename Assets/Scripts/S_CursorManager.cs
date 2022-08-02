@@ -41,7 +41,8 @@ public class S_CursorManager : MonoBehaviour
             {
                 print("Shoot!");
                 OnLMBDown();
-                GetComponent<S_WeaponSystem>().GetCurrentWeapon.WeaponShoot();
+                GetComponent<AudioSource>().PlayOneShot(GetComponent<S_WeaponSystem>().GetCurrentWeapon.weaponShootSound);
+
                 StartCoroutine(AnimateCursor360());
 
 
@@ -59,9 +60,9 @@ public class S_CursorManager : MonoBehaviour
                     if (hitObject.GetComponent<S_Enemy>())
                     {
                         //Enemy
-                        hitObject.GetComponent<S_WaypointMover>().TurnBack();
+                        hitObject.GetComponent<S_Enemy>().Hit(hit.point, GetComponent<S_WeaponSystem>().GetCurrentWeapon);
                         //Call a static event that "SOME" enemy was hit.
-                        S_EnemyManager.OnEnemyHit(hit.point, hitObject.GetComponent<S_Enemy>());
+                        S_EnemyManager.OnEnemyHit(hit.point, hitObject.GetComponent<S_Enemy>(), GetComponent<S_WeaponSystem>().GetCurrentWeapon);
                     }
                 }
             }
@@ -73,13 +74,14 @@ public class S_CursorManager : MonoBehaviour
         }
     }
 
-    float animTimer = 0;
+    public float animTimer = 0;
 
     IEnumerator AnimateCursor360()
     {
         animTimer = 0;
         cursorImage.fillClockwise = false;
-        while(animTimer < GetComponent<S_WeaponSystem>().GetCurrentWeapon.weaponShootInterval/2)
+        //GetComponent<AudioSource>().PlayOneShot(GetComponent<S_WeaponSystem>().GetCurrentWeapon.weaponReloadSound);
+        while (animTimer < GetComponent<S_WeaponSystem>().GetCurrentWeapon.weaponShootInterval/2)
         {
             cursorImage.fillAmount = Mathf.InverseLerp(GetComponent<S_WeaponSystem>().GetCurrentWeapon.weaponShootInterval / 2, 0, animTimer);
 
@@ -97,6 +99,7 @@ public class S_CursorManager : MonoBehaviour
             yield return new WaitForEndOfFrame();
         }
 
+        animTimer = 0;
         yield return null;
     }
 }

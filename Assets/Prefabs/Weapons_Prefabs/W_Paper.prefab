@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7883167295019311074
+--- !u!1 &4219135726312722041
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9058635182842622697}
-  - component: {fileID: 7465136766810998792}
+  - component: {fileID: 1029433989629497299}
+  - component: {fileID: 3946300503773558657}
   m_Layer: 0
-  m_Name: W_Fuck
+  m_Name: W_Paper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9058635182842622697
+--- !u!4 &1029433989629497299
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7883167295019311074}
+  m_GameObject: {fileID: 4219135726312722041}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -31,29 +31,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7465136766810998792
+--- !u!114 &3946300503773558657
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7883167295019311074}
+  m_GameObject: {fileID: 4219135726312722041}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b38a06075678cad45864344c7063e3dd, type: 3}
+  m_Script: {fileID: 11500000, guid: 40c65c555872a7e45aea8fe03e69741e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponName: FuckOff
+  weaponName: Paper
   weaponDamage: 5
-  weaponShootInterval: 2
-  weaponReloadTime: 1
-  weaponPOINTS: 2
-  weaponBarGraphic: {fileID: 21300000, guid: 0c9f877775720d54189778c5a92fdfaa, type: 3}
-  weaponShootSound: {fileID: 0}
-  weaponReloadSound: {fileID: 0}
-  weaponHitSounds:
-  - {fileID: 8300000, guid: 58727a208fcea4a4aa73e7cb70e54f09, type: 3}
-  - {fileID: 8300000, guid: 9ab84114bdae85243bbffa7b9b542b42, type: 3}
-  - {fileID: 8300000, guid: 0a38bc594321ea5409ac6b9742cf5324, type: 3}
-  hitFX_Prefab: {fileID: 780825668438896203, guid: 5cbceec3e51208d439ba6a01a77c20e1, type: 3}
+  emotionalDamage: 5
+  weaponShootInterval: 4
+  weaponReloadTime: 0
+  weaponPOINTS: 10
+  weaponBarGraphic: {fileID: 21300000, guid: fc882375532822743a3a24a6a5993f73, type: 3}
+  weaponShootSound: {fileID: 8300000, guid: 36c040ed55409cc418a00b641fb7e799, type: 3}
+  weaponReloadSound: {fileID: 8300000, guid: 6fc8ba863bc227942982fc85f78c0970, type: 3}
   missFX_Prefab: {fileID: 0}
+  bulletSprite: {fileID: 21300000, guid: 36e5b14dfe1a47e42b12c4a5156b3ed1, type: 3}
