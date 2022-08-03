@@ -33,7 +33,6 @@ public class S_Bullet : MonoBehaviour
         while (this.transform.position != targetPosition)
         {
             this.transform.position = Vector3.MoveTowards(this.transform.position, targetPosition, Time.deltaTime * bulletSpeed);
-            print("moving!");
             yield return new WaitForEndOfFrame();
         }
 

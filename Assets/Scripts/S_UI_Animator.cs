@@ -17,6 +17,9 @@ public class S_UI_Animator : MonoBehaviour
     public GameObject weaponBarIconPlaceholder;
     public GameObject ammoIcon;
 
+    public GameObject screenCracks;
+    public GameObject bossHPBar;
+
     public void Start()
     {
         S_CursorManager.OnLMBDown += ShootAmmoAnim;
@@ -27,7 +30,7 @@ public class S_UI_Animator : MonoBehaviour
         GameObject go = Instantiate(weaponBarIconPlaceholder, weaponBarChild.transform);
         go.GetComponent<Image>().sprite = _w.weaponBarGraphic;
         go.name = _w.name;
-        go.transform.localPosition = new Vector2(barIndex * 135, 0);
+        go.transform.localPosition = new Vector2(barIndex * 200, 0);
     }
 
     public void WeaponUp()
@@ -44,7 +47,7 @@ public class S_UI_Animator : MonoBehaviour
 
     public void SwitchTo(int weaponIndex)
     {
-        currentlyPlaying = LeanTween.moveLocalX(weaponBar, weaponIndex * -135, weaponChangeTime).setOnComplete(() => isPlaying = false); ;
+        currentlyPlaying = LeanTween.moveLocalX(weaponBar, weaponIndex * -200, weaponChangeTime).setOnComplete(() => isPlaying = false); ;
     }
 
     public void ShootAmmoAnim()

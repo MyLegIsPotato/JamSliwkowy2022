@@ -22,7 +22,5 @@ public class S_Enemy_Zombie : S_Enemy
             ScreamOnce();
             yield return new WaitForSeconds(s);
         }
-
-        yield return null;
     }
 }

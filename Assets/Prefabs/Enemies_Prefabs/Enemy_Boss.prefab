@@ -629,7 +629,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6616135668375725685}
-  m_LocalRotation: {x: -0, y: -1, z: -0, w: -0.0000005215406}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: -0, y: 0, z: 25.39}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
@@ -672,9 +672,9 @@ MonoBehaviour:
   waypoints: {fileID: 0}
   moveSpeed: 2
   distanceThreshold: 0.1
-  autoStart: 1
+  autoStart: 0
   useRotation: 1
-  autoProceed: 1
+  autoProceed: 0
   firstWaypoint: {fileID: 0}
   altOnJunction: 0
   loop: 1
@@ -695,12 +695,32 @@ MonoBehaviour:
   health: 1000
   happiness: 200
   damage: 20
-  moveSFX: {fileID: 0}
+  moveSFX: {fileID: 8300000, guid: 76848c73df3ab404bb552e88b6219a0d, type: 3}
   attackSFXs: []
-  hitFX_Prefab: {fileID: 0}
-  hitSFXs: []
-  emo_hitFX_Prefab: {fileID: 0}
-  emo_hitSFXs: []
+  hitFX_Prefab: {fileID: 1099297271999463074, guid: 341df58f96021a34189b9c004d4494a2, type: 3}
+  hitSFXs:
+  - {fileID: 8300000, guid: 3bb644fbbcfeb184ea01f1f606bceeb1, type: 3}
+  - {fileID: 8300000, guid: 17b92268cc6ff3041953b3613cf175ab, type: 3}
+  - {fileID: 8300000, guid: 9e90fd2e3a9c4bc45ab2905650ca19f7, type: 3}
+  - {fileID: 8300000, guid: 8d1fb6b76953b9f48b5384aae7724e1c, type: 3}
+  - {fileID: 8300000, guid: 02ca23ceb84c7714d9df7e01658d70ef, type: 3}
+  - {fileID: 8300000, guid: 1f8fa0b66107c6641a60dc9644f64f6a, type: 3}
+  - {fileID: 8300000, guid: d42276a6645620f45853eecaf2e0c676, type: 3}
+  - {fileID: 8300000, guid: 626a776eda581b64fbe193518dfd7966, type: 3}
+  emo_hitFX_Prefab: {fileID: 780825668438896203, guid: 5cbceec3e51208d439ba6a01a77c20e1, type: 3}
+  emo_hitSFXs:
+  - {fileID: 8300000, guid: 5cdf2e1a528aecc49a65c5c179c0aa53, type: 3}
+  - {fileID: 8300000, guid: 9ab84114bdae85243bbffa7b9b542b42, type: 3}
+  - {fileID: 8300000, guid: 0a38bc594321ea5409ac6b9742cf5324, type: 3}
+  - {fileID: 8300000, guid: 58727a208fcea4a4aa73e7cb70e54f09, type: 3}
+  deskWaypoint: {fileID: 0}
+  safeWaypoint: {fileID: 0}
+  elevatorWaypoint: {fileID: 0}
+  shelfWaypoint1: {fileID: 0}
+  shelfWaypoint2: {fileID: 0}
+  rageWaypoint: {fileID: 0}
+  bulletPrefab: {fileID: 1904115858103443850, guid: d9a257faf7c92c74aa547ff55f73fc5e, type: 3}
+  rightHand: {fileID: 5667209817475081452}
 --- !u!1 &6987105123605065308
 GameObject:
   m_ObjectHideFlags: 0

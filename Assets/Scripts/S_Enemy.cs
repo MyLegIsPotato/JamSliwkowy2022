@@ -20,6 +20,7 @@ public class S_Enemy : MonoBehaviour
             }
         }
     }
+    protected int maxHealth;
 
     [SerializeField]
     private int happiness;
@@ -52,6 +53,7 @@ public class S_Enemy : MonoBehaviour
 
     void Start()
     {
+        maxHealth = Health;
         AudioSource source = gameObject.GetComponent<AudioSource>();
         if (source != null)
         {
@@ -89,7 +91,7 @@ public class S_Enemy : MonoBehaviour
         if(_wp.weaponDamage > 0)
         {
             //Do health damage
-            Health += _wp.weaponDamage;
+            Health -= _wp.weaponDamage;
 
             //Spawn sprite FX
             GameObject go = Instantiate(hitFX_Prefab);

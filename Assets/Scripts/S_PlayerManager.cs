@@ -43,12 +43,13 @@ public class S_PlayerManager : MonoBehaviour
     [Range(0,1f)]
     public float hitAnimationTimer;
 
+    [SerializeField]
+    AudioClip screenCrackSFX;
+
     //POINTS:
     [SerializeField]
     public Image PointsSlider;
-
     public float maxPOINTS = 100;
-
     private float currentPOINTS = 0;
     public float CurrentPOINTS
     {
@@ -60,14 +61,22 @@ public class S_PlayerManager : MonoBehaviour
         }
     }
 
+    public void CrackScreen()
+    {
+        GetComponent<S_UI_Animator>().screenCracks.SetActive(true);
+        GetComponent<AudioSource>().PlayOneShot(screenCrackSFX);
+        GetComponentInChildren<ShaderEffect_Unsync>().StartCoroutine(GetComponentInChildren<ShaderEffect_Unsync>().Unsync());
+        PlayerHealth -= 20;
+    }
+
     public void AddPOINTS(Vector3 hitLocation, S_Enemy _e, S_Weapon _wp)
     {
         CurrentPOINTS += _wp.weaponPOINTS * _e.POINTS_Multiplier;
     }
 
-    public void GetHit()
+    public void GetHit(int damage)
     {
-        PlayerHealth -= 1;
+        PlayerHealth -= damage;
     }
 
 
