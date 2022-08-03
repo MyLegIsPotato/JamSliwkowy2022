@@ -19,10 +19,11 @@ public class S_UI_Animator : MonoBehaviour
 
     public GameObject screenCracks;
     public GameObject bossHPBar;
+    public GameObject reloadPrompt;
 
     public void Start()
     {
-        S_CursorManager.OnLMBDown += ShootAmmoAnim;
+        S_CursorManager.OnAnyWeaponShoot += ShootAmmoAnim;
     }
 
     public void AddIcon(S_Weapon _w, int barIndex)
@@ -59,24 +60,8 @@ public class S_UI_Animator : MonoBehaviour
         seq.setScale(1f);
     }
 
-    public void BounceOnOutOfBounds(int weaponIndex) //Not working, To do - Maybe.
+    public void PromptReload()
     {
-        //LTSeq seq = LeanTween.sequence();
-        //if(weaponIndex < -1)
-        //{
-        //    seq.append(LeanTween.moveLocalX(weaponBar, 135, 0.2f).setEaseLinear());
-        //    seq.append(0.5f);
-        //    seq.append(LeanTween.moveLocalX(weaponBar, -135, 0.2f).setEaseLinear());
-        //    print("what1");
-        //}
-        //else
-        //{
-        //    seq.append(LeanTween.moveLocalX(weaponBar, -135, 0.2f).setEaseLinear());
-        //    seq.append(0.5f);
-        //    seq.append(LeanTween.moveLocalX(weaponBar, 135, 0.2f).setEaseLinear());
-        //    print("what2");
-        //}
 
-        ////seq.setScale(1f);
     }
 }

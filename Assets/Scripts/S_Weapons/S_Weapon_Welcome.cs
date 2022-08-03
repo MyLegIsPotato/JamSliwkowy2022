@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class S_Weapon_Welcome : S_Weapon
 {
-    public override void WeaponShoot()
+    public override void TryWeaponShoot()
     {
         //nadpisuje cos z S_Weapon
         print("Wavy wavy...");
