@@ -86,14 +86,21 @@ public class S_WaypointMover : MonoBehaviour
         StartCoroutine(Move());
     }
 
+    public bool keepMoving = true;
+
     IEnumerator Move()
     {
         if(destination != null) //If there is destination (there is none if at the end).
         {
+
             //onDepart(destination);
             while (Vector3.Distance(transform.position, destination.position) > distanceThreshold) //not arrived then move towards
             {
-                //print("Moving! aaa");
+                if (keepMoving == false)
+                {
+                    yield break;
+                }
+
                 if (useRotation) //should also rotate?
                 {
                     direction = (destination.position - transform.position).normalized;

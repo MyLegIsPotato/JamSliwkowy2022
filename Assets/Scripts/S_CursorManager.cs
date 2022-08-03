@@ -35,8 +35,9 @@ public class S_CursorManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            GetComponent<S_WeaponSystem>().GetCurrentWeapon.TryWeaponShoot(); //Will work if not reloading
+            GetComponent<S_WeaponSystem>().GetCurrentWeapon.TryWeaponShoot(); //Will work if not reloading           
         }
+
     }
 
     public void ShootRaycast(S_WeaponSystem weaponSystem)
@@ -62,7 +63,7 @@ public class S_CursorManager : MonoBehaviour
         StartCoroutine(AnimateCursor360(duration));
     }
 
-    IEnumerator AnimateCursor360(float duration)
+    public IEnumerator AnimateCursor360(float duration)
     {
         animTimer = 0;
         cursorImage.fillClockwise = false;

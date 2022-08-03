@@ -85,6 +85,7 @@ public class S_WeaponSystem : MonoBehaviour
         S_Weapon weapon = allWeapons[index];
         weapon.weaponSystem = this;
         weapon.MaxAmmo();
+        weapon.lastRofTime = 0;
         activeWeapons.Add(weapon);
         SelectedWeaponIndex = activeWeapons.IndexOf(weapon);
 
@@ -94,22 +95,51 @@ public class S_WeaponSystem : MonoBehaviour
 
     private void Update()
     {
-
-        if (Input.mouseScrollDelta == new Vector2(0, 1))
+        if (!GetCurrentWeapon.isReloading)
         {
-            if (GetComponent<S_CursorManager>().animTimer == 0)
-                SelectedWeaponIndex++;
-            else
-                GetComponent<AudioSource>().PlayOneShot(weaponOutOfBounds);
+            if (Input.mouseScrollDelta == new Vector2(0, 1))
+            {
+                if (GetComponent<S_CursorManager>().animTimer == 0)
+                    SelectedWeaponIndex++;
+                else
+                    PlayDenySound();
+
+            }
+            else if (Input.mouseScrollDelta == new Vector2(0, -1))
+            {
+                if (GetComponent<S_CursorManager>().animTimer == 0)
+                    SelectedWeaponIndex--;
+                else
+                    PlayDenySound();
+            }
+
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+
+                GetCurrentWeapon.WeaponReload();
+                GetComponent<S_UI_Animator>().reloadPrompt.SetActive(false);
+            }
 
         }
-        else if (Input.mouseScrollDelta == new Vector2(0, -1))
-        {
-            if (GetComponent<S_CursorManager>().animTimer == 0)
-                SelectedWeaponIndex--;
-            else
-                GetComponent<AudioSource>().PlayOneShot(weaponOutOfBounds);
 
-        }
     }
+
+    public void PlayDenySound()
+    {
+        GetComponent<AudioSource>().PlayOneShot(weaponOutOfBounds);
+
+    }
+    public IEnumerator ReloadProcess()
+    {
+        S_Weapon _wp = GetCurrentWeapon;
+
+        if (_wp.weaponReloadSound != null)
+            GetComponent<AudioSource>().PlayOneShot(_wp.weaponReloadSound);
+        yield return GetComponent<S_CursorManager>().AnimateCursor360(_wp.weaponReloadTime);
+        _wp.isReloading = false;
+        _wp.MaxAmmo();
+
+        yield return null;
+    }
+
 }

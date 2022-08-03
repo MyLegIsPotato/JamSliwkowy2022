@@ -1,3 +1,6 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class S_Weapon : MonoBehaviour
@@ -26,7 +29,9 @@ public class S_Weapon : MonoBehaviour
 
     //Runtime
     private int weaponCurrentAmmo; 
-    private float lastRofTime = 0;
+    public float lastRofTime = 0;
+
+    public bool isReloading = false;
 
     public S_Weapon()
     {
@@ -35,26 +40,28 @@ public class S_Weapon : MonoBehaviour
 
     public virtual void TryWeaponShoot()
     {
-
+        print(isReloading);
         //Don't let player shoot when not enough time has passed since the last shot.
-        if (Time.time > lastRofTime + weaponShootInterval)
+        if (Time.time > lastRofTime + weaponShootInterval && !isReloading)
         {
             if (limitedAmmo)
             {
-                if(weaponCurrentAmmo > 0)
+                if(weaponCurrentAmmo > 0) //Some ammo left
                 {
                     WeaponShoot();
                 }
-                else
+                else //Empty Mag
                 {
-                    
+                    weaponSystem.PlayDenySound();
+                    weaponSystem.GetComponent<S_UI_Animator>().PromptReload();
+                    weaponSystem.GetComponent<S_UI_Animator>().AnimateReloadPrompt();
+                    weaponSystem.GetComponent<S_UI_Animator>().ammoIcon.GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
                 }
             }
             else
             {
                 WeaponShoot();
             }
-
         }
     }
 
@@ -70,22 +77,36 @@ public class S_Weapon : MonoBehaviour
         weaponSystem.GetComponent<S_CursorManager>().AnimateCursor(weaponShootInterval);
         lastRofTime = Time.time;
 
+        //Set ammo bar fill
+        UpdateAmmoBar();
+
         //Raycast + Decide if damage enemy
         weaponSystem.GetComponent<S_CursorManager>().ShootRaycast(weaponSystem);
 
         weaponCurrentAmmo--;
     }
 
+
+
     public virtual void WeaponReload()
     {
-        if(weaponReloadSound != null)
-            GetComponent<AudioSource>().PlayOneShot(weaponReloadSound);
+        isReloading = true;
+        weaponSystem.StartCoroutine(weaponSystem.ReloadProcess());
+
     }
-    
+
     public virtual void Select()
     {
-        weaponSystem.GetComponent<S_UI_Animator>().ammoIcon.GetComponent<UnityEngine.UI.Image>().sprite = ammoCounterSprite; 
+        weaponSystem.GetComponent<S_UI_Animator>().ammoIcon.GetComponent<UnityEngine.UI.Image>().sprite = ammoCounterSprite;
+        UpdateAmmoBar();
+    }
 
+    public void UpdateAmmoBar()
+    {
+        if (limitedAmmo)
+            weaponSystem.GetComponent<S_UI_Animator>().ammoIcon.GetComponent<UnityEngine.UI.Image>().fillAmount = Mathf.InverseLerp(0, weaponAmmoCapacity, weaponCurrentAmmo);
+        else
+            weaponSystem.GetComponent<S_UI_Animator>().ammoIcon.GetComponent<UnityEngine.UI.Image>().fillAmount = 1;
     }
 
     public void Deselect()
@@ -104,6 +125,7 @@ public class S_Weapon : MonoBehaviour
     internal void MaxAmmo()
     {
         weaponCurrentAmmo = weaponAmmoCapacity;
+        UpdateAmmoBar();
     }
 
 

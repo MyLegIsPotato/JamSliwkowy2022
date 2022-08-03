@@ -53,7 +53,6 @@ public class S_UI_Animator : MonoBehaviour
 
     public void ShootAmmoAnim()
     {
-        //print("kupsko");
         LTSeq seq = LeanTween.sequence();
         seq.append(LeanTween.moveLocalY(ammoIcon, 10, 0.2f));
         seq.append(LeanTween.moveLocalY(ammoIcon, 0, 0.2f));
@@ -62,6 +61,15 @@ public class S_UI_Animator : MonoBehaviour
 
     public void PromptReload()
     {
+        reloadPrompt.SetActive(true);
+    }
 
+    public void AnimateReloadPrompt()
+    {
+        LTSeq seq = LeanTween.sequence();
+        seq.append(LeanTween.scale(reloadPrompt, Vector2.one * 1.2f, 0.5f));
+        seq.append(LeanTween.scale(reloadPrompt, Vector2.one, 0.5f));
+
+        seq.setScale(1f);
     }
 }

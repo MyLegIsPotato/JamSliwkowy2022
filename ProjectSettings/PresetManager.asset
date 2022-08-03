@@ -11,5 +11,5 @@ PresetManager:
       m_ManagedTypeFallback: 
     second:
     - m_Preset: {fileID: 2655988077585873504, guid: e0006fa16a9fbc2478ed2316c68e0a74, type: 2}
-      m_Filter: glob:"2D_Sprites/*.png"
+      m_Filter: glob:"2D_Sprites/**.png"
       m_Disabled: 0

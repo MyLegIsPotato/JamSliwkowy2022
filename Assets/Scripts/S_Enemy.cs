@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class S_Enemy : MonoBehaviour
 {
+    [SerializeField]
+    Collider bodyCollider;
+    [SerializeField]
+    Animator animator;
+
+    public float bodyDespawnTime = 10;
+
     public float POINTS_Multiplier = 1;
 
     [SerializeField]
@@ -13,10 +20,10 @@ public class S_Enemy : MonoBehaviour
         get { return health; } 
         set { 
             health = value; 
-            if(health == 0)
+            if(health < 0)
             {
-                print("I'm " + this.gameObject.name + " dead!");
-                S_EnemyManager.OnEnemyDeath();
+                
+                StartCoroutine(DieProcess());
             }
         }
     }
@@ -30,7 +37,7 @@ public class S_Enemy : MonoBehaviour
         set
         {
             happiness = value;
-            if (happiness == 0)
+            if (happiness < 0)
             {
                 print("I'm " + this.gameObject.name + " depressed!");
                 S_EnemyManager.OnEnemyDeath();
@@ -65,10 +72,24 @@ public class S_Enemy : MonoBehaviour
         GetComponent<S_WaypointMover>().onFinish += ArrivedAction;
     }
 
+    IEnumerator DieProcess()
+    {
+        print("I'm " + this.gameObject.name + " dead!");
+        S_EnemyManager.OnEnemyDeath();
+
+        GetComponent<S_WaypointMover>().keepMoving = false;
+        GetComponent<S_WaypointMover>().autoProceed = false;
+        yield return new WaitForSeconds(0.05f);
+        bodyCollider.enabled = false;
+        animator.enabled = false;
+        S_EnemyRemover.i.RemoveEnemy(this.gameObject);
+        yield return null;
+    }
+
     private void ArrivedAction(Transform waypoint) 
     {
         print("Just arrived");
-        S_EnemyRemover.RemoveEnemy(gameObject);
+        S_EnemyRemover.i.RemoveEnemy(gameObject);
     }
 
     public virtual void Attack()
@@ -117,7 +138,8 @@ public class S_Enemy : MonoBehaviour
 
         }
 
-        EnemyReaction();
+        if(Health > 0)
+            EnemyReaction();
 
     }
 }
