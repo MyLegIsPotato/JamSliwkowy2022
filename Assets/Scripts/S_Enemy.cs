@@ -6,7 +6,7 @@ public class S_Enemy : MonoBehaviour
 {
     public float POINTS_Multiplier = 1;
 
-
+    [SerializeField]
     private int health;
     public int Health
     {
@@ -21,6 +21,7 @@ public class S_Enemy : MonoBehaviour
         }
     }
 
+    [SerializeField]
     private int happiness;
     public int Happiness
     {
@@ -62,7 +63,7 @@ public class S_Enemy : MonoBehaviour
         GetComponent<S_WaypointMover>().onFinish += ArrivedAction;
     }
 
-    private void ArrivedAction() 
+    private void ArrivedAction(Transform waypoint) 
     {
         print("Just arrived");
         S_EnemyRemover.RemoveEnemy(gameObject);
@@ -96,6 +97,9 @@ public class S_Enemy : MonoBehaviour
 
             //Play sound FX
             GetComponent<AudioSource>().PlayOneShot(hitSFXs[Random.Range(0, hitSFXs.Count - 1)]);
+            //Call a static event that "SOME" enemy was hit.
+
+            S_EnemyManager.OnEnemyHit(hitLocation, this, _wp);
         }
         else if (_wp.emotionalDamage > 0)
         {
@@ -107,6 +111,8 @@ public class S_Enemy : MonoBehaviour
 
             //Play sound FX
             GetComponent<AudioSource>().PlayOneShot(emo_hitSFXs[Random.Range(0, emo_hitSFXs.Count - 1)]);
+            S_EnemyManager.OnEnemyHit(hitLocation, this, _wp);
+
         }
 
         EnemyReaction();

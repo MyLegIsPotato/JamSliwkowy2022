@@ -22,7 +22,7 @@ public class S_Enemy_Human : S_Enemy
             GetComponent<S_WaypointMover>().TurnBack();
         else
         {
-            //if (!GetComponent<AudioSource>().isPlaying)
+            if (!GetComponent<AudioSource>().isPlaying)
                 GetComponent<AudioSource>().PlayOneShot(notShyMp3);
             GetComponent<MeshRenderer>().material.color = Color.red;
         }

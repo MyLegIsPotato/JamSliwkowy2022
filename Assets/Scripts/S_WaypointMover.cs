@@ -33,20 +33,21 @@ public class S_WaypointMover : MonoBehaviour
     //bool arrivedToTheEnd = false;
     private bool reverseTravel = false;
 
-    public delegate void ArriveHandler();
+    public delegate void ArriveHandler(Transform arrived);
     public ArriveHandler onArrive;
     public ArriveHandler onDepart;
     public ArriveHandler onFinish;
 
     public bool altOnJunction = false;
+    public bool loop = false;
 
     // Start is called before the first frame update
     void Start()
     {
         //Initialize handlers
-        onArrive += () => { };
-        onDepart += () => { };
-        onFinish += () => { };
+        onArrive += (x) => { };
+        onDepart += (x) => { };
+        onFinish += (x) => { };
 
         destination = firstWaypoint;
         if (firstWaypoint == null)
@@ -89,7 +90,7 @@ public class S_WaypointMover : MonoBehaviour
     {
         if(destination != null) //If there is destination (there is none if at the end).
         {
-            onDepart();
+            //onDepart(destination);
             while (Vector3.Distance(transform.position, destination.position) > distanceThreshold) //not arrived then move towards
             {
                 //print("Moving! aaa");
@@ -104,7 +105,7 @@ public class S_WaypointMover : MonoBehaviour
             }
 
             //Arrived to the waypoint:
-            onArrive();
+            onArrive(destination);
 
 
             //What to do next?
@@ -130,10 +131,19 @@ public class S_WaypointMover : MonoBehaviour
         {
             //Arrived to the end. Finish moving.
             //print("Arrived to the end!");
-            onFinish();
+            if (loop)
+                ProceedToIndex(0);
+            else
+            onFinish(destination);
             yield return null;
         }
 
+    }
+
+    public void ProceedToIndex(int index)
+    {
+        destination = waypoints.GetWaypointAt(0);
+        StartCoroutine(Move());
     }
 
     public void ProceedToNext()

@@ -109,6 +109,11 @@ public class S_Waypoints : MonoBehaviour
         }
     }
 
+    public Transform GetWaypointAt(int index)
+    {
+        return transform.GetChild(index).transform;
+    }
+
 
     public Transform GetPreviousWaypoint(Transform currentWaypoint)
     {

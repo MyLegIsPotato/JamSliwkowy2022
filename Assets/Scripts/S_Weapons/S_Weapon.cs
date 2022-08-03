@@ -14,13 +14,14 @@ public class S_Weapon : MonoBehaviour
     public float weaponShootInterval = 1;
     public int weaponReloadTime = 3;
     public int weaponPOINTS = 1;
+    public float weaponRange = 100;
 
     public Sprite weaponBarGraphic;
     public AudioClip weaponShootSound;
     public AudioClip weaponReloadSound;
     public GameObject missFX_Prefab;
 
-    public Sprite bulletSprite;
+    public Sprite ammoCounterSprite;
 
     public S_Weapon()
     {
@@ -41,7 +42,7 @@ public class S_Weapon : MonoBehaviour
     
     public virtual void Select()
     {
-        weaponSystem.GetComponent<S_UI_Animator>().ammoIcon.GetComponent<UnityEngine.UI.Image>().sprite = bulletSprite; 
+        weaponSystem.GetComponent<S_UI_Animator>().ammoIcon.GetComponent<UnityEngine.UI.Image>().sprite = ammoCounterSprite; 
 
     }
 
