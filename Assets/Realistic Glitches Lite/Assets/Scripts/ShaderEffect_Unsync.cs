@@ -10,10 +10,29 @@ public class ShaderEffect_Unsync : MonoBehaviour {
 	private float position = 0;
 	private Material material;
 
+    [SerializeField]
+	AnimationCurve unsyncAnimation;
+	float animationTimer;
+
+	public IEnumerator Unsync()
+    {
+		while(animationTimer < unsyncAnimation.keys[unsyncAnimation.keys.Length - 1].time)
+        {
+			speed = unsyncAnimation.Evaluate(animationTimer);
+			animationTimer += Time.deltaTime;
+			yield return new WaitForEndOfFrame();
+        }
+
+		yield return null;
+    }
+
+
 	void Awake ()
 	{
 		material = new Material( Shader.Find("Hidden/VUnsync") );
 	}
+
+
 
 	void OnRenderImage (RenderTexture source, RenderTexture destination)
 	{

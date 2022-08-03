@@ -43,14 +43,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 666fb5dbe10c0114facbc35b8cc1c88b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponSystem: {fileID: 0}
   weaponName: Welcome
   weaponDamage: 0
   emotionalDamage: -5
   weaponShootInterval: 0
   weaponReloadTime: 0
   weaponPOINTS: 0
+  weaponRange: 100
   weaponBarGraphic: {fileID: 21300000, guid: 3b68207301563df439d8ebf4f905cd01, type: 3}
   weaponShootSound: {fileID: 0}
   weaponReloadSound: {fileID: 0}
   missFX_Prefab: {fileID: 0}
-  bulletSprite: {fileID: 21300000, guid: 36e5b14dfe1a47e42b12c4a5156b3ed1, type: 3}
+  ammoCounterSprite: {fileID: 21300000, guid: 36e5b14dfe1a47e42b12c4a5156b3ed1, type: 3}

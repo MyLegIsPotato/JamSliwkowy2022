@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class S_FloorLightController : MonoBehaviour
 {
+    public float delay = 0;
+
     void Start()
     {
-        S_ElevatorController.OnElevatorArrived += (x) => { if(x == GetComponent<S_FloorNumber>().thisFloorNum) SetLights(true); }; 
-        S_ElevatorController.OnElevatorDeparted += (x) => { if (x == GetComponent<S_FloorNumber>().thisFloorNum) SetLights(false); };
+        S_ElevatorController.OnElevatorArrived += (x) => { if(x == GetComponent<S_FloorNumber>().thisFloorNum) StartCoroutine(SetLights(true)); }; 
+        S_ElevatorController.OnElevatorDeparted += (x) => { if (x == GetComponent<S_FloorNumber>().thisFloorNum) StartCoroutine(SetLights(false)); };
     }
 
-    void SetLights(bool enabled)
+    IEnumerator SetLights(bool enabled)
     {
         print("Turning on lights on level " + this.name);
+
+        yield return new WaitForSeconds(delay);
 
         Light[] lights = GetComponentsInChildren<Light>(true);
 
@@ -23,5 +27,7 @@ public class S_FloorLightController : MonoBehaviour
         {
             item.gameObject.SetActive(enabled);
         }
+
+        yield return null;
     }
 }

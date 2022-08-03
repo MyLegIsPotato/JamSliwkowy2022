@@ -53,7 +53,7 @@ public class S_CursorManager : MonoBehaviour
                 RaycastHit hit;
 
 
-                if (Physics.Raycast(ray, out hit, 1000))
+                if (Physics.Raycast(ray, out hit, GetComponent<S_WeaponSystem>().GetCurrentWeapon.weaponRange))
                 {
                     GameObject hitObject = hit.collider.gameObject;
                     //Check what object was hit by the ray:
@@ -61,8 +61,6 @@ public class S_CursorManager : MonoBehaviour
                     {
                         //Enemy
                         hitObject.GetComponent<S_Enemy>().Hit(hit.point, GetComponent<S_WeaponSystem>().GetCurrentWeapon);
-                        //Call a static event that "SOME" enemy was hit.
-                        S_EnemyManager.OnEnemyHit(hit.point, hitObject.GetComponent<S_Enemy>(), GetComponent<S_WeaponSystem>().GetCurrentWeapon);
                     }
                 }
             }

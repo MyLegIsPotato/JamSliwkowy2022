@@ -9,11 +9,8 @@ public class S_PlayerBeingHit : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        print("I'm being pushed!");
-
-        //play health jump animation
-        daddy.GetComponent<S_PlayerManager>().GetHit();
-        //play vignette animation
+        print("I'm being hit!");
+        daddy.GetComponent<S_PlayerManager>().GetHit(10);
     }
 
 }

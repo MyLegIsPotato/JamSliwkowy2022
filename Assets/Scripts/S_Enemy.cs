@@ -6,7 +6,7 @@ public class S_Enemy : MonoBehaviour
 {
     public float POINTS_Multiplier = 1;
 
-
+    [SerializeField]
     private int health;
     public int Health
     {
@@ -20,7 +20,9 @@ public class S_Enemy : MonoBehaviour
             }
         }
     }
+    protected int maxHealth;
 
+    [SerializeField]
     private int happiness;
     public int Happiness
     {
@@ -51,6 +53,7 @@ public class S_Enemy : MonoBehaviour
 
     void Start()
     {
+        maxHealth = Health;
         AudioSource source = gameObject.GetComponent<AudioSource>();
         if (source != null)
         {
@@ -62,7 +65,7 @@ public class S_Enemy : MonoBehaviour
         GetComponent<S_WaypointMover>().onFinish += ArrivedAction;
     }
 
-    private void ArrivedAction() 
+    private void ArrivedAction(Transform waypoint) 
     {
         print("Just arrived");
         S_EnemyRemover.RemoveEnemy(gameObject);
@@ -88,7 +91,7 @@ public class S_Enemy : MonoBehaviour
         if(_wp.weaponDamage > 0)
         {
             //Do health damage
-            Health += _wp.weaponDamage;
+            Health -= _wp.weaponDamage;
 
             //Spawn sprite FX
             GameObject go = Instantiate(hitFX_Prefab);
@@ -96,6 +99,9 @@ public class S_Enemy : MonoBehaviour
 
             //Play sound FX
             GetComponent<AudioSource>().PlayOneShot(hitSFXs[Random.Range(0, hitSFXs.Count - 1)]);
+            //Call a static event that "SOME" enemy was hit.
+
+            S_EnemyManager.OnEnemyHit(hitLocation, this, _wp);
         }
         else if (_wp.emotionalDamage > 0)
         {
@@ -107,6 +113,8 @@ public class S_Enemy : MonoBehaviour
 
             //Play sound FX
             GetComponent<AudioSource>().PlayOneShot(emo_hitSFXs[Random.Range(0, emo_hitSFXs.Count - 1)]);
+            S_EnemyManager.OnEnemyHit(hitLocation, this, _wp);
+
         }
 
         EnemyReaction();

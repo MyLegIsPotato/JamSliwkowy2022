@@ -43,14 +43,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40c65c555872a7e45aea8fe03e69741e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponSystem: {fileID: 0}
   weaponName: Paper
   weaponDamage: 5
   emotionalDamage: 5
   weaponShootInterval: 4
   weaponReloadTime: 0
   weaponPOINTS: 10
+  weaponRange: 8
   weaponBarGraphic: {fileID: 21300000, guid: fc882375532822743a3a24a6a5993f73, type: 3}
-  weaponShootSound: {fileID: 8300000, guid: 36c040ed55409cc418a00b641fb7e799, type: 3}
+  weaponShootSound: {fileID: 8300000, guid: b186077df5399494399c82ae090e69b8, type: 3}
   weaponReloadSound: {fileID: 8300000, guid: 6fc8ba863bc227942982fc85f78c0970, type: 3}
   missFX_Prefab: {fileID: 0}
-  bulletSprite: {fileID: 21300000, guid: 36e5b14dfe1a47e42b12c4a5156b3ed1, type: 3}
+  ammoCounterSprite: {fileID: 21300000, guid: 36e5b14dfe1a47e42b12c4a5156b3ed1, type: 3}

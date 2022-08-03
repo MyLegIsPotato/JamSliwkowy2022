@@ -66,6 +66,8 @@ public class S_WeaponSystem : MonoBehaviour
         ActivateWeapon(1);
         ActivateWeapon(2);
         ActivateWeapon(3);
+        ActivateWeapon(4);
+        ActivateWeapon(5);
 
 
 
