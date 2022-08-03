@@ -6,10 +6,10 @@ public class S_Weapon_Gun : S_Weapon
 {
 
 
-    public override void WeaponShoot()
+    public override void TryWeaponShoot()
     {
         //nadpisuje cos z S_Weapon
-        base.WeaponShoot();
+        base.TryWeaponShoot();
 
     }
 }
