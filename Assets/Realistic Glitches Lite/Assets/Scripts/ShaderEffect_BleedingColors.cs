@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 [ExecuteInEditMode]
@@ -21,4 +22,23 @@ public class ShaderEffect_BleedingColors : MonoBehaviour {
 		material.SetFloat("_ValueX", shift);
 		Graphics.Blit (source, destination, material);
 	}
+
+
+	[SerializeField]
+	AnimationCurve glitchAnimation;
+	float animationTimer;
+
+	public IEnumerator GlitchScreen()
+	{
+		while (animationTimer < glitchAnimation.keys[glitchAnimation.keys.Length - 1].time)
+		{
+			shift = glitchAnimation.Evaluate(animationTimer);
+			animationTimer += Time.deltaTime;
+			yield return new WaitForEndOfFrame();
+		}
+
+		animationTimer = 0;
+		yield return null;
+	}
+
 }

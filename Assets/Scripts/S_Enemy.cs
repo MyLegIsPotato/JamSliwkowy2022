@@ -14,7 +14,7 @@ public class S_Enemy : MonoBehaviour
     public float POINTS_Multiplier = 1;
 
     [SerializeField]
-    private int health;
+    protected int health;
     public int Health
     {
         get { return health; } 
@@ -22,7 +22,6 @@ public class S_Enemy : MonoBehaviour
             health = value; 
             if(health < 0)
             {
-                
                 StartCoroutine(DieProcess());
             }
         }
@@ -72,7 +71,7 @@ public class S_Enemy : MonoBehaviour
         GetComponent<S_WaypointMover>().onFinish += ArrivedAction;
     }
 
-    IEnumerator DieProcess()
+    public virtual IEnumerator DieProcess()
     {
         print("I'm " + this.gameObject.name + " dead!");
         S_EnemyManager.OnEnemyDeath();

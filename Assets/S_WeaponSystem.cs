@@ -86,6 +86,8 @@ public class S_WeaponSystem : MonoBehaviour
         weapon.weaponSystem = this;
         weapon.MaxAmmo();
         weapon.lastRofTime = 0;
+        weapon.isReloading = false;
+
         activeWeapons.Add(weapon);
         SelectedWeaponIndex = activeWeapons.IndexOf(weapon);
 

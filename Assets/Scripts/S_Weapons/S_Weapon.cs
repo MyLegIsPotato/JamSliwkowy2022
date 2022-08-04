@@ -27,16 +27,10 @@ public class S_Weapon : MonoBehaviour
 
     public Sprite ammoCounterSprite;
 
-    //Runtime
-    private int weaponCurrentAmmo; 
+    //Runtime 
+    public int weaponCurrentAmmo;
     public float lastRofTime = 0;
-
     public bool isReloading = false;
-
-    public S_Weapon()
-    {
-        weaponName = "placeholder";
-    }
 
     public virtual void TryWeaponShoot()
     {

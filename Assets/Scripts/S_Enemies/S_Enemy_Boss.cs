@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class S_Enemy_Boss : S_Enemy
 {
+
+    [SerializeField]
+    public AudioClip rageSound;
+
     public Transform deskWaypoint;
     public Transform safeWaypoint;
     public Transform elevatorWaypoint;
@@ -16,9 +20,11 @@ public class S_Enemy_Boss : S_Enemy
     [SerializeField]
     Transform rightHand;
 
+
    
     public
     UnityEngine.UI.Image bossHPBarImage;
+
 
     public void Start()
     {
@@ -33,6 +39,41 @@ public class S_Enemy_Boss : S_Enemy
         GetComponent<Animator>().SetTrigger("Kick"); //-> Damage player from animation event
         transform.LookAt(Camera.main.transform);
         transform.transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, transform.eulerAngles.z);
+    }
+
+    [SerializeField]
+    Animator table;
+
+    public override void EnemyReaction()
+    {
+        base.EnemyReaction();
+        if(health < maxHealth / 2)
+        {
+            print("---- SECOND PHASE! ----");
+            print("---- SECOND PHASE! ----");
+            print("---- SECOND PHASE! ----");
+
+            GetComponent<S_WaypointMover>().altOnJunction = true;
+        }
+    }
+
+    public override IEnumerator DieProcess()
+    {
+        print("I'm " + this.gameObject.name + " dead!");
+        //S_EnemyManager.OnEnemyDeath();
+
+        GetComponent<S_WaypointMover>().keepMoving = false;
+        GetComponent<S_WaypointMover>().autoProceed = false;
+        yield return new WaitForSeconds(0.05f);
+        GetComponent<Animator>().applyRootMotion = true;
+        GetComponent<Animator>().SetTrigger("Die");
+        //S_EnemyRemover.i.RemoveEnemy(this.gameObject);
+        yield return null;
+    }
+
+    public void KickTable()
+    {
+        table.SetTrigger("Kick");
     }
 
     public void DamagePlayer()
@@ -52,6 +93,8 @@ public class S_Enemy_Boss : S_Enemy
         StartCoroutine(waypointProcedure(waypoint));
     }
 
+    bool tableKicked = false;
+
     IEnumerator waypointProcedure(Transform waypoint)
     {
         while(GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Get Up"))
@@ -66,7 +109,7 @@ public class S_Enemy_Boss : S_Enemy
                 yield return new WaitForSeconds(3);
                 GetComponent<S_WaypointMover>().ProceedToIndex(0);
                 S_EnemyManager.OnEnemyHit += (x, y, z) => { bossHPBarImage.fillAmount = Mathf.InverseLerp(0, base.maxHealth, Health); };
-
+                tableKicked = false;
 
                 break;
 
@@ -113,8 +156,21 @@ public class S_Enemy_Boss : S_Enemy
                 break;
             case var expression when waypoint == rageWaypoint:
                 Debug.Log("RAAGEE");
-                Debug.Log("Kick!");
-                Attack();
+                GetComponent<Animator>().SetTrigger("Taunt");
+                GetComponent<AudioSource>().PlayOneShot(rageSound);
+                yield return new WaitForSeconds(4f);
+               
+
+                if (!tableKicked)
+                {
+                    Debug.Log("Kick Table!");
+                    GetComponent<Animator>().SetTrigger("KickTable");
+                    transform.LookAt(Camera.main.transform);
+                    transform.transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, transform.eulerAngles.z);
+                }
+                yield return new WaitForSeconds(2f);
+                GetComponent<S_WaypointMover>().ProceedToNext();
+
                 break;
             default:
                 print("Normal waypoint");

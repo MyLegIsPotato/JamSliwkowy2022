@@ -66,7 +66,13 @@ public class S_PlayerManager : MonoBehaviour
         GetComponent<S_UI_Animator>().screenCracks.SetActive(true);
         GetComponent<AudioSource>().PlayOneShot(screenCrackSFX);
         GetComponentInChildren<ShaderEffect_Unsync>().StartCoroutine(GetComponentInChildren<ShaderEffect_Unsync>().Unsync());
-        PlayerHealth -= 20;
+        PlayerHealth -= 10;
+    }
+
+    public void GlitchScreen()
+    {
+        GetComponentInChildren<ShaderEffect_BleedingColors>().StartCoroutine(GetComponentInChildren<ShaderEffect_BleedingColors>().GlitchScreen());
+        PlayerHealth -= 5;
     }
 
     public void AddPOINTS(Vector3 hitLocation, S_Enemy _e, S_Weapon _wp)

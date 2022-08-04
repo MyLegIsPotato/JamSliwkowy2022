@@ -23,6 +23,8 @@ public class ShaderEffect_Unsync : MonoBehaviour {
 			yield return new WaitForEndOfFrame();
         }
 
+		animationTimer = 0;
+		speed = unsyncAnimation.Evaluate(animationTimer);
 		yield return null;
     }
 
