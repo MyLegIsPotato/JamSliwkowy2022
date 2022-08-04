@@ -22,6 +22,8 @@ public class S_ElevatorController : MonoBehaviour
     [SerializeField]
     List<Sprite> floorDisplaySprites;
     [SerializeField]
+    GameObject floorDisplayOfInsanity;
+    [SerializeField]
     UnityEngine.UI.Image floorDisplayObject;
 
     private int floorNum = 7;
@@ -34,8 +36,7 @@ public class S_ElevatorController : MonoBehaviour
         }
     }
 
-    
-    //Start from 7 going down
+   
 
     public float destinationHeight;
 
@@ -57,15 +58,21 @@ public class S_ElevatorController : MonoBehaviour
     public S_Waypoints FloorWaypoints;
     private List<S_FloorNumber> floors;
 
+    public int numberOfFloors;
+
 
     public void Start()
     {
+        numberOfFloors = FloorWaypoints.transform.childCount;
+        floorNum = 0;
+
         S_EnemyManager.OnEnemyDeath += () => { MoveIfEnemiesDead(); };
         S_GameManager.OnGameStarted += () => { StartCoroutine(MoveToNextFloor()); };
 
         foreach(Transform t in FloorWaypoints.transform)
         {
-            t.GetComponentInChildren<S_FloorNumber>().thisFloorNum = 7 - t.GetSiblingIndex();
+            print(t.GetSiblingIndex());
+            t.GetComponentInChildren<S_FloorNumber>().thisFloorNum = t.GetSiblingIndex();
         }
     }
 
@@ -76,7 +83,7 @@ public class S_ElevatorController : MonoBehaviour
     }
     IEnumerator MoveToNextFloor()
     {
-        StartCoroutine(MoveToFloor(floorNum - 1));
+        StartCoroutine(MoveToFloor(floorNum+1));
         yield return null;
     }
     public IEnumerator MoveToFloor(int floorToSkipTo)
@@ -87,7 +94,7 @@ public class S_ElevatorController : MonoBehaviour
 
         do
         {
-            FloorNum--;
+            FloorNum++;
             GetComponent<S_WaypointMover>().ProceedToNext();
             print("Waiting...");
             yield return new WaitForSeconds(0.4f);
@@ -96,7 +103,7 @@ public class S_ElevatorController : MonoBehaviour
             yield return new WaitForSeconds(travelTime);
             ChangeFloorDisplayNumber();
         }
-        while (FloorNum > floorToSkipTo);
+        while (FloorNum < floorToSkipTo);
 
 
         print("Wait Complete.");
@@ -110,14 +117,16 @@ public class S_ElevatorController : MonoBehaviour
 
     public void ChangeFloorDisplayNumber()
     {
-        if (floorNum == 7)
+        if (floorNum == 0)
         {
             floorDisplayObject.sprite = null;
         }
         else
         {
-            if(floorNum >= 0)
-                floorDisplayObject.sprite = floorDisplaySprites[floorNum - 1];
+            if (floorNum < 6)
+                floorDisplayObject.sprite = floorDisplaySprites[6 - floorNum];
+            else
+                floorDisplayOfInsanity.SetActive(true);
         }
     }
 

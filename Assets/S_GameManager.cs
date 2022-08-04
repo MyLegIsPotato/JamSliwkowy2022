@@ -22,11 +22,12 @@ public class S_GameManager : MonoBehaviour
     }
 
 
-    public void SkipTo(int floor)
+    public void SkipTo(Transform waypoint)
     {
+        
         Debug.LogWarning("Game Skipped Starting...");
         GetComponent<S_ElevatorController>().StartCoroutine(
-            GetComponent<S_ElevatorController>().MoveToFloor(floor)
+            GetComponent<S_ElevatorController>().MoveToFloor(waypoint.GetSiblingIndex())
         );
         Debug.LogWarning("Game Skipped Started.");
     }
