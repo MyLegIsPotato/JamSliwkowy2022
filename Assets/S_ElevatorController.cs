@@ -71,7 +71,6 @@ public class S_ElevatorController : MonoBehaviour
 
         foreach(Transform t in FloorWaypoints.transform)
         {
-            print(t.GetSiblingIndex());
             t.GetComponentInChildren<S_FloorNumber>().thisFloorNum = t.GetSiblingIndex();
         }
     }
