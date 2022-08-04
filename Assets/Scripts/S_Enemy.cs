@@ -79,13 +79,22 @@ public class S_Enemy : MonoBehaviour
         GetComponent<S_WaypointMover>().keepMoving = false;
         GetComponent<S_WaypointMover>().autoProceed = false;
         yield return new WaitForSeconds(0.05f);
+        foreach (Rigidbody rb in GetComponentsInChildren<Rigidbody>())
+        {
+            rb.isKinematic = true;
+        }
         bodyCollider.enabled = false;
         animator.enabled = false;
+        foreach (Rigidbody rb in GetComponentsInChildren<Rigidbody>())
+        {
+            rb.isKinematic = false;
+            Physics.IgnoreCollision(rb.GetComponent<Collider>(), Camera.main.GetComponentInParent<Collider>());
+        }
         S_EnemyRemover.i.RemoveEnemy(this.gameObject);
         yield return null;
     }
 
-    private void ArrivedAction(Transform waypoint) 
+    public virtual void ArrivedAction(Transform waypoint) 
     {
         print("Just arrived");
         S_EnemyRemover.i.RemoveEnemy(gameObject);

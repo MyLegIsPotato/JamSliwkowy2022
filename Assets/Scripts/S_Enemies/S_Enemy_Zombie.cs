@@ -7,6 +7,9 @@ public class S_Enemy_Zombie : S_Enemy
     // Start is called before the first frame update
     void Start()
     {
+        GetComponent<S_WaypointMover>().onFinish -= base.ArrivedAction;
+        GetComponent<S_WaypointMover>().onFinish += this.ArrivedAction;
+
         StartCoroutine(KeepScreaming(2));
     }
 
@@ -22,5 +25,19 @@ public class S_Enemy_Zombie : S_Enemy
             ScreamOnce();
             yield return new WaitForSeconds(s);
         }
+    }
+
+    public override void ArrivedAction(Transform waypoint)
+    {
+        StartCoroutine(AttackProcedure());
+    }
+
+    IEnumerator AttackProcedure()
+    {
+        ScreamOnce();
+        GetComponentInChildren<Animator>().SetTrigger("Taunt");
+        yield return new WaitForSeconds(3f);
+        
+
     }
 }
