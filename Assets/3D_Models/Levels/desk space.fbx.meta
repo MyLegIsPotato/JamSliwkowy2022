@@ -9,6 +9,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: deskspace
     second: {instanceID: 0}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: emision
+    second: {fileID: 2100000, guid: 4b06552662c59ae4bbeba170918169bc, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
