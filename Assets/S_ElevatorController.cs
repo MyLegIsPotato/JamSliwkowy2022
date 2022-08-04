@@ -66,7 +66,7 @@ public class S_ElevatorController : MonoBehaviour
         numberOfFloors = FloorWaypoints.transform.childCount;
         floorNum = 0;
 
-        S_EnemyManager.OnEnemyDeath += () => { MoveIfEnemiesDead(); };
+        S_EnemyManager.OnEnemyDeath += (e) => { MoveIfEnemiesDead(); };
         S_GameManager.OnGameStarted += () => { StartCoroutine(MoveToNextFloor()); };
 
         foreach(Transform t in FloorWaypoints.transform)

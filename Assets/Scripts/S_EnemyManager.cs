@@ -17,16 +17,30 @@ public class S_EnemyManager : MonoBehaviour
     public static EnemyHitHandler OnEnemyHit;
 
 
-    public delegate void EnemyDeathHandler();
+    public delegate void EnemyDeathHandler(S_Enemy deadEnemy);
     public static EnemyDeathHandler OnEnemyDeath;
 
     public static int enemiesAlive = 0;
 
+    public bool oneForEachLine = false;
+    public static Dictionary<S_EnemySpawner, bool> spawnersBusy;
+
     public void Start()
     {
-        OnEnemyDeath += () => { };
+        OnEnemyDeath += (e) => { };
         S_ElevatorController.OnElevatorArrived += (x) => { if (GetComponentInParent<S_FloorNumber>().thisFloorNum == x) SpawnEnemies(); };
         //StartCoroutine(spawnEnemies());
+        CreateDictOfLastWaypoints();
+    }
+
+    public void CreateDictOfLastWaypoints()
+    {
+        spawnersBusy = new Dictionary<S_EnemySpawner, bool>();
+        foreach (S_EnemySpawner spawner in GetComponentsInChildren<S_EnemySpawner>())
+        {
+            //Get last waypoint of each waypoint tree:
+            spawnersBusy.Add(spawner, false);
+        }
     }
 
     IEnumerator spawnEnemies()
@@ -37,7 +51,28 @@ public class S_EnemyManager : MonoBehaviour
 
         for (int i = 0; i < enemiesToSpawn; i++)
         {
-            spawners[Random.Range(0, spawners.Count-1)].SpawnEnemy(enemyPrefabs[0]);
+            if (oneForEachLine)
+            {
+                int x;
+                bool isBusy;
+                do
+                {
+                    x = Random.Range(0, spawners.Count);
+                    spawnersBusy.TryGetValue(spawners[x], out isBusy);
+                    print("Trying to spawn at: " + x);
+                    yield return null;
+                } while (isBusy);
+
+                print("Success! Spawning at " + x);
+                spawners[x].SpawnEnemy(enemyPrefabs[0]);
+                spawnersBusy[spawners[x]] = true;
+                
+            }
+            else
+            {
+                spawners[Random.Range(0, spawners.Count - 1)].SpawnEnemy(enemyPrefabs[0]);
+            }
+            
             enemiesAlive++;
             yield return new WaitForSeconds(spawnInteval);
         }

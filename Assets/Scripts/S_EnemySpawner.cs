@@ -6,16 +6,26 @@ using UnityEngine;
 public class S_EnemySpawner : MonoBehaviour
 {
     public S_Waypoints waypoints;
+    GameObject myEnemy;
 
     private void Start()
     {
         waypoints = GetComponentInChildren<S_Waypoints>();
+        print("halko");
     }
 
     internal void SpawnEnemy(GameObject enemyToSpawn)
     {
-        GameObject _e = Instantiate(enemyToSpawn, this.transform);
-        _e.transform.localPosition = Vector3.zero;
-        _e.GetComponent<S_WaypointMover>().waypoints = waypoints;
+        myEnemy = Instantiate(enemyToSpawn, this.transform);
+        myEnemy.transform.localPosition = Vector3.zero;
+        myEnemy.GetComponent<S_WaypointMover>().waypoints = waypoints;
+        S_EnemyManager.OnEnemyDeath += (e) => { if (e == myEnemy.GetComponent<S_Enemy>()) Release(); };
+
+    }
+
+    public void Release()
+    {
+        print("Releasing... ");
+        S_EnemyManager.spawnersBusy[this] = false;
     }
 }

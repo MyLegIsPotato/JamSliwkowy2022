@@ -39,7 +39,7 @@ public class S_Enemy : MonoBehaviour
             if (happiness < 0)
             {
                 print("I'm " + this.gameObject.name + " depressed!");
-                S_EnemyManager.OnEnemyDeath();
+                //S_EnemyManager.OnEnemyDeath();
             }
         }
     }
@@ -74,7 +74,7 @@ public class S_Enemy : MonoBehaviour
     public virtual IEnumerator DieProcess()
     {
         print("I'm " + this.gameObject.name + " dead!");
-        S_EnemyManager.OnEnemyDeath();
+        //S_EnemyManager.OnEnemyDeath(this);
 
         GetComponent<S_WaypointMover>().keepMoving = false;
         GetComponent<S_WaypointMover>().autoProceed = false;
@@ -90,14 +90,14 @@ public class S_Enemy : MonoBehaviour
             rb.isKinematic = false;
             Physics.IgnoreCollision(rb.GetComponent<Collider>(), Camera.main.GetComponentInParent<Collider>());
         }
-        S_EnemyRemover.i.RemoveEnemy(this.gameObject);
+        S_EnemyRemover.i.RemoveEnemy(this);
         yield return null;
     }
 
     public virtual void ArrivedAction(Transform waypoint) 
     {
         print("Just arrived");
-        S_EnemyRemover.i.RemoveEnemy(gameObject);
+        S_EnemyRemover.i.RemoveEnemy(GetComponent<S_Enemy>());
     }
 
     public virtual void Attack()
