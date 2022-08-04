@@ -1558,6 +1558,7 @@ MonoBehaviour:
   - {fileID: -2454426484041082566, guid: 84d1a13f0671f5847b741db5b7d65930, type: 3}
   - {fileID: 4432707837432183865, guid: 84d1a13f0671f5847b741db5b7d65930, type: 3}
   - {fileID: 5621148864807754154, guid: 84d1a13f0671f5847b741db5b7d65930, type: 3}
+  floorDisplayOfInsanity: {fileID: 0}
   floorDisplayObject: {fileID: 246805851}
   destinationHeight: 0
   isMoving: 1
@@ -1566,6 +1567,7 @@ MonoBehaviour:
   elevatorAmbientEmitter: {fileID: 3791850211189027840}
   elevatorDoorSound: {fileID: 3791850210877896213}
   FloorWaypoints: {fileID: 1833427135}
+  numberOfFloors: 0
 --- !u!111 &1654155876
 Animation:
   m_ObjectHideFlags: 0
@@ -3423,6 +3425,8 @@ MonoBehaviour:
   canDie: 0
   HealthSlider: {fileID: 6075281453508317264}
   maxHP: 100
+  hitSFX: {fileID: 0}
+  ultraGoreSFX: {fileID: 0}
   hitAnimationTimer: 0
   screenCrackSFX: {fileID: 8300000, guid: 70f69d189314eb84293da2e8e11d3c3c, type: 3}
   PointsSlider: {fileID: 6075281453540816658}
@@ -3532,6 +3536,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mainCameraPostProcessingProfile: {fileID: 11400000, guid: 819c3ffdb7002da42aa41eec0101bf47, type: 2}
   bleedingColors: {fileID: 6075281452756335000}
+  animTimer: 0
   gotHitCurve:
     serializedVersion: 2
     m_Curve:
@@ -3587,6 +3592,7 @@ MonoBehaviour:
   leftPosition: {fileID: 1474569163}
   rightPosition: {fileID: 1329208173}
   downPosition: {fileID: 662108774}
+  frontPosition: {fileID: 0}
 --- !u!222 &6075281452727044992
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3676,6 +3682,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intensity: 0
   shift: 4.208
+  glitchAnimation:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!4 &6075281452761580571
 Transform:
   m_ObjectHideFlags: 0
@@ -4351,9 +4363,14 @@ MonoBehaviour:
   weaponBarChild: {fileID: 5321203722633646560}
   weaponBarIconPlaceholder: {fileID: 1316375032645702908, guid: 6125f5df04b46d344a23073df5e27aa2, type: 3}
   ammoIcon: {fileID: 6075281454176612996}
+  heartsIcon: {fileID: 0}
   screenCracks: {fileID: 874387284}
   bossHPBar: {fileID: 1012168648}
   reloadPrompt: {fileID: 270081271}
+  POINTSexp: {fileID: 0}
+  creepyBuzz: {fileID: 0}
+  pointsInfo: {fileID: 0}
+  deathScreen: {fileID: 0}
 --- !u!222 &6075281453508317231
 CanvasRenderer:
   m_ObjectHideFlags: 0
