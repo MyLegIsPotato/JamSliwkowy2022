@@ -18,27 +18,46 @@ public class S_PlayerManager : MonoBehaviour
 
     [SerializeField]
     AudioClip hitSFX;
+    [SerializeField]
+    AudioClip ultraGoreSFX;
 
     public float PlayerHealth
     {
         get { return playerHealth; }
         set {
 
-            if (canDie)
+            if(value <= 100) 
             {
-                playerHealth = value;
-            }
-            else
-            {
-                if(playerHealth < 10)
+                if (canDie)
                 {
-                    playerHealth = 10;
+                    playerHealth = value;
+                    if(playerHealth < 0)
+                    {
+                        GetComponent<S_UI_Animator>().ShowDeathScreen();
+                        GetComponent<AudioSource>().PlayOneShot(ultraGoreSFX);
+                        Camera.main.GetComponent<ShaderEffect_CorruptedVram>().enabled = true;
+                        Camera.main.GetComponent<ShaderEffect_CorruptedVram>().shift = 60;
+                        Time.timeScale = 0.05f;
+                    }
                 }
                 else
                 {
-                    playerHealth = value;
+                    if (playerHealth < 10)
+                    {
+                        playerHealth = 10;
+                    }
+                    else
+                    {
+                        playerHealth = value;
+                    }
                 }
             }
+            else
+            {
+                playerHealth = 100;
+            }
+
+ 
             HealthSlider.fillAmount = Mathf.InverseLerp(0, maxHP, playerHealth);
         }
     }
@@ -52,14 +71,27 @@ public class S_PlayerManager : MonoBehaviour
     //POINTS:
     [SerializeField]
     public Image PointsSlider;
-    public float maxPOINTS = 100;
+    public float maxPOINTS = 800;
     private float currentPOINTS = 0;
     public float CurrentPOINTS
     {
         get { return currentPOINTS; }
         set
         {
-            currentPOINTS = value;
+            if (value < 0)
+            {
+                currentPOINTS = 0;
+            }
+            else
+            {
+                currentPOINTS = value;
+            }
+
+            if (value >= 900)
+            {
+                GetComponent<S_UI_Animator>().pointsInfo.SetActive(true);
+            }
+
             PointsSlider.fillAmount = Mathf.InverseLerp(0, maxPOINTS, currentPOINTS);
         }
     }

@@ -20,6 +20,8 @@ public class S_Enemy_Boss : S_Enemy
     [SerializeField]
     Transform rightHand;
 
+    [SerializeField]
+    List<GameObject> bullets = new List<GameObject>();
 
    
     public
@@ -87,6 +89,7 @@ public class S_Enemy_Boss : S_Enemy
     {
         
         transform.LookAt(Camera.main.transform);
+        GameObject bulletPrefab = bullets[Random.Range(0, bullets.Count - 1)];
         Instantiate(bulletPrefab, rightHand.position, Quaternion.identity);
     }
 

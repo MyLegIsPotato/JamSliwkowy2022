@@ -21,12 +21,35 @@ public class S_UI_Animator : MonoBehaviour
     public GameObject screenCracks;
     public GameObject bossHPBar;
     public GameObject reloadPrompt;
+    public GameObject POINTSexp;
+    public AudioClip creepyBuzz;
+    public GameObject pointsInfo;
+    public GameObject deathScreen;
+
 
     public void Start()
     {
         S_CursorManager.OnAnyWeaponShoot += ShootAmmoAnim;
     }
 
+    public void ShowDeathScreen()
+    {
+        deathScreen.SetActive(true);
+    }
+    
+
+    public void HidePOINTSExp()
+    {
+        LeanTween.moveLocalY(POINTSexp, -500, 1f);
+    }
+
+    public void ShowPOINTSExp()
+    {
+        LeanTween.moveLocalY(POINTSexp, 300, 1f);
+        GetComponent<AudioSource>().PlayOneShot(creepyBuzz);
+        GetComponent<S_PlayerManager>().GlitchScreen();
+
+    }
     public void GetHitHeartsAnim()
     {
         LTSeq seq = LeanTween.sequence();

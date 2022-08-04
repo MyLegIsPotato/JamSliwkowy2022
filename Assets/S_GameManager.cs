@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class S_GameManager : MonoBehaviour
 {
@@ -30,5 +31,10 @@ public class S_GameManager : MonoBehaviour
             GetComponent<S_ElevatorController>().MoveToFloor(waypoint.GetSiblingIndex())
         );
         Debug.LogWarning("Game Skipped Started.");
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

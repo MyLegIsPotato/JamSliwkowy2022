@@ -16,7 +16,14 @@ public class S_PlayerBeingHit : MonoBehaviour
         {
             if (Time.time > lastHitTime + hitInterval)
             {
-                daddy.GetComponent<S_PlayerManager>().GetHit(collision.collider.GetComponent<S_Enemy>().damage);
+                if(collision.collider.GetComponent<S_Enemy>() != null)
+                {
+                    daddy.GetComponent<S_PlayerManager>().GetHit(collision.collider.GetComponent<S_Enemy>().damage);
+
+                }else if(collision.collider.GetComponent<S_Bullet>() != null)
+                {
+                    daddy.GetComponent<S_PlayerManager>().GetHit(collision.collider.GetComponent<S_Bullet>().bulletDamage);
+                }
                 lastHitTime = Time.time;
             }
         }

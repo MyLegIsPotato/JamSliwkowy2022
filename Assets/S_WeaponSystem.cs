@@ -63,7 +63,7 @@ public class S_WeaponSystem : MonoBehaviour
     public void Start()
     {
         S_ElevatorController.OnElevatorArrived += (x) => { GiveWeaponOnFloor(x); };
-        GiveAllWeapons();
+        //GiveAllWeapons();
 
     }
 
@@ -97,9 +97,11 @@ public class S_WeaponSystem : MonoBehaviour
                 ActivateWeapon(4);
                 break;
             case 6:
-                ActivateWeapon(5);
                 break;
             case 7:
+                break;
+            case 8:
+                ActivateWeapon(5);
                 break;
             default:
                 break;

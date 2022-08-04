@@ -6,7 +6,7 @@ public class S_Bullet : MonoBehaviour
 {
     [SerializeField]
     public float bulletSpeed;
-    public float bulletDamage;
+    public int bulletDamage;
 
     Vector3 targetPosition;
 
