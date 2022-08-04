@@ -28,4 +28,10 @@ public class S_MusicSelector : MonoBehaviour
         speaker.Play();
     }
 
+    public void PlayDefaultMusic()
+    {
+        speaker.clip = defaultMusic;
+        speaker.Play();
+    }
+
 }

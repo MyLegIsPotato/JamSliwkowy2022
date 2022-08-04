@@ -49,10 +49,15 @@ MonoBehaviour:
   emotionalDamage: 5
   weaponShootInterval: 4
   weaponReloadTime: 0
+  limitedAmmo: 0
+  weaponAmmoCapacity: 0
   weaponPOINTS: 10
-  weaponRange: 8
+  weaponRange: 12
   weaponBarGraphic: {fileID: 21300000, guid: fc882375532822743a3a24a6a5993f73, type: 3}
   weaponShootSound: {fileID: 8300000, guid: b186077df5399494399c82ae090e69b8, type: 3}
   weaponReloadSound: {fileID: 8300000, guid: 6fc8ba863bc227942982fc85f78c0970, type: 3}
   missFX_Prefab: {fileID: 0}
   ammoCounterSprite: {fileID: 21300000, guid: 36e5b14dfe1a47e42b12c4a5156b3ed1, type: 3}
+  weaponCurrentAmmo: -5
+  lastRofTime: 121.58735
+  isReloading: 0

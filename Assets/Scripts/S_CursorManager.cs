@@ -35,7 +35,8 @@ public class S_CursorManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Mouse0))
         {
-            GetComponent<S_WeaponSystem>().GetCurrentWeapon.TryWeaponShoot(); //Will work if not reloading           
+           if(GetComponent<S_WeaponSystem>().GetCurrentWeapon != null)
+                GetComponent<S_WeaponSystem>().GetCurrentWeapon.TryWeaponShoot(); //Will work if not reloading           
         }
 
     }
@@ -44,6 +45,7 @@ public class S_CursorManager : MonoBehaviour
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
+
         if (Physics.Raycast(ray, out hit, weaponSystem.GetCurrentWeapon.weaponRange))
         {
             GameObject hitObject = hit.collider.gameObject;
@@ -54,6 +56,8 @@ public class S_CursorManager : MonoBehaviour
                 hitObject.GetComponent<S_Enemy>().Hit(hit.point, weaponSystem.GetCurrentWeapon);
             }
         }
+
+        Debug.DrawLine(ray.origin, hit.point, Color.green, 3f);
     }
 
     public float animTimer = 0;

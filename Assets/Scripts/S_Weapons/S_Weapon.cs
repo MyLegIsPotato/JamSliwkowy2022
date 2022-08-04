@@ -34,29 +34,33 @@ public class S_Weapon : MonoBehaviour
 
     public virtual void TryWeaponShoot()
     {
-        print(isReloading);
-        //Don't let player shoot when not enough time has passed since the last shot.
-        if (Time.time > lastRofTime + weaponShootInterval && !isReloading)
+        if(weaponSystem.GetCurrentWeapon != null)
         {
-            if (limitedAmmo)
+            print(isReloading);
+            //Don't let player shoot when not enough time has passed since the last shot.
+            if (Time.time > lastRofTime + weaponShootInterval && !isReloading)
             {
-                if(weaponCurrentAmmo > 0) //Some ammo left
+                if (limitedAmmo)
+                {
+                    if (weaponCurrentAmmo > 0) //Some ammo left
+                    {
+                        WeaponShoot();
+                    }
+                    else //Empty Mag
+                    {
+                        weaponSystem.PlayDenySound();
+                        weaponSystem.GetComponent<S_UI_Animator>().PromptReload();
+                        weaponSystem.GetComponent<S_UI_Animator>().AnimateReloadPrompt();
+                        weaponSystem.GetComponent<S_UI_Animator>().ammoIcon.GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
+                    }
+                }
+                else
                 {
                     WeaponShoot();
                 }
-                else //Empty Mag
-                {
-                    weaponSystem.PlayDenySound();
-                    weaponSystem.GetComponent<S_UI_Animator>().PromptReload();
-                    weaponSystem.GetComponent<S_UI_Animator>().AnimateReloadPrompt();
-                    weaponSystem.GetComponent<S_UI_Animator>().ammoIcon.GetComponent<UnityEngine.UI.Image>().fillAmount = 0;
-                }
-            }
-            else
-            {
-                WeaponShoot();
             }
         }
+
     }
 
     private void WeaponShoot()

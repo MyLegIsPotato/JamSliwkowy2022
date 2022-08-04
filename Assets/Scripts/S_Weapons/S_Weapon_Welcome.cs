@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class S_Weapon_Welcome : S_Weapon
 {
-    public override void TryWeaponShoot()
-    {
-        //nadpisuje cos z S_Weapon
-        print("Wavy wavy...");
-
-    }
-
     public override void EnemyReaction(Vector3 hitLocation, S_Enemy _e)
     {
         base.EnemyReaction(hitLocation, _e);

@@ -33,6 +33,8 @@ public class S_EnemyManager : MonoBehaviour
         enemiesLeftToSpawn = enemiesToSpawn;
         OnEnemyDeath += () => { };
         S_ElevatorController.OnElevatorArrived += (x) => { if (GetComponentInParent<S_FloorNumber>().thisFloorNum == x) SpawnEnemies(); };
+
+
         //StartCoroutine(spawnEnemies());
         CreateDictOfLastWaypoints();
     }
@@ -88,4 +90,5 @@ public class S_EnemyManager : MonoBehaviour
     {
         StartCoroutine(spawnEnemies());
     }
+
 }

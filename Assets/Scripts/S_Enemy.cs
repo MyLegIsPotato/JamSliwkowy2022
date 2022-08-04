@@ -150,6 +150,16 @@ public class S_Enemy : MonoBehaviour
             GetComponent<AudioSource>().PlayOneShot(emo_hitSFXs[Random.Range(0, emo_hitSFXs.Count - 1)]);
             S_EnemyManager.OnEnemyHit(hitLocation, this, _wp);
 
+        }else if(_wp.emotionalDamage < 0)
+        {
+            print("Hey Friend!");
+
+            FindObjectOfType<S_PlayerManager>().PlayerHealth -= _wp.emotionalDamage;
+            FindObjectOfType<S_PlayerManager>().CurrentPOINTS -= _wp.weaponPOINTS*2;
+
+            //GameObject go = Instantiate(emo_hitFX_Prefab);
+            //go.transform.position = hitLocation;
+            S_EnemyManager.OnEnemyHit(hitLocation, this, _wp);
         }
 
         if(Health > 0)

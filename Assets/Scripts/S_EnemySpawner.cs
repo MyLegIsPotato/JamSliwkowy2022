@@ -11,7 +11,7 @@ public class S_EnemySpawner : MonoBehaviour
     private void Start()
     {
         waypoints = GetComponentInChildren<S_Waypoints>();
-        print("halko");
+        //print("halko");
     }
 
     internal void SpawnEnemy(GameObject enemyToSpawn)

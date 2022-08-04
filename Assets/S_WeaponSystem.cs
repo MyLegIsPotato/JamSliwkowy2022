@@ -62,17 +62,49 @@ public class S_WeaponSystem : MonoBehaviour
 
     public void Start()
     {
-        ActivateWeapon(0);
-        ActivateWeapon(1);
-        ActivateWeapon(2);
-        ActivateWeapon(3);
-        ActivateWeapon(4);
-        ActivateWeapon(5);
-
-
+        S_ElevatorController.OnElevatorArrived += (x) => { GiveWeaponOnFloor(x); };
+        GiveAllWeapons();
 
     }
 
+    public void GiveAllWeapons() 
+    { 
+        foreach(S_Weapon wp in allWeapons)
+        {
+            ActivateWeapon(wp);
+        }
+    }
+
+    public void GiveWeaponOnFloor(int floorNumber)
+    {
+        switch (floorNumber)
+        {
+            case 0:
+                break;
+            case 1:
+                ActivateWeapon(0);
+                ActivateWeapon(1);
+                break;
+            case 2:
+                ActivateWeapon(2);
+                break;
+            case 3:
+                ActivateWeapon(3);
+                break;
+            case 4:
+                break;
+            case 5:
+                ActivateWeapon(4);
+                break;
+            case 6:
+                ActivateWeapon(5);
+                break;
+            case 7:
+                break;
+            default:
+                break;
+        }
+    }
 
     [SerializeField]
     AudioClip weaponOutOfBounds;
@@ -88,41 +120,62 @@ public class S_WeaponSystem : MonoBehaviour
         weapon.lastRofTime = 0;
         weapon.isReloading = false;
 
-        activeWeapons.Add(weapon);
+        if(!activeWeapons.Contains(weapon))
+            activeWeapons.Add(weapon);
+
         SelectedWeaponIndex = activeWeapons.IndexOf(weapon);
 
         GetComponent<S_UI_Animator>().AddIcon(weapon, SelectedWeaponIndex);
 
     }
 
+    public void ActivateWeapon(S_Weapon weapon)
+    {
+        weapon.weaponSystem = this;
+        weapon.MaxAmmo();
+        weapon.lastRofTime = 0;
+        weapon.isReloading = false;
+
+        if (!activeWeapons.Contains(weapon))
+            activeWeapons.Add(weapon);
+
+        SelectedWeaponIndex = activeWeapons.IndexOf(weapon);
+
+        GetComponent<S_UI_Animator>().AddIcon(weapon, SelectedWeaponIndex);
+    }
+
     private void Update()
     {
-        if (!GetCurrentWeapon.isReloading)
+        if(GetCurrentWeapon != null)
         {
-            if (Input.mouseScrollDelta == new Vector2(0, 1))
+            if (!GetCurrentWeapon.isReloading)
             {
-                if (GetComponent<S_CursorManager>().animTimer == 0)
-                    SelectedWeaponIndex++;
-                else
-                    PlayDenySound();
+                if (Input.mouseScrollDelta == new Vector2(0, 1))
+                {
+                    if (GetComponent<S_CursorManager>().animTimer == 0)
+                        SelectedWeaponIndex++;
+                    else
+                        PlayDenySound();
+
+                }
+                else if (Input.mouseScrollDelta == new Vector2(0, -1))
+                {
+                    if (GetComponent<S_CursorManager>().animTimer == 0)
+                        SelectedWeaponIndex--;
+                    else
+                        PlayDenySound();
+                }
+
+                if (Input.GetKeyDown(KeyCode.R))
+                {
+
+                    GetCurrentWeapon.WeaponReload();
+                    GetComponent<S_UI_Animator>().reloadPrompt.SetActive(false);
+                }
 
             }
-            else if (Input.mouseScrollDelta == new Vector2(0, -1))
-            {
-                if (GetComponent<S_CursorManager>().animTimer == 0)
-                    SelectedWeaponIndex--;
-                else
-                    PlayDenySound();
-            }
-
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-
-                GetCurrentWeapon.WeaponReload();
-                GetComponent<S_UI_Animator>().reloadPrompt.SetActive(false);
-            }
-
         }
+
 
     }
 

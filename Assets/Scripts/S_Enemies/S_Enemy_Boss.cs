@@ -67,7 +67,9 @@ public class S_Enemy_Boss : S_Enemy
         yield return new WaitForSeconds(0.05f);
         GetComponent<Animator>().applyRootMotion = true;
         GetComponent<Animator>().SetTrigger("Die");
-        //S_EnemyRemover.i.RemoveEnemy(this.gameObject);
+        S_EnemyRemover.i.RemoveEnemy(this);
+        yield return new WaitForSeconds(3f);
+        FindObjectOfType<S_MusicSelector>().PlayDefaultMusic();
         yield return null;
     }
 

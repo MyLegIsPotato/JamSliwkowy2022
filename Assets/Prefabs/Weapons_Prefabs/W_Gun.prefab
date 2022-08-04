@@ -58,5 +58,6 @@ MonoBehaviour:
   weaponReloadSound: {fileID: 8300000, guid: ddaf09ef4e69e384eba08e234ef2e260, type: 3}
   missFX_Prefab: {fileID: 0}
   ammoCounterSprite: {fileID: 21300000, guid: c68fc9450124cb74287dbe64e889de33, type: 3}
-  lastRofTime: 0
+  weaponCurrentAmmo: 10
+  lastRofTime: 88.56441
   isReloading: 0

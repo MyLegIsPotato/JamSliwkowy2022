@@ -141,19 +141,19 @@ public class S_Insanity : MonoBehaviour
 
     private void Update()
     {
-        if(insanityPercentLvl2 > 0)
-        {
-            InsanityPecentLvl2 = insanityPercentLvl2;
-        }
-        else if(insanityPercent > 0)
-        {
-            InsanityPercent = insanityPercent;
+        //if(insanityPercentLvl2 > 0)
+        //{
+        //    InsanityPecentLvl2 = insanityPercentLvl2;
+        //}
+        //else if(insanityPercent > 0)
+        //{
+        //    InsanityPercent = insanityPercent;
 
-        }
-        else
-        {
-            vignettePercent = Mathf.InverseLerp(-30, +30, Mathf.Abs(headJoint.angle));
-            VignettePercent = vignettePercent;
-        }
+        //}
+        //else
+        //{
+        //    vignettePercent = Mathf.InverseLerp(-30, +30, Mathf.Abs(headJoint.angle));
+        //    VignettePercent = vignettePercent;
+        //}
     }
 }

@@ -63,6 +63,7 @@ public class S_ElevatorController : MonoBehaviour
 
     public void Start()
     {
+        floors = new List<S_FloorNumber>();
         numberOfFloors = FloorWaypoints.transform.childCount;
         floorNum = 0;
 
@@ -72,6 +73,7 @@ public class S_ElevatorController : MonoBehaviour
         foreach(Transform t in FloorWaypoints.transform)
         {
             t.GetComponentInChildren<S_FloorNumber>().thisFloorNum = t.GetSiblingIndex();
+            floors.Add(t.GetComponentInChildren<S_FloorNumber>());
         }
     }
 
@@ -132,9 +134,8 @@ public class S_ElevatorController : MonoBehaviour
 
     public void MoveIfEnemiesDead()
     {
-        S_EnemyManager em = FindObjectOfType<S_EnemyManager>();
-        print("Enemies alive is still: " + S_EnemyManager.enemiesAlive);
-        if (S_EnemyManager.enemiesAlive == 0 && em.enemiesLeftToSpawn == 0)
+        print("Enemies alive is still: " + floors[floorNum].GetComponentInChildren<S_EnemyManager>().enemiesLeftToSpawn);
+        if (S_EnemyManager.enemiesAlive == 0 && floors[floorNum].GetComponentInChildren<S_EnemyManager>().enemiesLeftToSpawn == 0)
             StartCoroutine(MoveToNextFloor());
     }
 

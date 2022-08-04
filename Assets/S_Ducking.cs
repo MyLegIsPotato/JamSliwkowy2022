@@ -16,11 +16,14 @@ public class S_Ducking : MonoBehaviour
     public Transform leftPosition;
     public Transform rightPosition;
     public Transform downPosition;
+    public Transform frontPosition;
 
 
     KeyCode left = KeyCode.A;
     KeyCode right = KeyCode.D;
     KeyCode down = KeyCode.S;
+    KeyCode forward = KeyCode.W;
+
 
 
     void Update()
@@ -39,6 +42,11 @@ public class S_Ducking : MonoBehaviour
         {
             transform.position = Vector3.MoveTowards(transform.position, rightPosition.position, duckSpeed * Time.deltaTime);
             transform.rotation = Quaternion.RotateTowards(transform.rotation, rightPosition.rotation, duckSpeed * rotationSpeed * Time.deltaTime);
+        }
+        else if (Input.GetKey(forward))
+        {
+            transform.position = Vector3.MoveTowards(transform.position, frontPosition.position, duckSpeed * Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, frontPosition.rotation, duckSpeed * rotationSpeed * Time.deltaTime);
         }
         else
         {
