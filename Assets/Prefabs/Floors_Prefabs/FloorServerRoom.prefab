@@ -5152,6 +5152,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: lvl7
       objectReference: {fileID: 0}
+    - target: {fileID: 2207168115543815292, guid: 28f0a7746b0c32a499dfdd01252e85a6, type: 3}
+      propertyPath: m_CastShadows
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6063855433279277403, guid: 28f0a7746b0c32a499dfdd01252e85a6, type: 3}
+      propertyPath: m_CastShadows
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 28f0a7746b0c32a499dfdd01252e85a6, type: 3}
 --- !u!4 &6903747009129451557 stripped
@@ -5209,6 +5217,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: e52ba36d56dc30640bccc7b8a55ae169, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: e52ba36d56dc30640bccc7b8a55ae169, type: 3}
+      propertyPath: m_CastShadows
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: e52ba36d56dc30640bccc7b8a55ae169, type: 3}
       propertyPath: m_Name
