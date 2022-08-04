@@ -16,6 +16,9 @@ public class S_PlayerManager : MonoBehaviour
 
     public float maxHP = 100;
 
+    [SerializeField]
+    AudioClip hitSFX;
+
     public float PlayerHealth
     {
         get { return playerHealth; }
@@ -83,8 +86,11 @@ public class S_PlayerManager : MonoBehaviour
     public void GetHit(int damage)
     {
         PlayerHealth -= damage;
+        GetComponent<S_UI_Animator>().GetHitHeartsAnim();
+        GetComponent<AudioSource>().PlayOneShot(hitSFX);
     }
 
+    
 
     private void Start()
     {

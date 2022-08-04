@@ -19,7 +19,7 @@ public class S_EnemySpawner : MonoBehaviour
         myEnemy = Instantiate(enemyToSpawn, this.transform);
         myEnemy.transform.localPosition = Vector3.zero;
         myEnemy.GetComponent<S_WaypointMover>().waypoints = waypoints;
-        S_EnemyManager.OnEnemyDeath += (e) => { if (e == myEnemy.GetComponent<S_Enemy>()) Release(); };
+        
 
     }
 

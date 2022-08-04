@@ -74,7 +74,6 @@ public class S_Enemy : MonoBehaviour
     public virtual IEnumerator DieProcess()
     {
         print("I'm " + this.gameObject.name + " dead!");
-        //S_EnemyManager.OnEnemyDeath(this);
 
         GetComponent<S_WaypointMover>().keepMoving = false;
         GetComponent<S_WaypointMover>().autoProceed = false;
@@ -90,6 +89,7 @@ public class S_Enemy : MonoBehaviour
             rb.isKinematic = false;
             Physics.IgnoreCollision(rb.GetComponent<Collider>(), Camera.main.GetComponentInParent<Collider>());
         }
+        ReleaseSpawner();
         S_EnemyRemover.i.RemoveEnemy(this);
         yield return null;
     }
@@ -97,12 +97,18 @@ public class S_Enemy : MonoBehaviour
     public virtual void ArrivedAction(Transform waypoint) 
     {
         print("Just arrived");
-        S_EnemyRemover.i.RemoveEnemy(GetComponent<S_Enemy>());
+        S_EnemyRemover.i.RemoveEnemy(this);
+    }
+
+    public void ReleaseSpawner()
+    {
+        GetComponentInParent<S_EnemySpawner>().Release();
     }
 
     public virtual void Attack()
     {
         print("Attacking!");
+        FindObjectOfType<S_PlayerManager>().GetHit(damage);
     }
 
     public virtual void Evade()

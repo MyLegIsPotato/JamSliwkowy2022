@@ -16,6 +16,7 @@ public class S_UI_Animator : MonoBehaviour
     public GameObject weaponBarChild;
     public GameObject weaponBarIconPlaceholder;
     public GameObject ammoIcon;
+    public GameObject heartsIcon;
 
     public GameObject screenCracks;
     public GameObject bossHPBar;
@@ -24,6 +25,14 @@ public class S_UI_Animator : MonoBehaviour
     public void Start()
     {
         S_CursorManager.OnAnyWeaponShoot += ShootAmmoAnim;
+    }
+
+    public void GetHitHeartsAnim()
+    {
+        LTSeq seq = LeanTween.sequence();
+        seq.append(LeanTween.moveLocalY(heartsIcon, 10, 0.2f));
+        seq.append(LeanTween.moveLocalY(heartsIcon, 0, 0.2f));
+        seq.setScale(1f);
     }
 
     public void AddIcon(S_Weapon _w, int barIndex)

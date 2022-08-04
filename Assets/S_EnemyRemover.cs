@@ -15,16 +15,16 @@ public class S_EnemyRemover : MonoBehaviour
         if(other.tag == "Enemy")
         {
             RemoveEnemy(other.gameObject.GetComponent<S_Enemy>());
-
         }
         
     }
 
     public void RemoveEnemy(S_Enemy enemy)
     {
-        Debug.LogWarning(enemy.GetInstanceID());
-        S_EnemyManager.OnEnemyDeath(enemy);
         S_EnemyManager.enemiesAlive--;
+        Debug.LogWarning(enemy.GetInstanceID());
+        S_EnemyManager.OnEnemyDeath();
+
         enemy.GetComponent<S_WaypointMover>().StopAllCoroutines(); 
         StartCoroutine(RemoveEnemyObject(enemy));
     }
@@ -32,6 +32,6 @@ public class S_EnemyRemover : MonoBehaviour
     IEnumerator RemoveEnemyObject(S_Enemy e)
     {
         yield return new WaitForSeconds(e.bodyDespawnTime);
-        Destroy(e);
+        Destroy(e.gameObject);
     }
 }

@@ -10,7 +10,7 @@ public class S_Enemy_Zombie : S_Enemy
         GetComponent<S_WaypointMover>().onFinish -= base.ArrivedAction;
         GetComponent<S_WaypointMover>().onFinish += this.ArrivedAction;
 
-        StartCoroutine(KeepScreaming(2));
+        //StartCoroutine(KeepScreaming(2));
     }
 
     public void ScreamOnce()
@@ -37,7 +37,10 @@ public class S_Enemy_Zombie : S_Enemy
         ScreamOnce();
         GetComponentInChildren<Animator>().SetTrigger("Taunt");
         yield return new WaitForSeconds(3f);
-        
+       // GetComponentInChildren<Animator>().SetTrigger("Attack"); Attack plays automatically from animator
+
 
     }
+
+   
 }

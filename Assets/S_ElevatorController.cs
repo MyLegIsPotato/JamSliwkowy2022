@@ -66,7 +66,7 @@ public class S_ElevatorController : MonoBehaviour
         numberOfFloors = FloorWaypoints.transform.childCount;
         floorNum = 0;
 
-        S_EnemyManager.OnEnemyDeath += (e) => { MoveIfEnemiesDead(); };
+        S_EnemyManager.OnEnemyDeath += () => { MoveIfEnemiesDead(); };
         S_GameManager.OnGameStarted += () => { StartCoroutine(MoveToNextFloor()); };
 
         foreach(Transform t in FloorWaypoints.transform)
@@ -132,8 +132,9 @@ public class S_ElevatorController : MonoBehaviour
 
     public void MoveIfEnemiesDead()
     {
+        S_EnemyManager em = FindObjectOfType<S_EnemyManager>();
         print("Enemies alive is still: " + S_EnemyManager.enemiesAlive);
-        if (S_EnemyManager.enemiesAlive == 0)
+        if (S_EnemyManager.enemiesAlive == 0 && em.enemiesLeftToSpawn == 0)
             StartCoroutine(MoveToNextFloor());
     }
 

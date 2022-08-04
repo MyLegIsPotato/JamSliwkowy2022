@@ -6,6 +6,7 @@ public class S_EnemyManager : MonoBehaviour
 {
     public int enemiesToSpawn = 6;
     public float spawnInteval = 1;
+    public int enemiesLeftToSpawn = 0;
 
     [SerializeField]
     List<S_EnemySpawner> spawners;
@@ -17,17 +18,20 @@ public class S_EnemyManager : MonoBehaviour
     public static EnemyHitHandler OnEnemyHit;
 
 
-    public delegate void EnemyDeathHandler(S_Enemy deadEnemy);
+    //public delegate void EnemyDeathHandler(S_Enemy deadEnemy);
+    public delegate void EnemyDeathHandler();
     public static EnemyDeathHandler OnEnemyDeath;
 
     public static int enemiesAlive = 0;
+    
 
     public bool oneForEachLine = false;
     public static Dictionary<S_EnemySpawner, bool> spawnersBusy;
 
     public void Start()
     {
-        OnEnemyDeath += (e) => { };
+        enemiesLeftToSpawn = enemiesToSpawn;
+        OnEnemyDeath += () => { };
         S_ElevatorController.OnElevatorArrived += (x) => { if (GetComponentInParent<S_FloorNumber>().thisFloorNum == x) SpawnEnemies(); };
         //StartCoroutine(spawnEnemies());
         CreateDictOfLastWaypoints();
@@ -74,6 +78,7 @@ public class S_EnemyManager : MonoBehaviour
             }
             
             enemiesAlive++;
+            enemiesLeftToSpawn--;
             yield return new WaitForSeconds(spawnInteval);
         }
         yield return null;

@@ -11,6 +11,7 @@ public class S_Insanity : MonoBehaviour
     [SerializeField]
     ShaderEffect_BleedingColors bleedingColors;
 
+    public float animTimer;
     public AnimationCurve gotHitCurve;
 
     [SerializeField]
