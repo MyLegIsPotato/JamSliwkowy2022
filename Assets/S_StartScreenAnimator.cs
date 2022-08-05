@@ -19,12 +19,16 @@ public class S_StartScreenAnimator : MonoBehaviour
         print("klik w gui");
         if (isRestartButton)
         {
+           
             S_GameManager.RestartGame();
+            
         }
-        else if (!S_GameManager.gameStarted)
+        else if (!S_GameManager.gameStarted )
         {
+            GetComponent<BoxCollider>().enabled = false;
             FindObjectOfType<S_GameManager>().StartGame();
-
+           
         }
+     
     }
 }
