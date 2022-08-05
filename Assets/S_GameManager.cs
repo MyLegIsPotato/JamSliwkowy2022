@@ -31,7 +31,7 @@ public class S_GameManager : MonoBehaviour
         Debug.LogWarning("Game Starting...");
         OnGameStarted();
         Debug.LogWarning("Game Started.");
-        gameStarted = true;
+        gameStarted = false; // tu zmieni³em na false #001
     }
 
 

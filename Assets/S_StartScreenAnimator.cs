@@ -16,6 +16,7 @@ public class S_StartScreenAnimator : MonoBehaviour
 
     private void OnMouseDown()
     {
+        print("klik w gui");
         if (isRestartButton)
         {
             S_GameManager.RestartGame();
