@@ -23,7 +23,8 @@ public class S_Enemy_Boss : S_Enemy
     [SerializeField]
     List<GameObject> bullets = new List<GameObject>();
 
-   
+    bool tableKicked = false;
+
     public
     UnityEngine.UI.Image bossHPBarImage;
 
@@ -32,7 +33,7 @@ public class S_Enemy_Boss : S_Enemy
     {
         GetComponent<S_WaypointMover>().onArrive += CheckWP;
         base.maxHealth = 1000; //To Do Remove
-
+        tableKicked = false;
     }
 
 
@@ -78,6 +79,7 @@ public class S_Enemy_Boss : S_Enemy
 
     public void KickTable()
     {
+        print("Kicks Table! 2");
         table.SetTrigger("Kick");
     }
 
@@ -99,7 +101,7 @@ public class S_Enemy_Boss : S_Enemy
         StartCoroutine(waypointProcedure(waypoint));
     }
 
-    bool tableKicked = false;
+
 
     IEnumerator waypointProcedure(Transform waypoint)
     {

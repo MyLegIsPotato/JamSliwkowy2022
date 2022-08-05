@@ -114,13 +114,13 @@ public class S_PlayerManager : MonoBehaviour
     {
         GetComponent<S_UI_Animator>().screenCracks.SetActive(true);
         GetComponent<AudioSource>().PlayOneShot(screenCrackSFX);
-        GetComponentInChildren<ShaderEffect_Unsync>().StartCoroutine(GetComponentInChildren<ShaderEffect_Unsync>().Unsync());
+        GetComponentInChildren<ShaderEffect_Unsync>().GetComponentInChildren<ShaderEffect_Unsync>().Unsync();
         PlayerHealth -= 10;
     }
 
     public void GlitchScreen()
     {
-        GetComponentInChildren<ShaderEffect_BleedingColors>().StartCoroutine(GetComponentInChildren<ShaderEffect_BleedingColors>().GlitchScreen());
+        GetComponentInChildren<ShaderEffect_BleedingColors>().GetComponentInChildren<ShaderEffect_BleedingColors>().GlitchScreen();
         PlayerHealth -= 5;
     }
 

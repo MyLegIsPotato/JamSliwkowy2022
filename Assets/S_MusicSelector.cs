@@ -34,4 +34,9 @@ public class S_MusicSelector : MonoBehaviour
         speaker.Play();
     }
 
+    public void StopMusic()
+    {
+        speaker.Stop();
+    }
+
 }

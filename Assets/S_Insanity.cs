@@ -37,6 +37,12 @@ public class S_Insanity : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        useFullVignette = false;
+        useHeadHingeForVignette = true;
+    }
+
     public void PlayBuzzing()
     {
         GetComponent<AudioSource>().PlayOneShot(buzzing);

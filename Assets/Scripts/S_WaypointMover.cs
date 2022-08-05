@@ -9,7 +9,7 @@ public class S_WaypointMover : MonoBehaviour
     public S_Waypoints waypoints;
 
     [SerializeField]
-    private float moveSpeed = 5f;
+    public float moveSpeed = 5f;
 
     [SerializeField]
     private float distanceThreshold = 0.1f;

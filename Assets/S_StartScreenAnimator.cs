@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class S_StartScreenAnimator : MonoBehaviour
 {
+    [SerializeField]
+    bool isRestartButton = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -12,7 +16,14 @@ public class S_StartScreenAnimator : MonoBehaviour
 
     private void OnMouseDown()
     {
-        if(!S_GameManager.gameStarted)
+        if (isRestartButton)
+        {
+            S_GameManager.RestartGame();
+        }
+        else if (!S_GameManager.gameStarted)
+        {
             FindObjectOfType<S_GameManager>().StartGame();
+
+        }
     }
 }

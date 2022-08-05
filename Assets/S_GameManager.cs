@@ -37,7 +37,7 @@ public class S_GameManager : MonoBehaviour
 
     public void SkipTo(Transform waypoint)
     {
-        FindObjectOfType<S_PlayerManager>().CurrentPOINTS = FindObjectOfType<S_PlayerManager>().maxPOINTS;
+        //FindObjectOfType<S_PlayerManager>().CurrentPOINTS = FindObjectOfType<S_PlayerManager>().maxPOINTS;
 
         Debug.LogWarning("Game Skipped Starting...");
         GetComponent<S_ElevatorController>().StartCoroutine(
@@ -49,5 +49,6 @@ public class S_GameManager : MonoBehaviour
     public static void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GameLost = false;
     }
 }

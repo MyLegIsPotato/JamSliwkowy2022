@@ -103,7 +103,7 @@ public class S_ElevatorController : MonoBehaviour
         LeftDoors_Mine.transform.eulerAngles = new Vector3(0, -doorsRotation.Evaluate(doorOpenessFactor), 0);
 
     }
-    IEnumerator MoveToNextFloor()
+    public IEnumerator MoveToNextFloor()
     {
         StartCoroutine(MoveToFloor(floorNum+1));
         yield return null;
@@ -146,6 +146,15 @@ public class S_ElevatorController : MonoBehaviour
                     Debug.LogWarning("Game is lost, restarting soon...");
                 }
             }
+
+            if (FloorNum == 12)
+            {
+                doorOpenessFactor = 1;
+                GetComponent<S_WaypointMover>().moveSpeed = 2f;
+                StopAllCoroutines();
+                yield break;
+                //StartCoroutine(OperateDoors(false));
+            }
         }
         while (FloorNum < floorToSkipTo);
 
@@ -155,7 +164,7 @@ public class S_ElevatorController : MonoBehaviour
         elevatorAmbientEmitter.Stop();
 
         OnElevatorArrived(FloorNum);
-        StartCoroutine(OperateDoors(false));
+        StartCoroutine(OperateDoors(false)); //Open the door
 
         yield return null;
     }
@@ -172,8 +181,17 @@ public class S_ElevatorController : MonoBehaviour
                 floorDisplayObject.sprite = floorDisplaySprites[6 - floorNum];
             else // num > 6
             {
-                floorDisplayOfInsanity.SetActive(true);
-                floorDisplayObject.sprite = floorDisplaySprites[floorNum-6];
+                try
+                {
+                    floorDisplayOfInsanity.SetActive(true);
+                    floorDisplayObject.sprite = floorDisplaySprites[floorNum - 6];
+                }
+                catch (Exception)
+                {
+
+                    
+                }
+
             }
         }
     }
@@ -182,8 +200,12 @@ public class S_ElevatorController : MonoBehaviour
     public void MoveIfEnemiesDead()
     {
         //print("Enemies alive is still: " + floors[floorNum].GetComponentInChildren<S_EnemyManager>().enemiesAlive);
-        if (floors[floorNum].GetComponentInChildren<S_EnemyManager>().enemiesKilled >= floors[floorNum].GetComponentInChildren<S_EnemyManager>().enemiesToSpawn)
-            StartCoroutine(MoveToNextFloor());
+        if (floors[floorNum].GetComponentInChildren<S_EnemyManager>() != null)
+        {
+            if (floors[floorNum].GetComponentInChildren<S_EnemyManager>().enemiesKilled >= floors[floorNum].GetComponentInChildren<S_EnemyManager>().enemiesToSpawn)
+                StartCoroutine(MoveToNextFloor());
+        }
+
     }
 
     public void PlayDing()
@@ -194,7 +216,7 @@ public class S_ElevatorController : MonoBehaviour
         source.Play();
     }
 
-    IEnumerator OperateDoors(bool close)
+    public IEnumerator OperateDoors(bool close)
     {
         if (!close)
             PlayDing(); //play sound before opening the doors
