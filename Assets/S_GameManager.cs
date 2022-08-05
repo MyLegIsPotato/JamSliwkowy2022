@@ -9,6 +9,7 @@ public class S_GameManager : MonoBehaviour
     public static GameStartHandler OnGameStarted;
 
     public static bool GameLost = false;
+    public static bool gameStarted = false;
 
 
     void OnDisable()
@@ -21,6 +22,7 @@ public class S_GameManager : MonoBehaviour
     void Start()
     {
         GameLost = false;
+        
         Debug.LogWarning("Game Running");        
     }
 
@@ -29,6 +31,7 @@ public class S_GameManager : MonoBehaviour
         Debug.LogWarning("Game Starting...");
         OnGameStarted();
         Debug.LogWarning("Game Started.");
+        gameStarted = true;
     }
 
 

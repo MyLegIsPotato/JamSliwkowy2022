@@ -9,4 +9,10 @@ public class S_StartScreenAnimator : MonoBehaviour
     {
         LeanTween.moveLocalZ(this.gameObject, 0.8f, 10f);
     }
+
+    private void OnMouseDown()
+    {
+        if(!S_GameManager.gameStarted)
+            FindObjectOfType<S_GameManager>().StartGame();
+    }
 }
