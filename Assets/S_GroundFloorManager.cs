@@ -11,7 +11,24 @@ public class S_GroundFloorManager : MonoBehaviour
 
     private void Start()
     {
-        S_ElevatorController.OnElevatorArrived += (x) => { if (GetComponent<S_FloorNumber>().thisFloorNum == x) StartCoroutine(AnimatePolice()); };
+
+        S_ElevatorController.OnElevatorArrived += (x) => { 
+            if (GetComponent<S_FloorNumber>().thisFloorNum == x)
+            {
+                if (!S_GameManager.GameLost)
+                    StartCoroutine(AnimatePolice());
+                else
+                    StartCoroutine(AnimateTheEnd());
+            }
+
+        };
+    }
+
+    IEnumerator AnimateTheEnd()
+    {
+        yield return new WaitForSeconds(1f);
+        FindObjectOfType<S_PlayerManager>().GetComponent<Animator>().enabled = true;
+        FindObjectOfType<S_PlayerManager>().GetComponent<Animator>().SetTrigger("Leave");
     }
 
     IEnumerator AnimatePolice()
@@ -21,11 +38,19 @@ public class S_GroundFloorManager : MonoBehaviour
         GetComponentInChildren<AudioSource>().Play();
         print("podjecha³y pa³y koniec zabawy");
         StartCoroutine(AnimateLights());
-        yield return new WaitForSeconds(5);
-        FindObjectOfType<S_ElevatorController>().StartCoroutine
-            (FindObjectOfType<S_ElevatorController>().MoveToFloor(GetComponent<S_FloorNumber>().thisFloorNum + 1));
-        yield return new WaitForSeconds(15);
+
+        FindObjectOfType<S_PlayerManager>().GetComponent<Animator>().enabled = true;
+        FindObjectOfType<S_PlayerManager>().GetComponent<Animator>().SetTrigger("Glitch1");
+        yield return new WaitForSeconds(4);
+
+
+        FindObjectOfType<S_ElevatorController>().normalElevator.SetActive(false);
+        FindObjectOfType<S_ElevatorController>().mineElevator.SetActive(true);
+
+        yield return new WaitForSeconds(10);
+        FindObjectOfType<S_PlayerManager>().GetComponent<Animator>().enabled = false;
         GetComponentInChildren<AudioSource>().Stop();
+        FindObjectOfType<S_ElevatorController>().StartCoroutine(FindObjectOfType<S_ElevatorController>().MoveToFloor(GetComponent<S_FloorNumber>().thisFloorNum + 1));
         StopCoroutine(AnimateLights());
         blue1.enabled = false;
         blue2.enabled = false;

@@ -21,6 +21,20 @@ public class S_PlayerManager : MonoBehaviour
     [SerializeField]
     AudioClip ultraGoreSFX;
 
+
+
+    public void CutToRestart()
+    {
+        GameObject go = new GameObject();
+        go.AddComponent(typeof(S_DataSaver));
+        S_DataSaver ds = go.GetComponent<S_DataSaver>();
+        ds.POINTs = currentPOINTS;
+
+        DontDestroyOnLoad(go);
+
+        S_GameManager.RestartGame();
+    }
+
     public float PlayerHealth
     {
         get { return playerHealth; }
@@ -37,7 +51,7 @@ public class S_PlayerManager : MonoBehaviour
                         GetComponent<AudioSource>().PlayOneShot(ultraGoreSFX);
                         Camera.main.GetComponent<ShaderEffect_CorruptedVram>().enabled = true;
                         Camera.main.GetComponent<ShaderEffect_CorruptedVram>().shift = 60;
-                        Time.timeScale = 0.05f;
+                        Time.timeScale = 1f;
                     }
                 }
                 else
@@ -126,6 +140,17 @@ public class S_PlayerManager : MonoBehaviour
 
     private void Start()
     {
+        //Check if has previous data:
+        if (FindObjectOfType<S_DataSaver>() != null)
+        {
+            CurrentPOINTS = FindObjectOfType<S_DataSaver>().POINTs;
+            GetComponent<S_WeaponSystem>().ActivateWeapon(0);
+            GetComponent<S_WeaponSystem>().ActivateWeapon(1);
+            GetComponent<S_WeaponSystem>().ActivateWeapon(2);
+            GetComponent<S_WeaponSystem>().ActivateWeapon(3);
+
+        }
+
         S_EnemyManager.OnEnemyHit += AddPOINTS;
     }
 

@@ -6,7 +6,12 @@ public class S_FloorLightController : MonoBehaviour
 {
     public float delay = 0;
 
-    void Start()
+    private void OnDisable()
+    {
+
+    }
+
+    void Awake()
     {
         S_ElevatorController.OnElevatorArrived += (x) => { if(x == GetComponent<S_FloorNumber>().thisFloorNum) StartCoroutine(SetLights(true)); }; 
         S_ElevatorController.OnElevatorDeparted += (x) => { if (x == GetComponent<S_FloorNumber>().thisFloorNum) StartCoroutine(SetLights(false)); };

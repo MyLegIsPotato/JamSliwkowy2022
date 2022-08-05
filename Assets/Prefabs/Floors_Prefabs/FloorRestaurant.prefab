@@ -892,7 +892,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4471430669402219752}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2084,7 +2084,6 @@ GameObject:
   - component: {fileID: 7540715674065518088}
   - component: {fileID: 7540715674065518085}
   - component: {fileID: 7540715674065518090}
-  - component: {fileID: 7540715674065518091}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -2155,19 +2154,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674065518091
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674065518089}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674107851697
 GameObject:
   m_ObjectHideFlags: 0
@@ -2224,7 +2210,6 @@ GameObject:
   - component: {fileID: 7540715674115037472}
   - component: {fileID: 7540715674115037469}
   - component: {fileID: 7540715674115037474}
-  - component: {fileID: 7540715674115037475}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -2295,19 +2280,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674115037475
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674115037473}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674145357723
 GameObject:
   m_ObjectHideFlags: 0
@@ -2319,7 +2291,6 @@ GameObject:
   - component: {fileID: 7540715674145357722}
   - component: {fileID: 7540715674145357719}
   - component: {fileID: 7540715674145357716}
-  - component: {fileID: 7540715674145357717}
   m_Layer: 0
   m_Name: Waypoint (1)
   m_TagString: Untagged
@@ -2390,19 +2361,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674145357717
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674145357723}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674155957345
 GameObject:
   m_ObjectHideFlags: 0
@@ -2414,7 +2372,6 @@ GameObject:
   - component: {fileID: 7540715674155957344}
   - component: {fileID: 7540715674155957341}
   - component: {fileID: 7540715674155957346}
-  - component: {fileID: 7540715674155957347}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -2485,19 +2442,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674155957347
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674155957345}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674226250815
 GameObject:
   m_ObjectHideFlags: 0
@@ -2509,7 +2453,6 @@ GameObject:
   - component: {fileID: 7540715674226250814}
   - component: {fileID: 7540715674226250811}
   - component: {fileID: 7540715674226250808}
-  - component: {fileID: 7540715674226250809}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -2580,19 +2523,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674226250809
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674226250815}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674234736690
 GameObject:
   m_ObjectHideFlags: 0
@@ -2604,7 +2534,6 @@ GameObject:
   - component: {fileID: 7540715674234736685}
   - component: {fileID: 7540715674234736686}
   - component: {fileID: 7540715674234736687}
-  - component: {fileID: 7540715674234736684}
   m_Layer: 0
   m_Name: Waypoint (2)
   m_TagString: Untagged
@@ -2675,19 +2604,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674234736684
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674234736690}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674344569585
 GameObject:
   m_ObjectHideFlags: 0
@@ -2699,7 +2615,6 @@ GameObject:
   - component: {fileID: 7540715674344569584}
   - component: {fileID: 7540715674344569581}
   - component: {fileID: 7540715674344569586}
-  - component: {fileID: 7540715674344569587}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -2770,19 +2685,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674344569587
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674344569585}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674390304332
 GameObject:
   m_ObjectHideFlags: 0
@@ -2794,7 +2696,6 @@ GameObject:
   - component: {fileID: 7540715674390304335}
   - component: {fileID: 7540715674390304328}
   - component: {fileID: 7540715674390304329}
-  - component: {fileID: 7540715674390304334}
   m_Layer: 0
   m_Name: Waypoint (1)
   m_TagString: Untagged
@@ -2865,19 +2766,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674390304334
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674390304332}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674415766342
 GameObject:
   m_ObjectHideFlags: 0
@@ -2934,7 +2822,6 @@ GameObject:
   - component: {fileID: 7540715674436306992}
   - component: {fileID: 7540715674436306989}
   - component: {fileID: 7540715674436306994}
-  - component: {fileID: 7540715674436306995}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -3005,19 +2892,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674436306995
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674436306993}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674445471556
 GameObject:
   m_ObjectHideFlags: 0
@@ -3029,7 +2903,6 @@ GameObject:
   - component: {fileID: 7540715674445471559}
   - component: {fileID: 7540715674445471552}
   - component: {fileID: 7540715674445471553}
-  - component: {fileID: 7540715674445471558}
   m_Layer: 0
   m_Name: Waypoint (1)
   m_TagString: Untagged
@@ -3100,19 +2973,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674445471558
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674445471556}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674445961767
 GameObject:
   m_ObjectHideFlags: 0
@@ -3124,7 +2984,6 @@ GameObject:
   - component: {fileID: 7540715674445961766}
   - component: {fileID: 7540715674445961763}
   - component: {fileID: 7540715674445961760}
-  - component: {fileID: 7540715674445961761}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -3195,19 +3054,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674445961761
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674445961767}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674502076104
 GameObject:
   m_ObjectHideFlags: 0
@@ -3264,7 +3110,6 @@ GameObject:
   - component: {fileID: 7540715674529694849}
   - component: {fileID: 7540715674529694850}
   - component: {fileID: 7540715674529694851}
-  - component: {fileID: 7540715674529694848}
   m_Layer: 0
   m_Name: Waypoint_Junction
   m_TagString: WP_Junction
@@ -3338,19 +3183,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674529694848
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674529694854}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674545301634
 GameObject:
   m_ObjectHideFlags: 0
@@ -3362,7 +3194,6 @@ GameObject:
   - component: {fileID: 7540715674545301629}
   - component: {fileID: 7540715674545301630}
   - component: {fileID: 7540715674545301631}
-  - component: {fileID: 7540715674545301628}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -3433,19 +3264,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674545301628
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674545301634}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674609063156
 GameObject:
   m_ObjectHideFlags: 0
@@ -3514,7 +3332,6 @@ GameObject:
   - component: {fileID: 7540715674647267896}
   - component: {fileID: 7540715674647267893}
   - component: {fileID: 7540715674647267898}
-  - component: {fileID: 7540715674647267899}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -3585,19 +3402,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674647267899
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674647267897}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674655856513
 GameObject:
   m_ObjectHideFlags: 0
@@ -3708,7 +3512,6 @@ GameObject:
   - component: {fileID: 7540715674688321314}
   - component: {fileID: 7540715674688321311}
   - component: {fileID: 7540715674688321308}
-  - component: {fileID: 7540715674688321309}
   m_Layer: 0
   m_Name: Waypoint (2)
   m_TagString: Untagged
@@ -3779,19 +3582,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674688321309
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674688321315}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674696452811
 GameObject:
   m_ObjectHideFlags: 0
@@ -3803,7 +3593,6 @@ GameObject:
   - component: {fileID: 7540715674696452810}
   - component: {fileID: 7540715674696452807}
   - component: {fileID: 7540715674696452804}
-  - component: {fileID: 7540715674696452805}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -3874,19 +3663,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674696452805
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674696452811}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674718661052
 GameObject:
   m_ObjectHideFlags: 0
@@ -3898,7 +3674,6 @@ GameObject:
   - component: {fileID: 7540715674718661055}
   - component: {fileID: 7540715674718661048}
   - component: {fileID: 7540715674718661049}
-  - component: {fileID: 7540715674718661054}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -3969,19 +3744,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674718661054
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674718661052}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674719918833
 GameObject:
   m_ObjectHideFlags: 0
@@ -3993,7 +3755,6 @@ GameObject:
   - component: {fileID: 7540715674719918832}
   - component: {fileID: 7540715674719918829}
   - component: {fileID: 7540715674719918834}
-  - component: {fileID: 7540715674719918835}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -4064,19 +3825,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674719918835
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674719918833}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674723063260
 GameObject:
   m_ObjectHideFlags: 0
@@ -4088,7 +3836,6 @@ GameObject:
   - component: {fileID: 7540715674723063263}
   - component: {fileID: 7540715674723063256}
   - component: {fileID: 7540715674723063257}
-  - component: {fileID: 7540715674723063262}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -4159,19 +3906,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674723063262
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674723063260}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674735463088
 GameObject:
   m_ObjectHideFlags: 0
@@ -4183,7 +3917,6 @@ GameObject:
   - component: {fileID: 7540715674735463091}
   - component: {fileID: 7540715674735463084}
   - component: {fileID: 7540715674735463085}
-  - component: {fileID: 7540715674735463090}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -4254,19 +3987,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674735463090
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674735463088}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674844665787
 GameObject:
   m_ObjectHideFlags: 0
@@ -4278,7 +3998,6 @@ GameObject:
   - component: {fileID: 7540715674844665786}
   - component: {fileID: 7540715674844665783}
   - component: {fileID: 7540715674844665780}
-  - component: {fileID: 7540715674844665781}
   m_Layer: 0
   m_Name: Waypoint_Junction
   m_TagString: WP_Junction
@@ -4352,19 +4071,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674844665781
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674844665787}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674852159822
 GameObject:
   m_ObjectHideFlags: 0
@@ -4376,7 +4082,6 @@ GameObject:
   - component: {fileID: 7540715674852159817}
   - component: {fileID: 7540715674852159818}
   - component: {fileID: 7540715674852159819}
-  - component: {fileID: 7540715674852159816}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -4447,19 +4152,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674852159816
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674852159822}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674877771284
 GameObject:
   m_ObjectHideFlags: 0
@@ -4471,7 +4163,6 @@ GameObject:
   - component: {fileID: 7540715674877771287}
   - component: {fileID: 7540715674877771280}
   - component: {fileID: 7540715674877771281}
-  - component: {fileID: 7540715674877771286}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -4542,19 +4233,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674877771286
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674877771284}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674914133918
 GameObject:
   m_ObjectHideFlags: 0
@@ -4566,7 +4244,6 @@ GameObject:
   - component: {fileID: 7540715674914133913}
   - component: {fileID: 7540715674914133914}
   - component: {fileID: 7540715674914133915}
-  - component: {fileID: 7540715674914133912}
   m_Layer: 0
   m_Name: Waypoint_Junction
   m_TagString: WP_Junction
@@ -4640,19 +4317,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674914133912
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674914133918}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674930897600
 GameObject:
   m_ObjectHideFlags: 0
@@ -4664,7 +4328,6 @@ GameObject:
   - component: {fileID: 7540715674930897603}
   - component: {fileID: 7540715674930897596}
   - component: {fileID: 7540715674930897597}
-  - component: {fileID: 7540715674930897602}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -4735,19 +4398,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674930897602
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674930897600}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715674934627873
 GameObject:
   m_ObjectHideFlags: 0
@@ -4759,7 +4409,6 @@ GameObject:
   - component: {fileID: 7540715674934627872}
   - component: {fileID: 7540715674934627869}
   - component: {fileID: 7540715674934627874}
-  - component: {fileID: 7540715674934627875}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -4830,19 +4479,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715674934627875
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715674934627873}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715675015319280
 GameObject:
   m_ObjectHideFlags: 0
@@ -4911,7 +4547,6 @@ GameObject:
   - component: {fileID: 7540715675018307035}
   - component: {fileID: 7540715675018307028}
   - component: {fileID: 7540715675018307029}
-  - component: {fileID: 7540715675018307034}
   m_Layer: 0
   m_Name: Waypoint (2)
   m_TagString: Untagged
@@ -4982,19 +4617,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715675018307034
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715675018307032}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715675025765297
 GameObject:
   m_ObjectHideFlags: 0
@@ -5006,7 +4628,6 @@ GameObject:
   - component: {fileID: 7540715675025765296}
   - component: {fileID: 7540715675025765293}
   - component: {fileID: 7540715675025765298}
-  - component: {fileID: 7540715675025765299}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -5077,19 +4698,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715675025765299
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715675025765297}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715675220858245
 GameObject:
   m_ObjectHideFlags: 0
@@ -5200,7 +4808,6 @@ GameObject:
   - component: {fileID: 7540715675255827985}
   - component: {fileID: 7540715675255827986}
   - component: {fileID: 7540715675255827987}
-  - component: {fileID: 7540715675255827984}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -5271,19 +4878,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715675255827984
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715675255827990}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715675289248154
 GameObject:
   m_ObjectHideFlags: 0
@@ -5295,7 +4889,6 @@ GameObject:
   - component: {fileID: 7540715675289248149}
   - component: {fileID: 7540715675289248150}
   - component: {fileID: 7540715675289248151}
-  - component: {fileID: 7540715675289248148}
   m_Layer: 0
   m_Name: Waypoint (2)
   m_TagString: Untagged
@@ -5366,19 +4959,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715675289248148
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715675289248154}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715675339593889
 GameObject:
   m_ObjectHideFlags: 0
@@ -5390,7 +4970,6 @@ GameObject:
   - component: {fileID: 7540715675339593888}
   - component: {fileID: 7540715675339593885}
   - component: {fileID: 7540715675339593890}
-  - component: {fileID: 7540715675339593891}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -5461,19 +5040,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715675339593891
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715675339593889}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715675345292814
 GameObject:
   m_ObjectHideFlags: 0
@@ -5485,7 +5051,6 @@ GameObject:
   - component: {fileID: 7540715675345292809}
   - component: {fileID: 7540715675345292810}
   - component: {fileID: 7540715675345292811}
-  - component: {fileID: 7540715675345292808}
   m_Layer: 0
   m_Name: Waypoint (1)
   m_TagString: Untagged
@@ -5556,19 +5121,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715675345292808
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715675345292814}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715675345904655
 GameObject:
   m_ObjectHideFlags: 0
@@ -5580,7 +5132,6 @@ GameObject:
   - component: {fileID: 7540715675345904654}
   - component: {fileID: 7540715675345904651}
   - component: {fileID: 7540715675345904648}
-  - component: {fileID: 7540715675345904649}
   m_Layer: 0
   m_Name: Waypoint (1)
   m_TagString: Untagged
@@ -5651,19 +5202,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715675345904649
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715675345904655}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715675392849704
 GameObject:
   m_ObjectHideFlags: 0
@@ -5715,8 +5253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f6b894cd5c44b4d9ea9b12c47c207e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemiesToSpawn: 22
-  spawnInteval: 1
+  enemiesToSpawn: 20
+  spawnInteval: 4
   enemiesLeftToSpawn: 0
   spawners:
   - {fileID: 7540715676019250581}
@@ -5727,6 +5265,8 @@ MonoBehaviour:
   - {fileID: 7540715674107851699}
   enemyPrefabs:
   - {fileID: 616695482303022795, guid: 3b934070ac44fa84782bfd72845ebb7a, type: 3}
+  enemiesAlive: 0
+  enemiesKilled: 0
   oneForEachLine: 0
 --- !u!1 &7540715675397536541
 GameObject:
@@ -5739,7 +5279,6 @@ GameObject:
   - component: {fileID: 7540715675397536540}
   - component: {fileID: 7540715675397536537}
   - component: {fileID: 7540715675397536542}
-  - component: {fileID: 7540715675397536543}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -5810,19 +5349,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715675397536543
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715675397536541}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715675436354617
 GameObject:
   m_ObjectHideFlags: 0
@@ -5933,7 +5459,6 @@ GameObject:
   - component: {fileID: 7540715675605787001}
   - component: {fileID: 7540715675605787002}
   - component: {fileID: 7540715675605787003}
-  - component: {fileID: 7540715675605787000}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -6004,19 +5529,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715675605787000
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715675605787006}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715675634406570
 GameObject:
   m_ObjectHideFlags: 0
@@ -6028,7 +5540,6 @@ GameObject:
   - component: {fileID: 7540715675634406565}
   - component: {fileID: 7540715675634406566}
   - component: {fileID: 7540715675634406567}
-  - component: {fileID: 7540715675634406564}
   m_Layer: 0
   m_Name: Waypoint (1)
   m_TagString: Untagged
@@ -6099,19 +5610,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715675634406564
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715675634406570}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715675787984477
 GameObject:
   m_ObjectHideFlags: 0
@@ -6123,7 +5621,6 @@ GameObject:
   - component: {fileID: 7540715675787984476}
   - component: {fileID: 7540715675787984473}
   - component: {fileID: 7540715675787984478}
-  - component: {fileID: 7540715675787984479}
   m_Layer: 0
   m_Name: Waypoint (2)
   m_TagString: Untagged
@@ -6194,19 +5691,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715675787984479
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715675787984477}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715675807717025
 GameObject:
   m_ObjectHideFlags: 0
@@ -6218,7 +5702,6 @@ GameObject:
   - component: {fileID: 7540715675807717024}
   - component: {fileID: 7540715675807717021}
   - component: {fileID: 7540715675807717026}
-  - component: {fileID: 7540715675807717027}
   m_Layer: 0
   m_Name: Waypoint (2)
   m_TagString: Untagged
@@ -6289,19 +5772,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715675807717027
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715675807717025}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715675828480966
 GameObject:
   m_ObjectHideFlags: 0
@@ -6412,7 +5882,6 @@ GameObject:
   - component: {fileID: 7540715675928143063}
   - component: {fileID: 7540715675928143056}
   - component: {fileID: 7540715675928143057}
-  - component: {fileID: 7540715675928143062}
   m_Layer: 0
   m_Name: Waypoint_Junction
   m_TagString: WP_Junction
@@ -6486,19 +5955,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715675928143062
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715675928143060}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715675963105213
 GameObject:
   m_ObjectHideFlags: 0
@@ -6609,7 +6065,6 @@ GameObject:
   - component: {fileID: 7540715676000409510}
   - component: {fileID: 7540715676000409507}
   - component: {fileID: 7540715676000409504}
-  - component: {fileID: 7540715676000409505}
   m_Layer: 0
   m_Name: Waypoint
   m_TagString: Untagged
@@ -6680,19 +6135,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715676000409505
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715676000409511}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715676014587140
 GameObject:
   m_ObjectHideFlags: 0
@@ -6704,7 +6146,6 @@ GameObject:
   - component: {fileID: 7540715676014587143}
   - component: {fileID: 7540715676014587136}
   - component: {fileID: 7540715676014587137}
-  - component: {fileID: 7540715676014587142}
   m_Layer: 0
   m_Name: Waypoint_Junction
   m_TagString: WP_Junction
@@ -6778,19 +6219,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715676014587142
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715676014587140}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7540715676019250587
 GameObject:
   m_ObjectHideFlags: 0
@@ -7036,7 +6464,6 @@ GameObject:
   - component: {fileID: 7540715676158084284}
   - component: {fileID: 7540715676158084281}
   - component: {fileID: 7540715676158084286}
-  - component: {fileID: 7540715676158084287}
   m_Layer: 0
   m_Name: Waypoint_Junction
   m_TagString: WP_Junction
@@ -7110,19 +6537,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!135 &7540715676158084287
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7540715676158084285}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &7706798181389242356
 GameObject:
   m_ObjectHideFlags: 0

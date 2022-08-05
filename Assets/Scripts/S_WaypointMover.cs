@@ -41,6 +41,13 @@ public class S_WaypointMover : MonoBehaviour
     public bool altOnJunction = false;
     public bool loop = false;
 
+    void OnDisable()
+    {
+        onArrive = null;
+        onDepart = null;
+        onFinish = null;
+    }
+
     // Start is called before the first frame update
     void Start()
     {

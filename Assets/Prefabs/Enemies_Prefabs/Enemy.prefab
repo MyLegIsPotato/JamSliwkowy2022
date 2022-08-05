@@ -129,10 +129,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d8c25ab556449b4ea7b5b5010574d63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bodyCollider: {fileID: 0}
+  animator: {fileID: 0}
+  bodyDespawnTime: 10
   POINTS_Multiplier: 1
+  health: 0
+  happiness: 0
   damage: 10
+  dieOnArrival: 0
   moveSFX: {fileID: 8300000, guid: 76848c73df3ab404bb552e88b6219a0d, type: 3}
-  attackSFX: {fileID: 0}
+  attackSFXs: []
   hitFX_Prefab: {fileID: 1099297271999463074, guid: 341df58f96021a34189b9c004d4494a2, type: 3}
   hitSFXs:
   - {fileID: 8300000, guid: 02ca23ceb84c7714d9df7e01658d70ef, type: 3}
@@ -164,7 +170,9 @@ MonoBehaviour:
   autoProceed: 1
   firstWaypoint: {fileID: 0}
   altOnJunction: 0
+  loop: 0
   turnSpeed: 0.0524
+  keepMoving: 1
 --- !u!82 &-6623857334738967195
 AudioSource:
   m_ObjectHideFlags: 0

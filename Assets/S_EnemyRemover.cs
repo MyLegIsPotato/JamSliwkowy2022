@@ -21,8 +21,8 @@ public class S_EnemyRemover : MonoBehaviour
 
     public void RemoveEnemy(S_Enemy enemy)
     {
-        S_EnemyManager.enemiesAlive--;
-        Debug.LogWarning(enemy.GetInstanceID());
+        enemy.GetComponentInParent<S_EnemyManager>().enemiesAlive--;
+        enemy.GetComponentInParent<S_EnemyManager>().enemiesKilled++;
         S_EnemyManager.OnEnemyDeath();
 
         enemy.GetComponent<S_WaypointMover>().StopAllCoroutines(); 
@@ -32,6 +32,8 @@ public class S_EnemyRemover : MonoBehaviour
     IEnumerator RemoveEnemyObject(S_Enemy e)
     {
         yield return new WaitForSeconds(e.bodyDespawnTime);
-        Destroy(e.gameObject);
+        if(e != null)
+            Destroy(e.gameObject);
+        yield return null;
     }
 }

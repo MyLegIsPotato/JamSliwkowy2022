@@ -22,11 +22,19 @@ public class S_EnemyManager : MonoBehaviour
     public delegate void EnemyDeathHandler();
     public static EnemyDeathHandler OnEnemyDeath;
 
-    public static int enemiesAlive = 0;
+    public int enemiesAlive = 0;
+    public int enemiesKilled = 0;
     
 
     public bool oneForEachLine = false;
     public static Dictionary<S_EnemySpawner, bool> spawnersBusy;
+
+
+    void OnDisable()
+    {
+        OnEnemyHit = null;
+        OnEnemyDeath = null;
+    }
 
     public void Start()
     {

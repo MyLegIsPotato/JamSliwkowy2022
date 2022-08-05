@@ -310,6 +310,7 @@ MonoBehaviour:
   health: 40
   happiness: 0
   damage: 2
+  dieOnArrival: 1
   moveSFX: {fileID: 8300000, guid: 76848c73df3ab404bb552e88b6219a0d, type: 3}
   attackSFXs: []
   hitFX_Prefab: {fileID: 1099297271999463074, guid: 341df58f96021a34189b9c004d4494a2, type: 3}

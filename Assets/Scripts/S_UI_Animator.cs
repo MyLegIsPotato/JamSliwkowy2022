@@ -25,11 +25,27 @@ public class S_UI_Animator : MonoBehaviour
     public AudioClip creepyBuzz;
     public GameObject pointsInfo;
     public GameObject deathScreen;
+    public GameObject guide;
+    bool guideOpen = false;
 
 
     public void Start()
     {
         S_CursorManager.OnAnyWeaponShoot += ShootAmmoAnim;
+    }
+
+    public void ToggleGuide()
+    {
+        guideOpen = !guideOpen;
+        if (guideOpen)
+        {
+            guide.GetComponent<RectTransform>().anchoredPosition = new Vector3(708, guide.GetComponent<RectTransform>().anchoredPosition.y, 0);
+        }
+        else
+        {
+            guide.GetComponent<RectTransform>().anchoredPosition = new Vector3(-1, guide.GetComponent<RectTransform>().anchoredPosition.y, 0);
+        }
+
     }
 
     public void ShowDeathScreen()

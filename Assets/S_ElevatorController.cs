@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+[ExecuteInEditMode]
 public class S_ElevatorController : MonoBehaviour
 {
     [SerializeField]
@@ -10,7 +11,19 @@ public class S_ElevatorController : MonoBehaviour
     [SerializeField]
     GameObject RightDoors;
 
+    [SerializeField]
+    GameObject LeftDoors_Mine;
+    [SerializeField]
+    GameObject RightDoors_Mine;
+
+    [SerializeField]
+    public GameObject normalElevator;
+    [SerializeField]
+    public GameObject mineElevator;
+
     public AnimationCurve doorsPosition;
+    public AnimationCurve doorsRotation;
+
 
     [Range(0f, 1f)]
     public float doorOpenessFactor;
@@ -60,6 +73,11 @@ public class S_ElevatorController : MonoBehaviour
 
     public int numberOfFloors;
 
+    private void OnDisable()
+    {
+        OnElevatorArrived = null;
+        OnElevatorDeparted = null;
+    }
 
     public void Start()
     {
@@ -81,12 +99,16 @@ public class S_ElevatorController : MonoBehaviour
     {
         LeftDoors.transform.localPosition = new Vector3(-doorsPosition.Evaluate(doorOpenessFactor), 0, 0);
         RightDoors.transform.localPosition = new Vector3(doorsPosition.Evaluate(doorOpenessFactor), 0, 0);
+        RightDoors_Mine.transform.eulerAngles = new Vector3(0, doorsRotation.Evaluate(doorOpenessFactor), 0);
+        LeftDoors_Mine.transform.eulerAngles = new Vector3(0, -doorsRotation.Evaluate(doorOpenessFactor), 0);
+
     }
     IEnumerator MoveToNextFloor()
     {
         StartCoroutine(MoveToFloor(floorNum+1));
         yield return null;
     }
+
     public IEnumerator MoveToFloor(int floorToSkipTo)
     {
 
@@ -103,8 +125,30 @@ public class S_ElevatorController : MonoBehaviour
 
             yield return new WaitForSeconds(travelTime);
             ChangeFloorDisplayNumber();
+
+
+            if (FloorNum == 5 && FindObjectOfType<S_PlayerManager>().CurrentPOINTS < FindObjectOfType<S_PlayerManager>().maxPOINTS * 0.8f)
+            {
+                S_GameManager.GameLost = true;
+                StopAllCoroutines();
+                StartCoroutine(MoveToNextFloor());
+                yield break;
+            }
+
+            yield return null;
+
+            if (FloorNum == 6) //Ground Floor
+            {
+                print("On the Ground Floor");
+                if (S_GameManager.GameLost == true)
+                {
+                    //End Game - Restart;
+                    Debug.LogWarning("Game is lost, restarting soon...");
+                }
+            }
         }
         while (FloorNum < floorToSkipTo);
+
 
 
         print("Wait Complete.");
@@ -126,16 +170,19 @@ public class S_ElevatorController : MonoBehaviour
         {
             if (floorNum < 6)
                 floorDisplayObject.sprite = floorDisplaySprites[6 - floorNum];
-            else
+            else // num > 6
+            {
                 floorDisplayOfInsanity.SetActive(true);
+                floorDisplayObject.sprite = floorDisplaySprites[floorNum-6];
+            }
         }
     }
 
 
     public void MoveIfEnemiesDead()
     {
-        print("Enemies alive is still: " + floors[floorNum].GetComponentInChildren<S_EnemyManager>().enemiesLeftToSpawn);
-        if (S_EnemyManager.enemiesAlive == 0 && floors[floorNum].GetComponentInChildren<S_EnemyManager>().enemiesLeftToSpawn == 0)
+        //print("Enemies alive is still: " + floors[floorNum].GetComponentInChildren<S_EnemyManager>().enemiesAlive);
+        if (floors[floorNum].GetComponentInChildren<S_EnemyManager>().enemiesKilled >= floors[floorNum].GetComponentInChildren<S_EnemyManager>().enemiesToSpawn)
             StartCoroutine(MoveToNextFloor());
     }
 

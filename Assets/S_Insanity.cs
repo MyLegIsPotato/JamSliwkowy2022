@@ -17,6 +17,32 @@ public class S_Insanity : MonoBehaviour
     [SerializeField]
     HingeJoint headJoint;
 
+    [SerializeField]
+    AudioClip buzzing;
+
+
+    public bool useFullVignette;
+
+    [Range(0f, 1f)]
+    public float fullVignettePercent;
+    public float FullVignettePercent
+    {
+        get { return fullVignettePercent; }
+        set
+        {
+            fullVignettePercent = value;
+            VignetteModel.Settings newVignette = mainCameraPostProcessingProfile.vignette.settings;
+            newVignette.intensity = Mathf.Lerp(0.1f, 5f, fullVignettePercent);
+            mainCameraPostProcessingProfile.vignette.settings = newVignette;
+        }
+    }
+
+    public void PlayBuzzing()
+    {
+        GetComponent<AudioSource>().PlayOneShot(buzzing);
+    }
+
+
     //Insanity - just vignette:
 
     [Range(0f, 1f)]
@@ -38,6 +64,7 @@ public class S_Insanity : MonoBehaviour
             mainCameraPostProcessingProfile.vignette.settings = newVignette;
         }
     }
+
 
 
     //Insanity lvl 1:
@@ -139,6 +166,8 @@ public class S_Insanity : MonoBehaviour
         }
     }
 
+    public bool useHeadHingeForVignette = true;
+
     private void Update()
     {
         //if(insanityPercentLvl2 > 0)
@@ -152,8 +181,23 @@ public class S_Insanity : MonoBehaviour
         //}
         //else
         //{
-        //    vignettePercent = Mathf.InverseLerp(-30, +30, Mathf.Abs(headJoint.angle));
-        //    VignettePercent = vignettePercent;
+
+        if (!useFullVignette)
+        {
+
+            if (useHeadHingeForVignette)
+            {
+                vignettePercent = Mathf.InverseLerp(-30, +30, Mathf.Abs(headJoint.angle));
+                VignettePercent = vignettePercent;
+            }
+
+        }
+        else
+        {
+            FullVignettePercent = fullVignettePercent;
+        }
+
+
         //}
     }
 }

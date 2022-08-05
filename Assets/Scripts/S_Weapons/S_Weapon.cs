@@ -13,6 +13,7 @@ public class S_Weapon : MonoBehaviour
     [SerializeField]
     public int weaponDamage = 0;
     public int emotionalDamage = 0;
+    public bool automaticFire = false;
     public float weaponShootInterval = 1;
     public int weaponReloadTime = 3;
     public bool limitedAmmo = false;
@@ -36,7 +37,7 @@ public class S_Weapon : MonoBehaviour
     {
         if(weaponSystem.GetCurrentWeapon != null)
         {
-            print(isReloading);
+            //print(isReloading);
             //Don't let player shoot when not enough time has passed since the last shot.
             if (Time.time > lastRofTime + weaponShootInterval && !isReloading)
             {

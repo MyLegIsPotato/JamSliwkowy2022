@@ -8,10 +8,19 @@ public class S_GameManager : MonoBehaviour
     public delegate void GameStartHandler();
     public static GameStartHandler OnGameStarted;
 
+    public static bool GameLost = false;
+
+
+    void OnDisable()
+    {
+        OnGameStarted = null;
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
+        GameLost = false;
         Debug.LogWarning("Game Running");        
     }
 
@@ -25,7 +34,8 @@ public class S_GameManager : MonoBehaviour
 
     public void SkipTo(Transform waypoint)
     {
-        
+        FindObjectOfType<S_PlayerManager>().CurrentPOINTS = FindObjectOfType<S_PlayerManager>().maxPOINTS;
+
         Debug.LogWarning("Game Skipped Starting...");
         GetComponent<S_ElevatorController>().StartCoroutine(
             GetComponent<S_ElevatorController>().MoveToFloor(waypoint.GetSiblingIndex())
@@ -33,7 +43,7 @@ public class S_GameManager : MonoBehaviour
         Debug.LogWarning("Game Skipped Started.");
     }
 
-    public void RestartGame()
+    public static void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }

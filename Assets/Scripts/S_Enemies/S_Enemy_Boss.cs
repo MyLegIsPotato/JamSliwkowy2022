@@ -32,6 +32,7 @@ public class S_Enemy_Boss : S_Enemy
     {
         GetComponent<S_WaypointMover>().onArrive += CheckWP;
         base.maxHealth = 1000; //To Do Remove
+
     }
 
 
@@ -148,19 +149,23 @@ public class S_Enemy_Boss : S_Enemy
                 break;
             case var expression when waypoint == shelfWaypoint1:
                 Debug.Log("Throw something!");
-                yield return new WaitForSeconds(4f);
+                //yield return new WaitForSeconds(4f);
                 GetComponent<Animator>().SetTrigger("Throw");
                 GetComponent<S_WaypointMover>().ProceedToNext();
                 break;
             case var expression when waypoint == shelfWaypoint2:
                 Debug.Log("Throw something else!");
-                yield return new WaitForSeconds(4f);
+                //yield return new WaitForSeconds(4f);
                 GetComponent<Animator>().SetTrigger("Throw");
                 GetComponent<S_WaypointMover>().ProceedToNext();
 
                 break;
             case var expression when waypoint == rageWaypoint:
                 Debug.Log("RAAGEE");
+
+                transform.LookAt(Camera.main.transform);
+                transform.transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, transform.eulerAngles.z);
+
                 GetComponent<Animator>().SetTrigger("Taunt");
                 GetComponent<AudioSource>().PlayOneShot(rageSound);
                 yield return new WaitForSeconds(4f);
@@ -170,10 +175,9 @@ public class S_Enemy_Boss : S_Enemy
                 {
                     Debug.Log("Kick Table!");
                     GetComponent<Animator>().SetTrigger("KickTable");
-                    transform.LookAt(Camera.main.transform);
-                    transform.transform.rotation = Quaternion.Euler(0, transform.eulerAngles.y, transform.eulerAngles.z);
+                    tableKicked = true;
                 }
-                yield return new WaitForSeconds(2f);
+                yield return new WaitForSeconds(3f);
                 GetComponent<S_WaypointMover>().ProceedToNext();
 
                 break;

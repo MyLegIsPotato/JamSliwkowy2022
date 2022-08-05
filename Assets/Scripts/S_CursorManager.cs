@@ -17,6 +17,14 @@ public class S_CursorManager : MonoBehaviour
     [SerializeField]
     Image cursorImage;
 
+    [SerializeField]
+    AudioClip deny;
+
+    void OnDisable()
+    {
+        OnAnyWeaponShoot = null;
+    }
+
     private void Start()
     {
 
@@ -32,12 +40,27 @@ public class S_CursorManager : MonoBehaviour
     {
         cursorImage.transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
 
-
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if(GetComponent<S_WeaponSystem>().GetCurrentWeapon != null)
         {
-           if(GetComponent<S_WeaponSystem>().GetCurrentWeapon != null)
-                GetComponent<S_WeaponSystem>().GetCurrentWeapon.TryWeaponShoot(); //Will work if not reloading           
+            if (GetComponent<S_WeaponSystem>().GetCurrentWeapon.automaticFire == false)
+            {
+                if (Input.GetKeyDown(KeyCode.Mouse0))
+                {
+                    GetComponent<S_WeaponSystem>().GetCurrentWeapon.TryWeaponShoot(); //Will work if not reloading           
+                }
+            }
+            else
+            {
+                if (Input.GetKey(KeyCode.Mouse0))
+                {
+                    GetComponent<S_WeaponSystem>().GetCurrentWeapon.TryWeaponShoot(); //Will work if not reloading           
+
+                }
+            }
+
         }
+
+
 
     }
 
@@ -55,6 +78,28 @@ public class S_CursorManager : MonoBehaviour
                 //Enemy
                 hitObject.GetComponent<S_Enemy>().Hit(hit.point, weaponSystem.GetCurrentWeapon);
             }
+            else
+            {
+                LTSeq seq = LeanTween.sequence();
+                seq.append(LeanTween.scale(cursorImage.gameObject, Vector2.one * 1.2f, 0.1f));
+                seq.append(LeanTween.scale(cursorImage.gameObject, Vector2.one * 0.8f, 0.1f));
+                seq.append(LeanTween.scale(cursorImage.gameObject, Vector2.one * 1.2f, 0.1f));
+                seq.append(LeanTween.scale(cursorImage.gameObject, Vector2.one * 0.8f, 0.1f));
+                GetComponent<AudioSource>().PlayOneShot(deny, 0.4f);
+                seq.setScale(1f);
+                //StartCoroutine(ShakeCursor());
+            }
+        }
+        else
+        {
+                LTSeq seq = LeanTween.sequence();
+                seq.append(LeanTween.scale(cursorImage.gameObject, Vector2.one * 1.2f, 0.1f));
+                seq.append(LeanTween.scale(cursorImage.gameObject, Vector2.one * 0.8f, 0.1f));
+                seq.append(LeanTween.scale(cursorImage.gameObject, Vector2.one * 1.2f, 0.1f));
+                seq.append(LeanTween.scale(cursorImage.gameObject, Vector2.one * 0.8f, 0.1f));
+                GetComponent<AudioSource>().PlayOneShot(deny, 0.4f);
+                seq.setScale(1f);
+                //StartCoroutine(ShakeCursor());
         }
 
         Debug.DrawLine(ray.origin, hit.point, Color.green, 3f);
@@ -65,6 +110,13 @@ public class S_CursorManager : MonoBehaviour
     public void AnimateCursor(float duration)
     {
         StartCoroutine(AnimateCursor360(duration));
+    }
+
+    public IEnumerator ShakeCursor()
+    {
+
+
+        yield return null;
     }
 
     public IEnumerator AnimateCursor360(float duration)

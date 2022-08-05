@@ -18,8 +18,12 @@ public class S_Enemy_Human : S_Enemy
 
         if (Random.Range(0, 10) == 0)
             isShy = false;
+
         if (isShy)
+        {
             GetComponent<S_WaypointMover>().TurnBack();
+            GetComponent<S_WaypointMover>().altOnJunction = true;
+        }
         else
         {
             if (!GetComponent<AudioSource>().isPlaying)

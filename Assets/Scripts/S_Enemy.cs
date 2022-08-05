@@ -45,6 +45,7 @@ public class S_Enemy : MonoBehaviour
     }
 
     public int damage;
+    public bool dieOnArrival;
 
     public AudioClip moveSFX;
     public List<AudioClip> attackSFXs;
@@ -74,15 +75,15 @@ public class S_Enemy : MonoBehaviour
     public virtual IEnumerator DieProcess()
     {
         print("I'm " + this.gameObject.name + " dead!");
+        bodyCollider.enabled = false;
 
         GetComponent<S_WaypointMover>().keepMoving = false;
         GetComponent<S_WaypointMover>().autoProceed = false;
-        yield return new WaitForSeconds(0.05f);
         foreach (Rigidbody rb in GetComponentsInChildren<Rigidbody>())
         {
             rb.isKinematic = true;
         }
-        bodyCollider.enabled = false;
+
         animator.enabled = false;
         foreach (Rigidbody rb in GetComponentsInChildren<Rigidbody>())
         {
@@ -97,7 +98,8 @@ public class S_Enemy : MonoBehaviour
     public virtual void ArrivedAction(Transform waypoint) 
     {
         print("Just arrived");
-        S_EnemyRemover.i.RemoveEnemy(this);
+        if(dieOnArrival == true)
+            S_EnemyRemover.i.RemoveEnemy(this);
     }
 
     public void ReleaseSpawner()

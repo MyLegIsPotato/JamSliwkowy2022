@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 91828b03b6e430c4bace0c7cef7ab8de
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - weaponBarGraphic: {instanceID: 0}
+  - weaponShootSound: {instanceID: 0}
+  - weaponReloadSound: {instanceID: 0}
+  - missFX_Prefab: {instanceID: 0}
+  - bulletSprite: {fileID: 21300000, guid: c68fc9450124cb74287dbe64e889de33, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
