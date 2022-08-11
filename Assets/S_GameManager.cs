@@ -50,5 +50,6 @@ public class S_GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         GameLost = false;
+        gameStarted = false;
     }
 }
